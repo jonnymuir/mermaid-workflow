@@ -7,7 +7,7 @@ journey
     section Implement Simplest Workflow
       Create an API: 5: Me
       Create a Work Tray: 3: Me
-    section Persistance
+    section Persistence
       Create backing stores: 5: Me
     section User Testing
       Observation: 5: Janey
