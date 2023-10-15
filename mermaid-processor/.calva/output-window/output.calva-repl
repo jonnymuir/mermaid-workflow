@@ -60,3 +60,9 @@ clj꞉mermaid-processor.parse-test꞉> 
 (rest moo)
 ([:node [:nodeId "A"] [:nodeText "My Desc"]] [:node [:nodeId "B"] [:nodeText "My other node"]])
 clj꞉mermaid-processor.parse-test꞉> 
+(def moo2 [[:node [:nodeId "C"] [:nodeText "C text"]]
+           [:route [:node [:nodeId "A"] [:nodeText "My Desc"]] [:routeText "yes"]
+            [:node [:nodeId "B"] [:nodeText "My other node"]]]])
+#'mermaid-processor.parse-test/moo2
+clj꞉mermaid-processor.parse-test꞉> 
+moo
