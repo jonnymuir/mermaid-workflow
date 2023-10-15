@@ -3,7 +3,8 @@
   :url "https://github.com/jonnymoo/mermaid-workflow/mermaid-processor"
   :license {:name "MIT License"
             :url "https://github.com/jonnymoo/mermaid-workflow/blob/main/LICENSE"}
-  :dependencies [[org.clojure/clojure "1.11.1"]]
+  :dependencies [[org.clojure/clojure "1.11.1"]
+                 [instaparse "1.4.12"]]
   :main ^:skip-aot mermaid-processor.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all

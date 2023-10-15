@@ -1,16 +1,10 @@
-; This is the Calva evaluation results output window.
-; TIPS: The keyboard shortcut `ctrl+alt+o o` shows and focuses this window
-;   when connected to a REPL session.
-; Please see https://calva.io/output/ for more info.
-; Happy coding! ♥️
-
 ; Jacking in...
 ; Connecting using "Leiningen" project type.
 ; You can make Calva auto-select this.
 ;   - See https://calva.io/connect-sequences/
 ; 
 ; Starting Jack-in Terminal: pushd /root/dev/mermaid-workflow/mermaid-processor ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +uberjar repl :headless ; popd
-; Using host:port 127.0.0.1:35865 ...
+; Using host:port 127.0.0.1:38519 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -22,89 +16,47 @@
 ;   - Clojure lines in stack traces are peekable and clickable.
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
 nil
-clj꞉mermaid-processor.core꞉>  ; Use `alt+enter` to evaluate
+clj꞉mermaid-processor.core꞉> 
 clj꞉mermaid-processor.core꞉> 
 ; Jack-in done.
-clj꞉mermaid-processor.core꞉> (parse-line "abc")
-; Syntax error compiling at (.calva/output-window/output.calva-repl:28:30).
-; Unable to resolve symbol: parse-line in this context
 clj꞉mermaid-processor.core꞉> 
-#'mermaid-processor.parse/parse-line
-clj꞉mermaid-processor.parse꞉> 
-#'mermaid-processor.parse/parse-mermaid
-clj꞉mermaid-processor.parse꞉
-; Syntax error (ClassNotFoundException) compiling at (.calva/output-window/output.calva-repl:1:7956).
-; clj꞉mermaid-processor.parse꞉
-clj꞉mermaid-processor.parse꞉> 
-(parse-line "abc")
-{:from nil, :condition nil, :to nil}
-clj꞉mermaid-processor.parse꞉> 
-(parse-line "graph TB
-    A{"Are you Jonny?"}
-    B["Say hello, Jonny"]
-    C["Say hello"]
-    
-    A -->|Yes| B
-    A -->|No| C")
-; Syntax error compiling at (.calva/output-window/output.calva-repl:42:1).
-; Unable to resolve symbol: Are in this context
-clj꞉mermaid-processor.parse꞉> 
-(parse-mermaid "graph TB
-    A{\"Are you Jonny?\"}
-    B[\"Say hello, Jonny\"]
-    C[\"Say hello\"]
-    
-    A -->|Yes| B
-    A -->|No| C")
-{nil nil, :    A  {:|yes| b nil, :|no| c nil}}
-clj꞉mermaid-processor.parse꞉> 
-; Running all project tests…
-; No tests found. 😱, ns: 0, vars: 0
-clj꞉mermaid-processor.parse꞉> 
-; Running all project tests…
-; No tests found. 😱, ns: 0, vars: 0
-clj꞉mermaid-processor.parse꞉> 
-; Syntax error compiling at (test/mermaid_processor/parse_test.clj:12:43).
-; Unable to resolve symbol: parse-mermaid in this context
+; Evaluating file: parse_test.clj
+#'mermaid-processor.parse-test/parse-multiple_nodes
 clj꞉mermaid-processor.parse-test꞉> 
-; nREPL Connection was closed
-; Jacking in...
-; Connecting using "Leiningen" project type.
-; You can make Calva auto-select this.
-;   - See https://calva.io/connect-sequences/
-; 
-; Starting Jack-in Terminal: pushd /root/dev/mermaid-workflow/mermaid-processor ; lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +uberjar repl :headless ; popd
-; Using host:port 127.0.0.1:39507 ...
-; Hooking up nREPL sessions ...
-; Connected session: clj
-; TIPS:
-;   - You can edit the contents here. Use it as a REPL if you like.
-;   - `alt+enter` evaluates the current top level form.
-;   - `ctrl+enter` evaluates the current form.
-;   - `alt+up` and `alt+down` traverse up and down the REPL command history
-;      when the cursor is after the last contents at the prompt
-;   - Clojure lines in stack traces are peekable and clickable.
-; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
-nil
-clj꞉mermaid-processor.core꞉> 
-clj꞉mermaid-processor.core꞉> 
-; Jack-in done.
-clj꞉mermaid-processor.core꞉> 
-nil
-clj꞉mermaid-processor.parse꞉> 
-; Evaluating file: parse.clj
-#'mermaid-processor.parse/parse-mermaid
-clj꞉mermaid-processor.parse꞉> 
-(parse-mermaid "flowchart")
-()
-clj꞉mermaid-processor.parse꞉> 
-(parse-mermaid "shite")
-; Execution error (IllegalArgumentException) at mermaid-processor.parse/parse-mermaid (parse.clj:15).
-; No method in multimethod 'chart-parser' for dispatch value: :shite
-clj꞉mermaid-processor.parse꞉> 
-; Syntax error compiling at (src/mermaid_processor/parsers/flowchart.clj:6:1).
-; No such namespace: parse
-clj꞉mermaid-processor.parsers.flowchart꞉> 
-; Syntax error compiling at (src/mermaid_processor/parsers/flowchart.clj:6:1).
-; No such namespace: parse
-clj꞉mermaid-processor.parsers.flowchart꞉> 
+(parse-mermaid "flowchart TD
+                                  A[My Desc]
+                                  B[My other node]")
+[:node [:nodeId "A"] [:nodeText "My Desc"]]
+clj꞉mermaid-processor.parse-test꞉> 
+(parse-mermaid "flowchart TD
+                                  A
+                                  
+; Syntax error compiling at (.calva/output-window/output.calva-repl:1:7956).
+; Unable to resolve symbol: A in this context
+clj꞉mermaid-processor.parse-test꞉> 
+
+                
+                ")
+; Execution error (ExceptionInfo) at mermaid-processor.parsers.flowchart/result-or-exception (flowchart.clj:13).
+; Parsing failed
+clj꞉mermaid-processor.parse-test꞉> 
+(parse-mermaid "flowchart TD
+                A
+                B")
+[:node [:nodeId "A"]]
+clj꞉mermaid-processor.parse-test꞉> 
+(def moo [:S [:node [:nodeId "A"] [:nodeText "My Desc"]] [:node [:nodeId "B"] [:nodeText "My other node"]]])
+#'mermaid-processor.parse-test/moo
+clj꞉mermaid-processor.parse-test꞉> 
+moo
+[:S [:node [:nodeId "A"] [:nodeText "My Desc"]] [:node [:nodeId "B"] [:nodeText "My other node"]]]
+clj꞉mermaid-processor.parse-test꞉> 
+(first moo)
+:S
+clj꞉mermaid-processor.parse-test꞉> 
+(second moo)
+[:node [:nodeId "A"] [:nodeText "My Desc"]]
+clj꞉mermaid-processor.parse-test꞉> 
+(rest moo)
+([:node [:nodeId "A"] [:nodeText "My Desc"]] [:node [:nodeId "B"] [:nodeText "My other node"]])
+clj꞉mermaid-processor.parse-test꞉> 
