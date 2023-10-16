@@ -15,6 +15,17 @@
                     result))
     (rest result)))
 
+(defn extract-nodes
+  [data]
+  (if (not (seq data)) ;; Check if data is non-empty
+    []
+    (mapcat (fn [item]
+              (if (= :node (first item))
+                [item]
+                (extract-nodes (rest item))))
+            data)))
+
+
 ; Define the flowchart method
 (defmethod parse/chart-parser :flowchart [_ input]
   (result-or-exception (parser input))
