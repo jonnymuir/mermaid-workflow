@@ -5,7 +5,8 @@ node-id ::= unquoted-id
 <unquoted-id> ::= #'[a-zA-Z0-9_]+'
 node-text ::= unquoted-text
 <unquoted-text> ::= #'[a-zA-Z0-9_](?:[a-zA-Z0-9_\s]*[a-zA-Z0-9_])?'
-route ::= node [<WHITESPACE>] <EDGE_ARROW> [<WHITESPACE>] [<'|'>[<WHITESPACE>]route-text[<WHITESPACE>]<'|'>] [<WHITESPACE>] node
+route ::= route-source [<WHITESPACE>] <EDGE_ARROW> [<WHITESPACE>] [<'|'>[<WHITESPACE>]route-text[<WHITESPACE>]<'|'>] [<WHITESPACE>] node
+route-source ::= node | route
 route-text ::= unquoted-text
 
 SEMI ::= ';'

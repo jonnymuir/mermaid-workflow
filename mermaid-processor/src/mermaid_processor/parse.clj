@@ -10,13 +10,14 @@ ARGUMENTS:
 - content: The chart
    
 RETURN:
-A map of nodes and routes between nodes
+A structure with nodes and routes between nodes
 ```
-{\"A\" {:node-text \"Desc\" 
-        :routes ({:route-destination \"B\" 
-                  :route-text \"To\"})}
- \"B\" {:node-text \"Desc2\"
-        :routes ()}}
+{:start-at \"A\"
+ :nodes {\"A\" {:node-text \"Desc\" 
+                :routes ({:route-destination \"B\" 
+                          :route-text \"To\"})}
+         \"B\" {:node-text \"Desc2\"
+                :routes ()}}
 ``` 
 EXAMPLE:
 ```
@@ -24,8 +25,7 @@ EXAMPLE:
                  A[Desc]-->|To|B[Desc2]\")
 ```    
 THROWS:
-ExceptionInfo if the parse-result was a parse error instead of an AST. 
-ex-data has the failure in it."
+ExceptionInfo if there was a parse error."
 
   [content]
   (let [lines (map str/trim (str/split (str/trim content) #"\r?\n"))

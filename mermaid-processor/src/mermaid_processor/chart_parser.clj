@@ -6,7 +6,7 @@
   (fn [chart-name _] (keyword chart-name)))
 
 (defn result-or-exception 
-  "Works out if a parse has failed and if sothrows an error
+  "Works out if a parse has failed and if so throws an error
    
    ARGUMENTS:
    - parse-result: the result from instaparse.core/parser.
@@ -18,11 +18,9 @@
    (result-or-exception (parser input))
    
    THROWS:
-   ExceptionInfo if the parse-result was a parse error instead of an AST. 
-   ex-data has the failure in it."
-  
+   ExceptionInfo if the parse-result was a parse error instead of an AST."
   [parse-result]
   (if (contains? parse-result :reason)
     (throw (ex-info "Parsing failed"
                     parse-result))
-    (rest parse-result)))
+    parse-result))
