@@ -1,12 +1,12 @@
 S ::= [<WHITESPACE>](route|node){[<WHITESPACE>]<BETWEEN_COMMAND>[<WHITESPACE>](route|node)}
 
-node ::= nodeId (<'['> nodeText <']'>)?
-nodeId ::= unquotedId
-<unquotedId> ::= #'[a-zA-Z0-9_]+'
-nodeText ::= unquotedText
-<unquotedText> ::= #'[a-zA-Z0-9_](?:[a-zA-Z0-9_\s]*[a-zA-Z0-9_])?'
-route ::= node [<WHITESPACE>] <EDGE_ARROW> [<WHITESPACE>] [<'|'>[<WHITESPACE>]routeText[<WHITESPACE>]<'|'>] [<WHITESPACE>] node
-routeText ::= unquotedText
+node ::= node-id (<'['> node-text <']'>)?
+node-id ::= unquoted-id
+<unquoted-id> ::= #'[a-zA-Z0-9_]+'
+node-text ::= unquoted-text
+<unquoted-text> ::= #'[a-zA-Z0-9_](?:[a-zA-Z0-9_\s]*[a-zA-Z0-9_])?'
+route ::= node [<WHITESPACE>] <EDGE_ARROW> [<WHITESPACE>] [<'|'>[<WHITESPACE>]route-text[<WHITESPACE>]<'|'>] [<WHITESPACE>] node
+route-text ::= unquoted-text
 
 SEMI ::= ';'
 NEWLINE ::= #'\r?\n'

@@ -1,10 +1,33 @@
 (ns mermaid-processor.parse
   (:require [mermaid-processor.parsers.flowchart]
-            [mermaid-processor.chart-parser :as parser]
+            [mermaid-processor.chart-parser :as chart-parser]
             [clojure.string :as str]))
 
-; Parse our mermaid content
-(defn parse-mermaid [content]
+(defn parse-mermaid
+  "Parse a mermaid chart
+     
+ARGUMENTS:
+- content: The chart
+   
+RETURN:
+A map of nodes and routes between nodes
+```
+{\"A\" {:node-text \"Desc\" 
+        :routes ({:route-destination \"B\" 
+                  :route-text \"To\"})}
+ \"B\" {:node-text \"Desc2\"
+        :routes ()}}
+``` 
+EXAMPLE:
+```
+(parse-mermaid \"flowchart TD
+                 A[Desc]-->|To|B[Desc2]\")
+```    
+THROWS:
+ExceptionInfo if the parse-result was a parse error instead of an AST. 
+ex-data has the failure in it."
+
+  [content]
   (let [lines (map str/trim (str/split (str/trim content) #"\r?\n"))
         [first-word & _] (str/split (first (remove empty? lines)) #"\s+")]
-    (parser/chart-parser first-word (str/join "\n" (rest lines)))))
+    (chart-parser/parser first-word (str/join "\n" (rest lines)))))

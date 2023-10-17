@@ -1,6 +1,6 @@
 (ns mermaid-processor.parsers.flowchart
   (:require [clojure.java.io :as io]
-            [mermaid-processor.chart-parser :as parse]
+            [mermaid-processor.chart-parser :as chart-parser]
             [instaparse.core :as insta]))
 
 (def grammar
@@ -9,24 +9,10 @@
 (def parser
   (insta/parser grammar :output-format :hiccup))
 
-(defn result-or-exception [result]
-  (if (contains? result :reason)
-    (throw (ex-info "Parsing failed"
-                    result))
-    (rest result)))
+(defn transform [ast]
+  (apply hash-map (flatten ast)))
 
-(defn extract-nodes
-  [data]
-  (if (not (seq data)) ;; Check if data is non-empty
-    []
-    (mapcat (fn [item]
-              (if (= :node (first item))
-                [item]
-                (extract-nodes (rest item))))
-            data)))
-
-
-; Define the flowchart method
-(defmethod parse/chart-parser :flowchart [_ input]
-  (result-or-exception (parser input))
-  )
+;; Parse a mermaid flow chart
+(defmethod chart-parser/parser :flowchart 
+  [_ input]
+  (transform (chart-parser/result-or-exception (parser input))))
