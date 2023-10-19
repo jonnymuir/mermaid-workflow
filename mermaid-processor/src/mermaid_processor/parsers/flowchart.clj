@@ -23,7 +23,7 @@
       (not (contains? node-map node-id)) 
          (assoc node-map node-id 
                 {:node-text (or node-text node-id) 
-                 :routes '()})
+                 :routes []})
       node-text 
           (assoc-in node-map [node-id :node-text] node-text)
       :else node-map)))

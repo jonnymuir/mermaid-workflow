@@ -6,7 +6,7 @@
   (testing "test a nonsense chart type throws an error"
     (is (thrown? IllegalArgumentException (parse/parse-mermaid "nonsensechart TB"))))
 )
-(deftest parse-single-node
+(deftest parse-single-node-test
   (testing "simplest single node test"
     ; "A" should return a map which simply has one node id = A and text = A
     (is (= {:start-at "A" :nodes {"A" {:node-text "A" :routes '()}}}
