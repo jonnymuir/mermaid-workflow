@@ -1,6 +1,6 @@
 # mermaid-processor
 
-FIXME: description
+The main logic for processing mermaid diagrams.
 
 ## Installation
 
@@ -20,25 +20,52 @@ FIXME: listing of options this app accepts.
 
 ...
 
-### Bugs
+### Bugs and Issues
 
 ...
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+## Design guidelines
 
-## License
+Use TDD to promote a modular design that promotes simplicity over complexity
 
-Copyright © 2023 FIXME
+Order function parameters by specificity (general to specific), e.g. my-function [context behavior item]
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+Aim towards a DDD like Ubiquitous Language. This means entities should use real life terms from the business / user domain. This language should be refleced in the code. And on language, a decision has been made to not use british english, but stick with american english, e.g. Behavoir, not behavoir. This is simply to make it consitent with other code bases.
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+```mermaid
+C4Container
+    title Container diagram for Workflow Automation System
+
+    Person_Ext(user, "User", "Uses the WorkflowUI to interact with the system.")
+
+    System_Boundary(workflowSys, "Workflow System") {
+        Container(webUI, "WorkflowUI", "Web Application", "Provides a reference front-end for the workflow.")
+        Container(webAPI, "WorkflowAPI", "Web API", "Handles the business logic and data processing for workflows.")
+        ContainerDb(clojars, "Clojars", "Artifact Repository", "Stores the Clojure libraries used in the system.")
+        Container(mermaidLib, "mermaid-processing", "Clojure Library", "Processes and renders diagrams.")
+    }
+
+    Rel(user, webUI, "Uses", "HTTP/HTTPS")
+    Rel(webUI, webAPI, "Sends requests to", "HTTP/HTTPS")
+    Rel(webAPI, clojars, "Fetches libraries from")
+    Rel(webAPI, mermaidLib, "Uses for diagram processing")
+
+    UpdateElementStyle(user, $fontColor="blue")
+    UpdateRelStyle(webUI, webAPI, $textColor="green", $lineColor="green")
+    UpdateRelStyle(webAPI, clojars, $textColor="purple", $lineColor="purple")
+    UpdateRelStyle(webAPI, mermaidLib, $textColor="orange", $lineColor="orange")
+```
+```mermaid
+C4Component
+    title Component diagram for mermaid-processing library
+
+    Boundary(mermaidLib, "mermaid-processing") {
+        Component(context, "Context", "Stores the state of the running workflow, current node, and other state required by conditions or actions.")
+        Component(behavior, "Behavior", "Specifies actions and conditions. Can modify the Context.")
+        Component(chart, "Chart", "Represents the parsed Mermaid diagram.")
+    }
+
+    Rel(behavior, context, "Modifies")
+    Rel(behavior, chart, "Reads state from")
+    Rel(chart, context, "Updates state in")
+```

@@ -1,43 +1,39 @@
 (ns mermaid-processor.process)
 
-(defn get-current-node [chart context]
-  ((chart :nodes) (or (context :current-node-id) (chart :start-at)))
-  )
+(defn get-current-node [context behaviors chart]
+  ((chart :nodes) ((behaviors :get-current-node-id) context chart)))
 
-(defn get-current-node-text [chart context]
-  (let [current-node (get-current-node chart context)]
+(defn get-current-node-text [context behaviors chart]
+  (let [current-node (get-current-node context behaviors chart)]
     (current-node :node-text)))
 
-(defn process-routes [routes behaviors context]
+(defn process-routes [context behaviors routes ]
   (some (fn [route]
-          (println route)
-          (when-let [route-text (:route-text route)]
+          (if-let [route-text (:route-text route)]
             (if-let [condition-fn ((:conditions behaviors) route-text)]
               (when (condition-fn context)
                 route)
               (throw (ex-info (str "Condition not found: " route-text)
-                              {:route-text route-text :context context})))))
+                              {:route-text route-text :context context})))
+            route))
         routes))
 
-(defn run-action [action behaviors context]
+(defn run-action [context behaviors action]
   (let [action-fn ((behaviors :actions) action)]
     (if action-fn
       (action-fn context)
       (throw (ex-info (str "Action not found: " action)
                       {:action action :context context})))))
 
-(defn process-chart [chart behaviors context]
-  (let [new-context (run-action (get-current-node-text chart context)
-                                  behaviors
-                                  context)
-        route (process-routes ((get-current-node chart new-context) :routes)
+(defn process-chart [context behaviors chart]
+  (let [new-context (run-action context
+                                behaviors
+                                (get-current-node-text context behaviors chart))
+        route (process-routes new-context
                               behaviors
-                              new-context)]
+                              ((get-current-node new-context behaviors chart) :routes))]
     
-    (if route (process-chart chart 
-                             behaviors 
-                             (assoc new-context
-                                    :current-node-id
-                                    (route :route-destination)))
+    (if route (process-chart ((behaviors :set-current-node-id) new-context (route :route-destination))
+                             behaviors
+                             chart)
         new-context)))
-                 
