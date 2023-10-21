@@ -1,7 +1,8 @@
 (ns mermaid-processor.parsers.flowchart
   (:require [clojure.java.io :as io]
             [mermaid-processor.chart-parser :as chart-parser]
-            [instaparse.core :as insta]))
+            [instaparse.core :as insta]
+            [mermaid-processor.parse-utils :as parse-utils]))
 
 (def grammar
   (slurp (io/resource "mermaid_processor/parsers/flowchart.ebnf")))
@@ -72,5 +73,5 @@
 ;; Parse a mermaid flow chart
 (defmethod chart-parser/parser :flowchart
   [_ input]
-  (let [ast (rest (chart-parser/result-or-exception (parser input)))]
+  (let [ast (rest (parse-utils/result-or-exception (parser input)))]
   {:start-at (find-first-node-id ast) :nodes (transform ast)}))
