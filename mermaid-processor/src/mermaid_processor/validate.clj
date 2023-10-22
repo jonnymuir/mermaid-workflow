@@ -17,14 +17,14 @@
 
   THROWS:"
   [behaviors chart]
-    {:missing-actions (reduce
+    {:missing-actions (distinct (reduce
                        (fn [missing node]
                          (if (nil? ((behaviors :actions) ((second node) :node-text)))
                            (conj missing {:action ((second node) :node-text)})
                            missing))
                        []
-                       (chart :nodes))
-     :missing-conditions (reduce
+                       (chart :nodes)))
+     :missing-conditions (distinct (reduce
                           (fn [missing node]
                             (reduce
                              (fn [missing route]
@@ -35,4 +35,4 @@
                              missing
                              ((second node) :routes)))
                           []
-                          (chart :nodes))})
+                          (chart :nodes)))})

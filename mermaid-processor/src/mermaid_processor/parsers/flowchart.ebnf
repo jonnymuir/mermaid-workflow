@@ -1,29 +1,26 @@
 S ::= [<WHITESPACE>](route|node){[<WHITESPACE>]<BETWEEN_COMMAND>[<WHITESPACE>](route|node)}
 
-node ::= node-id (standard_rectangle | round_edges | circle | rhombus | asymmetric | hexagon | parallelogram | parallelogram_alt | round_edges_alt | square | parallelogram_round | parallelogram_round_alt | cylinder | circle_alt | trapezoid | trapezoid_alt)?
+node ::= node-id ( standard_rectangle | round_edges | circle | rhombus | asymmetric | hexagon | parallelogram | parallelogram_alt | round_edges_alt | square | cylinder | circle_alt | trapezoid | trapezoid_alt)?
 node-id ::= unquoted-id
 
+<parallelogram> ::= <'[/'> node-text <'/]'>
+<parallelogram_alt> ::= <'[\\'> node-text <'\\]'>
 <standard_rectangle> ::= <'['> node-text <']'>
 <round_edges> ::= <'('> node-text <')'>
 <circle> ::= <'(('> node-text <'))'>
 <rhombus> ::= <'{'> node-text <'}'>
 <asymmetric> ::= <'>'> node-text <']'>
 <hexagon> ::= <'{{'> node-text <'}}'>
-<parallelogram> ::= <'/'> node-text <'/'>
-<parallelogram_alt> ::= <'\\'> node-text <'\\'>
 <round_edges_alt> ::= <'[('> node-text <')]'>
 <square> ::= <'[['> node-text <']]'>
-<parallelogram_round> ::= <'[/'> node-text <'/]'>
-<parallelogram_round_alt> ::= <'[\\'> node-text <'\\]'>
 <cylinder> ::= <'(|'> node-text <'|)'>
 <circle_alt> ::= <'(['> node-text <'])'>
 <trapezoid> ::= <'[/'> node-text <'\\]'>
 <trapezoid_alt> ::= <'[\\'> node-text <'/]'>
 
-
 <unquoted-id> ::= #'[a-zA-Z0-9_]+'
 node-text ::= unquoted-text
-<unquoted-text> ::= #'[a-zA-Z0-9_](?:[a-zA-Z0-9_\s]*[a-zA-Z0-9_])?'
+<unquoted-text> ::= #'[^\s\[\](){\}"|][^\[\](){\}"|]*[^\s\[\](){\}\\"|/]'
 route ::= route-source [<WHITESPACE>] <LINK> [<WHITESPACE>] [<'|'>[<WHITESPACE>]route-text[<WHITESPACE>]<'|'>] [<WHITESPACE>] node
 route-source ::= node | route
 route-text ::= unquoted-text

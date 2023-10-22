@@ -32,7 +32,7 @@
 (deftest parse-single-node-with-description-different-node-types
   (testing "single node with a description test different node types"
     (let [expected {:start-at "A" :nodes {"A" {:node-text "My Desc" :routes '()}}}
-          node-types ["A[My Desc]" "A(My Desc)" "A((My Desc))" "A{My Desc}" "A>My Desc]" "A{{My Desc}}" "A/My Desc/" "A\\My Desc\\" "A[(My Desc)]" "A[[My Desc]]" "A[/My Desc/]" "A[\\My Desc\\]" "A(|My Desc|)" "A([My Desc])" "A[/My Desc\\]" "A[\\My Desc/]"]]
+          node-types ["A[My Desc]" "A(My Desc)" "A((My Desc))" "A{My Desc}" "A>My Desc]" "A{{My Desc}}" "A[(My Desc)]" "A[[My Desc]]" "A[/My Desc/]" "A[\\My Desc\\]" "A(|My Desc|)" "A([My Desc])" "A[/My Desc\\]" "A[\\My Desc/]"]]
       (doseq [node-type node-types]
         (is (= expected (parse/parse-mermaid (str "flowchart TD\n" node-type))))))))
 
