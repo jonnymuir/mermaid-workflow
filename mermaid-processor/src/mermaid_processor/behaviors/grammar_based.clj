@@ -40,5 +40,4 @@
     (fn [condition]
       (let [ast (parse-utils/result-or-exception (parser condition))
             ast (second ast)]
-        (prn ast)
         ((conditions (first ast)) (rest ast))))))

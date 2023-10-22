@@ -28,6 +28,14 @@
     (is (= {:start-at "A" :nodes {"A" {:node-text "My Desc" :routes '()}}}
            (parse/parse-mermaid "flowchart TD
                                   A[My Desc]")))))
+
+(deftest parse-single-node-with-description-different-node-types
+  (testing "single node with a description test different node types"
+    (let [expected {:start-at "A" :nodes {"A" {:node-text "My Desc" :routes '()}}}
+          node-types ["A[My Desc]" "A(My Desc)" "A((My Desc))" "A{My Desc}" "A>My Desc]" "A{{My Desc}}" "A/My Desc/" "A\\My Desc\\" "A[(My Desc)]" "A[[My Desc]]" "A[/My Desc/]" "A[\\My Desc\\]" "A(|My Desc|)" "A([My Desc])" "A[/My Desc\\]" "A[\\My Desc/]"]]
+      (doseq [node-type node-types]
+        (is (= expected (parse/parse-mermaid (str "flowchart TD\n" node-type))))))))
+
 (deftest parse-multiple_nodes
   (testing "multiple nodes test"
     (is (= {:start-at "A" :nodes {"A" {:node-text "My Desc" :routes '()}
@@ -81,3 +89,16 @@
                                   "B" {:node-text "My other node" :routes '()}}}
            (parse/parse-mermaid "flowchart TD
                                   A[My Desc]--> | yes | B[My other node]")))))
+
+(deftest different-route-types
+  (testing "test-all-supported-route-types"
+    (let [expected {:start-at "A" 
+                    :nodes {"A" 
+                            {:node-text "A" 
+                             :routes '({:route-destination "B" :route-text nil})}
+                            "B" 
+                            {:node-text "B" 
+                             :routes '()}}}
+route-types ["A-->B" "A---B" "A-.-B" "A===B" "A~~~B" "A-.->B" "A==>B" "A--oB" "A--xB" "A-.-oB" "A==oB" "A-.-xB" "A==xB"]]
+      (doseq [route-type route-types]
+        (is (= expected (parse/parse-mermaid (str "flowchart TD\n" route-type))))))))
