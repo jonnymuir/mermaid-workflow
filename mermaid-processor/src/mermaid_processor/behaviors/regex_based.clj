@@ -10,21 +10,23 @@
 (defn get-field-value [context field-name]
   ((context :fields) (field-to-keyword field-name)))
 
-(def actions {
-   :set-number (fn [field-name value]
-                 (fn [context] 
-                   (assoc context 
-                          :fields 
-                          { (field-to-keyword field-name) (Double/parseDouble value)})))            
-})
-
-(def conditions 
-  {:comparison (fn [ast] 
-                 (fn [context]
-                   (let [[field comparator value] ast
-                         field-value (get-field-value context field)]
-                     (case comparator 
-                       ">" (> field-value (Double/parseDouble value))))))})
+;; All actions return a new context and a result as a map
+(def actions
+  {:set-number
+   (fn [field-name value]
+     (fn [context]
+       (let [double-value (Double/parseDouble value)]
+         {:context (assoc-in context [:fields (field-to-keyword field-name)] double-value)
+          :result double-value})))
+   :compare
+   (fn [field-name comparator value]
+     (fn [context]
+       {:context context
+        :result (let [field-value (get-field-value context field-name)]
+          (case comparator
+            ">" (> field-value (Double/parseDouble value))))
+        }))
+   })
 
 (defn get-implementation-fn [action match]
   (let [action-fn (actions (first action))
@@ -46,25 +48,39 @@
             (get-implementation-fn (:action row) match)))
         regex-to-action-map))
 
-(defn process-nodes [chart regex-to-action-map]
+(defn process-node-or-route [node-or-route]
+  ;; if a node - return node-text.
+  ;; if a route - return route-text.
+  ;; also return the routes.
+  (if (vector? node-or-route)
+    {:text ((second node-or-route) :node-text) :routes ((second node-or-route) :routes)}
+    {:text (node-or-route :route-destination) :routes nil}))
+
+(defn process-nodes-or-routes [nodes-or-routes regex-to-action-map]
   (reduce
-   (fn [[cache missing] node]
-     (let [node-text ((second node) :node-text)]
-       (if (cache node-text)
-         [cache missing] ; already added
-         (let [matching-action-fn (find-matching-action-fn regex-to-action-map node-text)]
-           (if matching-action-fn
-             [(assoc cache node-text matching-action-fn) missing] ; add to cache if there's a match
-             [cache (conj missing node)]))))) ; add to missing if there's no match
+   (fn [[cache missing] node-or-route]
+     (let [{text :text, routes :routes} (process-node-or-route node-or-route) 
+           new-cache-missing
+           (if (cache text)
+             [cache missing]
+             (let [matching-action-fn (find-matching-action-fn regex-to-action-map text)]
+               (if matching-action-fn
+                 [(assoc cache text matching-action-fn) missing] ; add to cache if there's a match
+                 [cache (conj missing node-or-route)])))] ; add to missing if there's no match 
+       ;; If we have routes then go and process these and add them to our cache / missing
+       ;; otherwise return what we have
+       (if routes 
+         (vec (concat new-cache-missing (process-nodes-or-routes routes regex-to-action-map)))
+         new-cache-missing)))       
    [{} []]
-   (:nodes chart)))
+   nodes-or-routes))
 
 
-(defn build-actions [chart regex-to-action-map]
+(defn build [chart regex-to-action-map]
   ;; Build up a cache here (so we don't have to check every regex for every command)
   ;; Also collect any actions that are missing in the chart and throw an exception
-  (let [[cache missing] (process-nodes chart regex-to-action-map)]
+  (let [[cache missing] (process-nodes-or-routes (:nodes chart) regex-to-action-map)]
     (when (seq missing)
-      (throw (ex-info "Some node texts did not match any actions" {:missing missing}))) 
+      (throw (ex-info "Some nodes or routes did not match any actions" {:missing missing}))) 
     (fn [command]
       (cache command))))

@@ -12,8 +12,7 @@
                   [(get-current-node-id context chart) node-id] ; creates a new vector if path-taken is nil
                   (conj path-taken node-id))))))
 
-(defn build [actions conditions]
+(defn build [actions]
   {:actions actions
-   :conditions conditions
    :set-current-node-id set-current-node-id
    :get-current-node-id get-current-node-id})

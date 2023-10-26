@@ -10,8 +10,8 @@
 (defn process-routes [context behavior routes ]
   (some (fn [route]
           (if-let [route-text (:route-text route)]
-            (if-let [condition-fn ((:conditions behavior) route-text)]
-              (when (condition-fn context)
+            (if-let [condition-fn ((behavior :actions) route-text)]
+              (when ((condition-fn context) :result)
                 route)
               (throw (ex-info (str "Condition not found: " route-text)
                               {:route-text route-text :context context})))
@@ -19,11 +19,15 @@
         routes))
 
 (defn run-action [context behavior action]
-  (let [action-fn ((behavior :actions) action)]
-    (if action-fn
-      (action-fn context)
-      (throw (ex-info (str "Action not found: " action)
-                      {:action action :context context})))))
+  (if-let [action-fn ((behavior :actions) action)]
+    (let [action-result (action-fn context)]
+      ;; Store the last result in fields/last-result and return the new context
+      (assoc-in 
+       (action-result :context) 
+       [:fields :last-result] 
+       (action-result :result)))
+    (throw (ex-info (str "Action not found: " action)
+                    {:action action :context context}))))
 
 (defn process-chart 
   "Processes a mermaid chart by parsing its structure and executing the defined behaviors and conditions on its nodes.

@@ -9,8 +9,7 @@
     (let [chart (parse/parse-mermaid "flowchart TD
                                       A[Score 10]")
           behavior (behavior/build {"Score 10" (fn [context]
-                                                  (assoc context :score 10))}
-                                    {}) 
+                                                 {:context (assoc context :score 10)})}) 
           result-context (process/process-chart {} behavior chart)]
     (is (= 10 (result-context :score))))))
 
@@ -18,8 +17,7 @@
   (testing "process a single node where test command doesn't exist"
     (is (thrown-with-msg? clojure.lang.ExceptionInfo #"Action not found: .*"
          (process/process-chart {} 
-                                (behavior/build {"Score 10" (fn [context] (assoc context :score 10))}
-                                                       {}) 
+                                (behavior/build {"Score 10" (fn [context] {:context (assoc context :score 10)})}) 
                                 (parse/parse-mermaid "flowchart TD
                                                       A[Blah 10]"))))))
 (deftest process-two-node-test
@@ -28,10 +26,9 @@
                                       A[Score 10]-->B[Score 20]")
           behavior (behavior/build 
                     {"Score 10" (fn [context]
-                                 (update context :score #(-> % (or 0) (+ 10))))
-                    "Score 20" (fn [context]
-                                 (update context :score #(-> % (or 0) (+ 20))))}
-                     {})
+                                  {:context (update context :score #(-> % (or 0) (+ 10)))})
+                     "Score 20" (fn [context]
+                                  {:context (update context :score #(-> % (or 0) (+ 20)))})})
           result-context (process/process-chart {} behavior chart)]
       (is (= 30 (result-context :score))))))
 
@@ -40,7 +37,7 @@
     (let [chart (parse/parse-mermaid "flowchart TD
                                       A-->B
                                       A-->C")
-          behavior (behavior/build (fn [action-type] (fn [context] context)) {})
+          behavior (behavior/build (fn [action-type] (fn [context] {:context context})))
            result-context (process/process-chart {} behavior chart)]
       (is (= "B" ((behavior :get-current-node-id) result-context chart))))))
 
@@ -50,11 +47,12 @@
                                       A[Score 10]-->|Test Score is 10|B
                                       A-->C")
           behavior (behavior/build (fn [action-type] 
-                      (case action-type
-                        "Score 10" (fn [context]
-                             (update context :score #(-> % (or 0) (+ 10))))
-                        (fn [context] context))) 
-                    {"Test Score is 10" (fn [context] (= 10 (context :score)))})
+                                     (case action-type
+                                       "Score 10" (fn [context]
+                                                    {:context (update context :score #(-> % (or 0) (+ 10)))})
+                                       "Test Score is 10" (fn [context] 
+                                                            {:context context :result (= 10 (context :score))})
+                                       (fn [context] {:context context}))))
           result-context (process/process-chart {} behavior chart)]
       (is (= "B" ((behavior :get-current-node-id) result-context chart))))))
 
@@ -64,12 +62,12 @@
                                       A[Score 10]-->|Test Score is 20|B
                                       A-->|Test Score is 10|C")
           behavior (behavior/build (fn [action-type]
-                                 (case action-type
-                                   "Score 10" (fn [context]
-                                                (update context :score #(-> % (or 0) (+ 10))))
-                                   (fn [context] context)))
-                      {"Test Score is 10" (fn [context] (= 10 (context :score)))
-                       "Test Score is 20" (fn [context] (= 20 (context :score)))})
+                                     (case action-type
+                                       "Score 10" (fn [context]
+                                                    {:context (update context :score #(-> % (or 0) (+ 10)))})
+                                       "Test Score is 10" (fn [context] {:context context :result (= 10 (context :score))})
+                                       "Test Score is 20" (fn [context] {:context context :result (= 20 (context :score))})
+                                       (fn [context] {:context context}))))
            result-context (process/process-chart {} behavior chart)]
       (is (= "C" ((behavior :get-current-node-id) result-context chart))))))
 
@@ -81,10 +79,10 @@
           behavior (behavior/build (fn [action-type]
                                      (case action-type
                                        "Score 10" (fn [context]
-                                                    (update context :score #(-> % (or 0) (+ 10))))
-                                       (fn [context] context)))
-                                   {"Test Score is 10" (fn [context] (= 10 (context :score)))
-                                    "Test Score is 20" (fn [context] (= 20 (context :score)))})
+                                                    {:context (update context :score #(-> % (or 0) (+ 10)))})
+                                       "Test Score is 10" (fn [context] {:context context :result (= 10 (context :score))})
+                                       "Test Score is 20" (fn [context] {:context context :result (= 20 (context :score))})
+                                       (fn [context] {:context context}))))
           result-context (process/process-chart {} behavior chart)]
       (is (= "A" ((behavior :get-current-node-id) result-context chart))))))
 
@@ -93,6 +91,6 @@
     (let [chart (parse/parse-mermaid "flowchart TD
                                       A-->B
                                       B-->C")
-          behavior (behavior/build (fn [action-type] (fn [context] context)) {})
+          behavior (behavior/build (fn [action-type] (fn [context] {:context context})))
           result-context (process/process-chart {} behavior chart)]
       (is (= ["A" "B" "C"] (result-context :path-taken))))))
