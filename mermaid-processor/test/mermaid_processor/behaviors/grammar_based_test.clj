@@ -28,12 +28,3 @@ comparison ::= identifier [<whitespace>] comparison-operator [<whitespace>] numb
 ")
           result ((conditions "score > 5") {:fields {:score 10}})]
       (is result))))
-
-#_(deftest example-ebnf-for-missing-action-test
-  (testing "Test the production of EBNF grammar for missing actions"
-    (let [missing {:missing-actions '({:action "My action"})
-                   :missing-conditions '({:condition "My condition"})}                   
-          ebnf (behaviour/example-ebnfn missing)]
-      (is (= 
-           "S ::= statement"
-           ebnf)))))

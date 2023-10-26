@@ -42,12 +42,13 @@
     :path-taken [...]} ; the sequence of nodes processed
 
    EXAMPLE:
-   (process-chart {:current-node nil
+   (process-chart 
+    {:current-node nil
     :context-data {...}}
     {:actions {...}
     :conditions {...}}
-    \"flowchart TD
-   A[Start]-->|Action1|B[Do Something]-->|Action2|C[End]\")
+    (parse/parse-mermaid \"flowchart TD
+        A[Start]-->|Action1|B[Do Something]-->|Action2|C[End]\"))
     
    THROWS:
    - ExceptionInfo if there is an error in parsing the chart.
