@@ -1,51 +1,42 @@
-(ns mermaid-processor.behaviors.regex_based
+(ns mermaid-processor.behaviors.regex_based 
   (:require [clojure.string :as str]))
 
-(defn field-to-keyword [field-name]
-  (cond
-    (keyword? field-name) field-name
-    (vector? field-name) (field-to-keyword (first field-name))
-    :else (keyword (str/lower-case field-name))))
+(defn kebab-case [s]
+  (->> (str/split s #"\s+")
+       (map str/lower-case)
+       (str/join "-")))
 
-(defn get-field-value [context field-name]
-  ((context :fields) (field-to-keyword field-name)))
+(defn generate-example-action-map [missing-actions]
+  (mapv (fn [action]
+          (cond
+            (re-find #"(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)" action)
+            (let [[_ lhs _ _] (re-find #"(.*?)(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)(.*)[\?]?$" action)]
+              {:regex (re-pattern(str #"(?i)" lhs "\\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*(.*)[\\?]?"))
+               :action [:your-library-here (keyword (kebab-case (str/replace lhs #"[^a-zA-Z0-9\s]" ""))) :%1 :%2]})
+            :else
+            {:regex (re-pattern (str #"(?i)" action "[\\?]?"))
+             :action [:your-library-here :your-function-name-here]}))
+        missing-actions))
 
-;; All actions return a new context and a result as a map
-(def actions
-  {:set-number
-   (fn [field-name value]
-     (fn [context]
-       (let [double-value (Double/parseDouble value)]
-         {:context (assoc-in context [:fields (field-to-keyword field-name)] double-value)
-          :result double-value})))
-   :compare
-   (fn [field-name comparator value]
-     (fn [context]
-       {:context context
-        :result (let [field-value (get-field-value context field-name)]
-          (case comparator
-            ">" (> field-value (Double/parseDouble value))))
-        }))
-   })
-
-(defn get-implementation-fn [action match]
-  (let [action-fn (actions (first action))
+(defn get-implementation-fn [libraries action match]
+  (let [actions (libraries (first action))
+        action-fn (actions (second action))
         params (mapv (fn [param]
                        (if (and (keyword? param) ; Check if the parameter is a keyword
                                 (re-matches #"%[0-9]+" (name param))) ; Check if it starts with :%
                          (let [index (Integer. (subs (name param) 1))] ; Extract the number after the %
                            (match index)) ; Get the captured group based on the number
                          param))
-                     (rest action))]
+                     (drop 2 action))]
     (apply action-fn params)))
 
-(defn find-matching-action-fn [regex-to-action-map node-text]
+(defn find-matching-action-fn [libraries regex-to-action-map node-text]
   (some (fn [row]
           (when-let [match (re-find (:regex row) node-text)]
             ;; Match will now be the return from re-find. 
             ;; Param 1 should be the action
             ;; The rest of the params params for the action
-            (get-implementation-fn (:action row) match)))
+            (get-implementation-fn libraries (:action row) match)))
         regex-to-action-map))
 
 (defn extract-texts [nodes]
@@ -55,10 +46,10 @@
     (mapcat (comp (partial map :route-text) :routes) (vals nodes)))))
 
 
-(defn process-nodes [nodes regex-to-action-map]
+(defn process-nodes [libraries nodes regex-to-action-map]
   (reduce
    (fn [[cache missing] text]
-     (let [matching-action-fn (find-matching-action-fn regex-to-action-map text)]
+     (let [matching-action-fn (find-matching-action-fn libraries regex-to-action-map text)]
        (if matching-action-fn
          [(assoc cache text matching-action-fn) missing] ; add to cache if there's a match
          [cache (conj missing text)]))) ; add to missing if there's no match 
@@ -66,11 +57,11 @@
    (extract-texts nodes)))
 
 
-(defn build [chart regex-to-action-map]
+(defn build [libraries chart regex-to-action-map]
   ;; Build up a cache here (so we don't have to check every regex for every command)
   ;; Also collect any actions that are missing in the chart and throw an exception
-  (let [[cache missing] (process-nodes (chart :nodes) regex-to-action-map)]
+  (let [[cache missing] (process-nodes libraries (chart :nodes) regex-to-action-map)]
     (when (seq missing)
-      (throw (ex-info "Some nodes or routes did not match any actions" {:missing missing}))) 
+      (throw (ex-info "Some nodes or routes did not match any actions" {:missing missing :example-map (generate-example-action-map missing)}))) 
     (fn [command]
       (cache command))))
