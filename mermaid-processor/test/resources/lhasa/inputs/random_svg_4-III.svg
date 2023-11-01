@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 46 92 Q 157 134 49 180" fill="none" opacity="0.763" stroke="black" stroke-width="2"/>
+	<path d="M 152 65 Q 53 79 40 143" fill="none" opacity="0.7036" stroke="black" stroke-width="2"/>
+	<circle cx="88" cy="102" fill="red" opacity="0.7636" r="52"/>
+	<circle cx="128" cy="154" fill="yellow" opacity="0.5155" r="71"/>
+	<circle cx="112" cy="172" fill="pink" opacity="0.6375" r="53"/>
+	<circle cx="89" cy="154" fill="yellow" opacity="0.3245" r="79"/>
+	<path d="M 122 34 Q 69 120 86 54" fill="none" opacity="0.3586" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.9305" x="107" y="68">Ut etincidunt quaerat aliquam ut</text>
+</svg>

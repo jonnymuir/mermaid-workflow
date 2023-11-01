@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 150 138 Q 64 140 154 177" fill="none" opacity="0.8596" stroke="black" stroke-width="2"/>
+	<line opacity="0.3301" stroke="black" stroke-width="2" x1="144" x2="26" y1="88" y2="178"/>
+	<rect fill="red" height="85" opacity="0.7912" width="50" x="43" y="59"/>
+	<path d="M 124 65 Q 30 91 40 35" fill="none" opacity="0.4892" stroke="black" stroke-width="2"/>
+	<circle cx="131" cy="36" fill="green" opacity="0.3821" r="65"/>
+</svg>

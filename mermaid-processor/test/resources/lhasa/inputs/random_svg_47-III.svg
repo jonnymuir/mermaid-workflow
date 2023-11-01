@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 163 124 Q 57 43 116 142" fill="none" opacity="0.3427" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.5579" x="36" y="147">Etincidunt dolorem est voluptatem sit.</text>
+	<path d="M 28 118 Q 180 29 22 146" fill="none" opacity="0.4019" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.8918" x="87" y="155">Sed dolore eius dolor ut</text>
+</svg>

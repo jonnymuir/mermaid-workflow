@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<ellipse cx="144" cy="165" fill="red" opacity="0.8248" rx="200" ry="24"/>
+	<rect fill="red" height="1" opacity="0.4154" width="72" x="74" y="83"/>
+	<ellipse cx="117" cy="93" fill="red" opacity="0.4154" rx="1" ry="1"/>
+	<ellipse cx="74" cy="114" fill="black" opacity="0.8113" rx="1" ry="1"/>
+	<rect fill="black" height="4" opacity="0.7272" width="39" x="25" y="122"/>
+</svg>

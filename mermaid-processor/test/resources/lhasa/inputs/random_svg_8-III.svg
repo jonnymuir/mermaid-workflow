@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.8961" stroke="black" stroke-width="2" x1="112" x2="39" y1="173" y2="99"/>
+	<path d="M 166 144 Q 155 25 89 111" fill="none" opacity="0.3613" stroke="black" stroke-width="2"/>
+	<path d="M 155 97 Q 49 127 101 169" fill="none" opacity="0.7943" stroke="black" stroke-width="2"/>
+	<line opacity="0.4698" stroke="black" stroke-width="2" x1="92" x2="32" y1="51" y2="92"/>
+	<circle cx="108" cy="178" fill="yellow" opacity="0.3674" r="22"/>
+	<circle cx="33" cy="98" fill="orange" opacity="0.3412" r="22"/>
+	<path d="M 28 163 Q 141 161 82 99" fill="none" opacity="0.6542" stroke="black" stroke-width="2"/>
+	<path d="M 143 152 Q 128 35 93 105" fill="none" opacity="0.8241" stroke="black" stroke-width="2"/>
+	<circle cx="167" cy="153" fill="red" opacity="0.3711" r="68"/>
+</svg>

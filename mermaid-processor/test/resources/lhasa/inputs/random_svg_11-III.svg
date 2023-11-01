@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="30" cy="88" fill="red" opacity="0.9665" r="16"/>
+	<path d="M 86 88 Q 159 105 140 107" fill="none" opacity="0.7991" stroke="black" stroke-width="2"/>
+	<circle cx="170" cy="117" fill="red" opacity="0.8579" r="10"/>
+</svg>

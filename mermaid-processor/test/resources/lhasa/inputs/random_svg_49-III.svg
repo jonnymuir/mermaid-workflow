@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<rect fill="yellow" height="30" opacity="0.4537" width="83" x="38" y="60"/>
+	<line opacity="0.403" stroke="black" stroke-width="2" x1="78" x2="53" y1="131" y2="158"/>
+	<text fill="black" opacity="0.7553" x="104" y="116">Non quaerat modi quiquia. Dolorem</text>
+</svg>

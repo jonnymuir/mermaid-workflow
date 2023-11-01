@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="164" cy="97" fill="red" opacity="0.4332" r="46"/>
+	<text fill="black" opacity="0.5764" x="44" y="72">Amet dolore adipisci aliquam. Modi</text>
+	<text fill="black" opacity="0.4417" x="107" y="153">Labore dolor sed sed. Quaerat</text>
+	<rect fill="orange" height="79" opacity="0.586" width="68" x="103" y="88"/>
+	<text fill="black" opacity="0.936" x="89" y="65">Adipisci numquam modi dolorem sed</text>
+	<circle cx="28" cy="76" fill="pink" opacity="0.4327" r="41"/>
+	<text fill="black" opacity="0.9838" x="124" y="67">Dolorem magnam consectetur tempora quaerat</text>
+	<path d="M 123 129 Q 24 163 109 32" fill="none" opacity="0.976" stroke="black" stroke-width="2"/>
+	<line opacity="0.9876" stroke="black" stroke-width="2" x1="35" x2="175" y1="31" y2="148"/>
+</svg>

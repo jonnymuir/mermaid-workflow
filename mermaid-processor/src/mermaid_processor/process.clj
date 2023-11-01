@@ -1,4 +1,5 @@
-(ns mermaid-processor.process)
+(ns mermaid-processor.process 
+  (:require [mermaid-processor.behaviors.utils :as utils]))
 
 (defn get-current-node [context behavior chart]
   ((chart :nodes) ((behavior :get-current-node-id) context chart)))
@@ -22,10 +23,7 @@
   (if-let [action-fn ((behavior :actions) action)]
     (let [action-result (action-fn context)]
       ;; Store the last result in fields/last-result and return the new context
-      (assoc-in 
-       (action-result :context) 
-       [:fields :last-result] 
-       (action-result :result)))
+      (utils/set-last-result (action-result :context) (action-result :result)))
     (throw (ex-info (str "Action not found: " action)
                     {:action action :context context}))))
 

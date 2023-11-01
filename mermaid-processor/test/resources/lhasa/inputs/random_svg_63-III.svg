@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 47 117 Q 85 92 155 68" fill="none" opacity="0.4242" stroke="black" stroke-width="2"/>
+	<ellipse cx="94" cy="89" fill="red" opacity="0.4242" rx="1" ry="1"/>
+	<path d="M 68 71 Q 56 175 147 166" fill="none" opacity="0.3191" stroke="black" stroke-width="2"/>
+	<ellipse cx="121" cy="156" fill="orange" opacity="0.3191" rx="1" ry="1"/>
+	<text fill="black" opacity="0.6653" x="108" y="136">Sit sit sit non quaerat</text>
+	<ellipse cx="130" cy="174" fill="black" opacity="0.6653" rx="1" ry="1"/>
+</svg>

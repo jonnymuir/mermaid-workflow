@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="175" cy="73" fill="pink" opacity="0.5803" r="22"/>
+	<path d="M 83 159 Q 143 91 84 108" fill="none" opacity="0.5799" stroke="black" stroke-width="2"/>
+	<path d="M 111 75 Q 102 102 44 57" fill="none" opacity="0.6433" stroke="black" stroke-width="2"/>
+	<line opacity="0.4664" stroke="black" stroke-width="2" x1="119" x2="157" y1="49" y2="104"/>
+	<line opacity="0.9554" stroke="black" stroke-width="2" x1="29" x2="79" y1="116" y2="43"/>
+</svg>

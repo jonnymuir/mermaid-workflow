@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="95" cy="74" fill="black" opacity="0.9315" r="58"/>
+	<line opacity="0.923" stroke="black" stroke-width="2" x1="83" x2="96" y1="161" y2="83"/>
+	<rect fill="yellow" height="36" opacity="0.3736" width="93" x="23" y="70"/>
+	<path d="M 49 163 Q 138 131 44 110" fill="none" opacity="0.8511" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.5516" x="136" y="156">Neque adipisci dolor numquam. Aliquam</text>
+	<circle cx="163" cy="96" fill="black" opacity="0.6924" r="81"/>
+	<circle cx="166" cy="58" fill="yellow" opacity="0.4886" r="21"/>
+	<circle cx="166" cy="65" fill="green" opacity="0.3619" r="32"/>
+	<text fill="black" opacity="0.7387" x="73" y="128">Sed ipsum magnam adipisci amet</text>
+	<circle cx="76" cy="71" fill="pink" opacity="0.6018" r="31"/>
+</svg>

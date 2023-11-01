@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.621" stroke="black" stroke-width="2" x1="89" x2="125" y1="141" y2="144"/>
+	<rect fill="pink" height="61" opacity="0.994" width="54" x="126" y="66"/>
+</svg>

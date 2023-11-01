@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<text fill="black" opacity="0.6232" x="77" y="41">Est ipsum aliquam aliquam velit</text>
+	<circle cx="155" cy="38" fill="orange" opacity="0.7843" r="41"/>
+	<ellipse cx="129" cy="85" fill="orange" opacity="0.7843" rx="1" ry="1"/>
+	<text fill="black" opacity="0.4802" x="102" y="63">Quisquam sed consectetur adipisci. Porro</text>
+	<ellipse cx="50" cy="111" fill="blue" opacity="0.4802" rx="1" ry="1"/>
+</svg>

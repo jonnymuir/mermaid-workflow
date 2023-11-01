@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="123" cy="36" fill="pink" opacity="0.8448" r="64"/>
+	<line opacity="0.3926" stroke="black" stroke-width="2" x1="27" x2="165" y1="148" y2="86"/>
+	<ellipse cx="49" cy="53" fill="orange" opacity="0.3926" rx="1" ry="1"/>
+	<text fill="black" opacity="0.3885" x="134" y="30">Labore dolorem est modi ut</text>
+	<rect fill="pink" height="47" opacity="0.9439" width="82" x="93" y="127"/>
+	<ellipse cx="149" cy="174" fill="pink" opacity="0.9439" rx="1" ry="1"/>
+	<text fill="black" opacity="0.3628" x="75" y="86">Tempora non dolore neque non</text>
+	<ellipse cx="89" cy="115" fill="blue" opacity="0.3628" rx="1" ry="1"/>
+	<text fill="black" opacity="0.8332" x="83" y="84">Consectetur etincidunt consectetur etincidunt modi</text>
+</svg>

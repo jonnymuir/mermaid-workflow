@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.6988" stroke="black" stroke-width="2" x1="92" x2="82" y1="29" y2="72"/>
+	<text fill="black" opacity="0.7324" x="79" y="32">Sit quaerat dolore numquam voluptatem</text>
+	<circle cx="48" cy="179" fill="orange" opacity="0.7527" r="44"/>
+	<line opacity="0.462" stroke="black" stroke-width="2" x1="61" x2="96" y1="179" y2="28"/>
+	<rect fill="black" height="56" opacity="0.9941" width="82" x="157" y="104"/>
+	<path d="M 180 22 Q 78 59 20 50" fill="none" opacity="0.7663" stroke="black" stroke-width="2"/>
+	<rect fill="pink" height="83" opacity="0.3146" width="56" x="106" y="57"/>
+</svg>

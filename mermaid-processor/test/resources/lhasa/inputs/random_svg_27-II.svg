@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="146" cy="163" fill="blue" opacity="0.9579" r="25"/>
+	<line opacity="0.3451" stroke="black" stroke-width="2" x1="64" x2="72" y1="174" y2="47"/>
+	<circle cx="156" cy="116" fill="black" opacity="0.6495" r="20"/>
+	<rect fill="pink" height="95" opacity="0.3345" width="96" x="143" y="75"/>
+	<circle cx="108" cy="144" fill="green" opacity="0.4556" r="77"/>
+	<path d="M 137 92 Q 176 46 97 50" fill="none" opacity="0.3921" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.3308" x="54" y="82">Quisquam dolor ut voluptatem. Modi</text>
+</svg>

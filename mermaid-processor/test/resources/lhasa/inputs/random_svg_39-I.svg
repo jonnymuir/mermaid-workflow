@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="159" cy="52" fill="black" opacity="0.445" r="37"/>
+	<rect fill="green" height="80" opacity="0.806" width="93" x="30" y="151"/>
+	<path d="M 78 147 Q 72 134 85 174" fill="none" opacity="0.8071" stroke="black" stroke-width="2"/>
+	<path d="M 178 163 Q 172 96 23 122" fill="none" opacity="0.8563" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.962" x="77" y="73">Dolorem dolorem eius non. Dolore</text>
+	<path d="M 120 24 Q 174 143 154 100" fill="none" opacity="0.7234" stroke="black" stroke-width="2"/>
+	<rect fill="green" height="93" opacity="0.4238" width="72" x="129" y="46"/>
+	<text fill="black" opacity="0.4821" x="121" y="130">Consectetur magnam aliquam sed tempora</text>
+</svg>

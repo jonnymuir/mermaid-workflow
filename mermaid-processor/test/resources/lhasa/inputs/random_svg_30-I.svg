@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<rect fill="pink" height="54" opacity="0.6554" width="86" x="101" y="22"/>
+	<circle cx="71" cy="137" fill="blue" opacity="0.5749" r="58"/>
+	<circle cx="48" cy="149" fill="orange" opacity="0.5729" r="20"/>
+	<path d="M 161 104 Q 60 29 126 133" fill="none" opacity="0.4827" stroke="black" stroke-width="2"/>
+	<circle cx="117" cy="161" fill="yellow" opacity="0.9793" r="50"/>
+	<rect fill="green" height="74" opacity="0.9048" width="62" x="148" y="107"/>
+	<text fill="black" opacity="0.8846" x="54" y="27">Dolor velit eius ut numquam</text>
+</svg>

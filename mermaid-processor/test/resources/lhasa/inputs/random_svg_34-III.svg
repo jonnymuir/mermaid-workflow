@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<rect fill="yellow" height="44" opacity="0.9734" width="71" x="107" y="95"/>
+	<text fill="black" opacity="0.8218" x="156" y="55">Porro quaerat aliquam neque amet</text>
+	<line opacity="0.9165" stroke="black" stroke-width="2" x1="86" x2="131" y1="42" y2="86"/>
+	<line opacity="0.7201" stroke="black" stroke-width="2" x1="135" x2="148" y1="58" y2="46"/>
+	<circle cx="92" cy="62" fill="green" opacity="0.6548" r="65"/>
+</svg>

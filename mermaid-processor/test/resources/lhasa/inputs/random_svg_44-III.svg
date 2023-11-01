@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 81 40 Q 162 57 74 40" fill="none" opacity="0.7663" stroke="black" stroke-width="2"/>
+	<line opacity="0.9828" stroke="black" stroke-width="2" x1="92" x2="102" y1="120" y2="78"/>
+	<circle cx="136" cy="84" fill="pink" opacity="0.7492" r="16"/>
+	<path d="M 146 179 Q 72 46 92 84" fill="none" opacity="0.5115" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.9908" x="60" y="20">Quaerat dolore dolor tempora. Numquam</text>
+	<text fill="black" opacity="0.6656" x="63" y="77">Numquam dolorem dolorem numquam dolore</text>
+	<path d="M 115 88 Q 131 80 57 112" fill="none" opacity="0.4049" stroke="black" stroke-width="2"/>
+</svg>

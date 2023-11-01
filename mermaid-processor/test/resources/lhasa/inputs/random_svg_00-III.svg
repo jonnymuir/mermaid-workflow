@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 113 118 Q 88 75 76 90" fill="none" opacity="0.337" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.443" x="141" y="23">Red sit magnam dolore. blue</text>
+	<path d="M 37 74 Q 88 73 95 173" fill="none" opacity="0.4567" stroke="black" stroke-width="2"/>
+	<line opacity="0.7929" stroke="black" stroke-width="2" x1="131" x2="79" y1="76" y2="123"/>
+	<text fill="black" opacity="0.8451" x="115" y="73">Quaerat circle porro blue labore</text>
+</svg>

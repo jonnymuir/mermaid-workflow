@@ -1,22 +1,43 @@
 (ns mermaid-processor.behaviors.regex_based 
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [mermaid-processor.behaviors.utils :as utils]))
 
 (defn kebab-case [s]
   (->> (str/split s #"\s+")
        (map str/lower-case)
        (str/join "-")))
 
+(defn distinct-by [key-fn coll]
+  (let [step (fn step [xs seen]
+               (when-let [s (seq xs)]
+                 (let [v (key-fn (first s))
+                       v-str (if (instance? java.util.regex.Pattern v)
+                               (.pattern v)
+                               v)]
+                   (if (contains? seen v-str)
+                     (recur (rest s) seen)
+                     (cons (first s) (step (rest s) (conj seen v-str)))))))]
+    (step coll #{})))
+
 (defn generate-example-action-map [missing-actions]
-  (mapv (fn [action]
-          (cond
-            (re-find #"(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)" action)
-            (let [[_ lhs _ _] (re-find #"(.*?)(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)(.*)[\?]?$" action)]
-              {:regex (re-pattern(str #"(?i)" lhs "\\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*(.*)[\\?]?"))
-               :action [:your-library-here (keyword (kebab-case (str/replace lhs #"[^a-zA-Z0-9\s]" ""))) :%1 :%2]})
-            :else
-            {:regex (re-pattern (str #"(?i)" action "[\\?]?"))
-             :action [:your-library-here :your-function-name-here]}))
-        missing-actions))
+  (->> missing-actions
+       (map (fn [action]
+              (cond
+                (re-find (re-pattern (str "(?i)(" utils/all-comparators ")")) action)
+                (let [[_ lhs _ _] (re-find (re-pattern (str "(?i)(.*?)(" utils/all-comparators ")(.*)[\\?]?$")) action)]
+                  {:regex (re-pattern (str "(?i)" lhs "\\s*(" utils/all-comparators ")\\s*(.*)[\\?]?"))
+                   :action [:your-library-here (keyword (kebab-case (str/replace lhs #"[^a-zA-Z0-9\s]" ""))) :%1 :%2]})
+                (re-find #"(?i)(yes|true|is true)[\?]?" action)
+                {:regex #"(?i)(Yes|True|Is True)[\?]?"
+                 :action [:core :last-result-is-true]}
+                (re-find #"(?i)(no|false|is false|is not true)[\?]?" action)
+                {:regex #"(?i)(No|False|Is False|Is Not True)[\?]?"
+                 :action [:core :last-result-is-not-true]}
+                :else
+                {:regex (re-pattern (str "(?i)" (str/replace action "?" "") "[\\?]?"))
+                 :action [:your-library-here :your-function-name-here]})))
+       (distinct-by :regex)
+       (into [])))
 
 (defn get-implementation-fn [libraries action match]
   (let [actions (libraries (first action))
@@ -28,7 +49,14 @@
                            (match index)) ; Get the captured group based on the number
                          param))
                      (drop 2 action))]
-    (apply action-fn params)))
+    (try
+      (apply action-fn params)
+      (catch Exception e
+        (throw (ex-info "An error occurred while applying the action function."
+                        {:action action
+                         :match match
+                         :original-message (.getMessage e)}
+                        e))))))
 
 (defn find-matching-action-fn [libraries regex-to-action-map node-text]
   (some (fn [row]

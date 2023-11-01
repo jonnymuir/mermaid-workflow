@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 131 86 Q 142 56 151 121" fill="none" opacity="0.4478" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.3682" x="115" y="158">Consectetur quaerat amet labore. Eius</text>
+	<line opacity="0.8833" stroke="black" stroke-width="2" x1="150" x2="43" y1="129" y2="72"/>
+	<text fill="black" opacity="0.7891" x="158" y="134">Adipisci porro etincidunt magnam adipisci</text>
+	<path d="M 30 71 Q 117 177 123 143" fill="none" opacity="0.774" stroke="black" stroke-width="2"/>
+	<rect fill="black" height="56" opacity="0.4482" width="35" x="99" y="103"/>
+	<text fill="black" opacity="0.8471" x="48" y="140">Modi voluptatem dolor ipsum dolore</text>
+</svg>

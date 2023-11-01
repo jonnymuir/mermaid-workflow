@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.3531" stroke="black" stroke-width="2" x1="157" x2="101" y1="25" y2="150"/>
+	<line opacity="0.43" stroke="black" stroke-width="2" x1="74" x2="68" y1="21" y2="31"/>
+	<circle cx="25" cy="26" fill="pink" opacity="0.5808" r="37"/>
+	<text fill="black" opacity="0.8153" x="95" y="62">Voluptatem etincidunt quiquia ipsum tempora</text>
+	<text fill="black" opacity="0.7884" x="50" y="152">Eius etincidunt adipisci ipsum est.</text>
+	<rect fill="yellow" height="33" opacity="0.586" width="43" x="110" y="35"/>
+	<line opacity="0.4902" stroke="black" stroke-width="2" x1="48" x2="122" y1="54" y2="179"/>
+	<circle cx="169" cy="95" fill="pink" opacity="0.5096" r="40"/>
+	<circle cx="25" cy="66" fill="orange" opacity="0.7489" r="51"/>
+</svg>

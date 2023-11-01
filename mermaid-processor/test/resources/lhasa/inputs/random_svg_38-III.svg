@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="110" cy="54" fill="green" opacity="0.9748" r="76"/>
+	<circle cx="119" cy="160" fill="yellow" opacity="0.4176" r="75"/>
+	<line opacity="0.7411" stroke="black" stroke-width="2" x1="138" x2="84" y1="170" y2="163"/>
+	<rect fill="green" height="97" opacity="0.8728" width="52" x="85" y="25"/>
+	<line opacity="0.7237" stroke="black" stroke-width="2" x1="71" x2="80" y1="135" y2="157"/>
+</svg>

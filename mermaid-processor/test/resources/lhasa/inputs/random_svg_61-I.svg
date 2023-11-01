@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<circle cx="120" cy="119" fill="green" opacity="0.3985" r="54"/>
+	<ellipse cx="153" cy="180" fill="green" opacity="0.3985" rx="1" ry="1"/>
+	<circle cx="71" cy="178" fill="orange" opacity="0.9005" r="30"/>
+	<ellipse cx="179" cy="63" fill="orange" opacity="0.9005" rx="1" ry="1"/>
+	<text fill="black" opacity="0.8451" x="88" y="149">Adipisci quaerat dolor numquam quiquia</text>
+	<ellipse cx="34" cy="40" fill="yellow" opacity="0.8451" rx="1" ry="1"/>
+	<rect fill="red" height="39" opacity="0.4115" width="64" x="71" y="37"/>
+	<ellipse cx="82" cy="150" fill="red" opacity="0.4115" rx="1" ry="1"/>
+	<circle cx="61" cy="109" fill="blue" opacity="0.4533" r="24"/>
+	<ellipse cx="77" cy="144" fill="blue" opacity="0.4533" rx="1" ry="1"/>
+	<path d="M 153 54 Q 102 94 49 132" fill="none" opacity="0.5928" stroke="black" stroke-width="2"/>
+	<circle cx="67" cy="103" fill="blue" opacity="0.8293" r="43"/>
+</svg>

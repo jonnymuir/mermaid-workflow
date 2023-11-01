@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 53 83 Q 165 82 175 174" fill="none" opacity="0.4483" stroke="black" stroke-width="2"/>
+	<circle cx="180" cy="159" fill="orange" opacity="0.4403" r="76"/>
+	<line opacity="0.5219" stroke="black" stroke-width="2" x1="122" x2="46" y1="63" y2="108"/>
+	<line opacity="0.3696" stroke="black" stroke-width="2" x1="28" x2="102" y1="174" y2="112"/>
+	<circle cx="169" cy="123" fill="orange" opacity="0.5513" r="45"/>
+	<circle cx="21" cy="110" fill="yellow" opacity="0.7125" r="16"/>
+	<circle cx="63" cy="76" fill="orange" opacity="0.6396" r="13"/>
+	<text fill="black" opacity="0.6051" x="136" y="106">Modi quisquam quaerat eius etincidunt</text>
+	<rect fill="yellow" height="55" opacity="0.4742" width="83" x="138" y="142"/>
+	<text fill="black" opacity="0.993" x="116" y="48">Numquam ut est tempora. Porro</text>
+</svg>

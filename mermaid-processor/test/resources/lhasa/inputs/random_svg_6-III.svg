@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.361" stroke="black" stroke-width="2" x1="172" x2="71" y1="146" y2="111"/>
+	<line opacity="0.6168" stroke="black" stroke-width="2" x1="127" x2="173" y1="101" y2="154"/>
+	<circle cx="43" cy="26" fill="pink" opacity="0.3744" r="30"/>
+	<text fill="black" opacity="0.3412" x="91" y="76">Ipsum ut est modi aliquam</text>
+	<line opacity="0.4383" stroke="black" stroke-width="2" x1="119" x2="40" y1="90" y2="51"/>
+</svg>

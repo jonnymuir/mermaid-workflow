@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<text fill="black" opacity="0.5054" x="80" y="33">Tempora amet ipsum etincidunt quaerat</text>
+	<path d="M 22 46 Q 45 123 157 65" fill="none" opacity="0.3037" stroke="black" stroke-width="2"/>
+	<rect fill="orange" height="53" opacity="0.9151" width="46" x="24" y="53"/>
+	<rect fill="pink" height="79" opacity="0.8102" width="75" x="113" y="81"/>
+	<rect fill="orange" height="80" opacity="0.5216" width="88" x="55" y="108"/>
+	<text fill="black" opacity="0.6257" x="117" y="63">Eius velit velit numquam consectetur.</text>
+</svg>

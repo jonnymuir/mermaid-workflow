@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<rect fill="red" height="52" opacity="0.8248" width="31" x="20" y="75"/>
+	<ellipse cx="144" cy="165" fill="red" opacity="0.8248" rx="1" ry="1"/>
+	<path d="M 136 161 Q 103 51 178 113" fill="none" opacity="0.7234" stroke="black" stroke-width="2"/>
+	<rect fill="red" height="91" opacity="0.4154" width="72" x="74" y="83"/>
+	<ellipse cx="117" cy="93" fill="red" opacity="0.4154" rx="1" ry="1"/>
+	<rect fill="pink" height="92" opacity="0.4879" width="99" x="153" y="27"/>
+	<text fill="black" opacity="0.9209" x="32" y="89">Velit amet etincidunt est numquam</text>
+	<rect fill="black" height="77" opacity="0.8113" width="54" x="123" y="116"/>
+	<ellipse cx="74" cy="114" fill="black" opacity="0.8113" rx="1" ry="1"/>
+	<rect fill="black" height="34" opacity="0.7272" width="39" x="25" y="122"/>
+	<text fill="black" opacity="0.3293" x="65" y="134">Quaerat non tempora numquam dolorem</text>
+	<text fill="black" opacity="0.4857" x="90" y="109">Etincidunt dolorem sed velit. Modi</text>
+</svg>

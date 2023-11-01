@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 107 69 Q 48 109 161 135" fill="none" opacity="0.3151" stroke="black" stroke-width="2"/>
+	<rect fill="green" height="39" opacity="0.8845" width="83" x="123" y="65"/>
+	<circle cx="41" cy="132" fill="pink" opacity="0.4074" r="89"/>
+	<text fill="black" opacity="0.8428" x="46" y="39">Quiquia numquam amet quisquam. Amet</text>
+	<circle cx="164" cy="90" fill="red" opacity="0.3395" r="70"/>
+</svg>

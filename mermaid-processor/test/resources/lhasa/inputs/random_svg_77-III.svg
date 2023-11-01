@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<rect fill="green" height="82" opacity="0.94" width="49" x="103" y="58"/>
+	<line opacity="0.8306" stroke="black" stroke-width="2" x1="165" x2="148" y1="81" y2="65"/>
+	<rect fill="pink" height="35" opacity="0.5242" width="54" x="117" y="71"/>
+	<ellipse cx="87" cy="47" fill="pink" opacity="0.5242" rx="1" ry="1"/>
+	<path d="M 175 171 Q 130 170 89 33" fill="none" opacity="0.3824" stroke="black" stroke-width="2"/>
+	<ellipse cx="151" cy="172" fill="black" opacity="0.3824" rx="1" ry="1"/>
+	<rect fill="green" height="72" opacity="0.7348" width="87" x="159" y="140"/>
+</svg>

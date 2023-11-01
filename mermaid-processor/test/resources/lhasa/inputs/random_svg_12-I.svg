@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<text fill="black" opacity="0.8034" x="157" y="77">Quaerat tempora sit modi. Sed</text>
+	<rect fill="yellow" height="38" opacity="0.9786" width="65" x="95" y="149"/>
+	<rect fill="orange" height="98" opacity="0.3493" width="74" x="58" y="159"/>
+	<line opacity="0.6448" stroke="black" stroke-width="2" x1="153" x2="41" y1="131" y2="175"/>
+	<path d="M 89 103 Q 74 72 155 141" fill="none" opacity="0.4893" stroke="black" stroke-width="2"/>
+	<line opacity="0.801" stroke="black" stroke-width="2" x1="46" x2="163" y1="36" y2="42"/>
+	<line opacity="0.8451" stroke="black" stroke-width="2" x1="96" x2="132" y1="169" y2="26"/>
+	<rect fill="green" height="92" opacity="0.6655" width="55" x="27" y="34"/>
+</svg>

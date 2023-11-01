@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 74 169 Q 119 126 116 149" fill="none" opacity="0.3418" stroke="black" stroke-width="2"/>
+	<rect fill="pink" height="64" opacity="0.9077" width="47" x="133" y="74"/>
+	<path d="M 93 70 Q 59 89 101 67" fill="none" opacity="0.956" stroke="black" stroke-width="2"/>
+	<circle cx="92" cy="29" fill="blue" opacity="0.4444" r="29"/>
+	<rect fill="blue" height="73" opacity="0.3061" width="32" x="135" y="23"/>
+	<path d="M 47 27 Q 35 173 125 28" fill="none" opacity="0.3188" stroke="black" stroke-width="2"/>
+	<rect fill="blue" height="81" opacity="0.8731" width="83" x="42" y="52"/>
+	<circle cx="112" cy="147" fill="blue" opacity="0.6301" r="72"/>
+	<text fill="black" opacity="0.6222" x="26" y="28">Dolorem quisquam magnam magnam dolore.</text>
+	<text fill="black" opacity="0.5193" x="141" y="39">Labore numquam ut ipsum sed</text>
+</svg>

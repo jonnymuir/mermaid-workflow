@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<rect fill="green" height="33" opacity="0.4989" width="80" x="82" y="36"/>
+	<circle cx="155" cy="72" fill="green" opacity="0.4074" r="64"/>
+	<line opacity="0.7959" stroke="black" stroke-width="2" x1="20" x2="69" y1="27" y2="106"/>
+	<line opacity="0.4052" stroke="black" stroke-width="2" x1="135" x2="45" y1="161" y2="170"/>
+	<line opacity="0.5256" stroke="black" stroke-width="2" x1="96" x2="146" y1="107" y2="23"/>
+	<circle cx="28" cy="142" fill="green" opacity="0.9477" r="27"/>
+	<line opacity="0.8414" stroke="black" stroke-width="2" x1="89" x2="34" y1="173" y2="37"/>
+	<circle cx="109" cy="167" fill="orange" opacity="0.6097" r="39"/>
+	<circle cx="101" cy="25" fill="yellow" opacity="0.637" r="65"/>
+	<line opacity="0.3421" stroke="black" stroke-width="2" x1="45" x2="138" y1="107" y2="75"/>
+</svg>

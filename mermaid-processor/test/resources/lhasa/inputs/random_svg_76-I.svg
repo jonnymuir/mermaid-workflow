@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<text fill="black" opacity="0.5334" x="80" y="65">Magnam tempora velit tempora consectetur</text>
+	<ellipse cx="172" cy="36" fill="green" opacity="0.5334" rx="1" ry="1"/>
+	<path d="M 146 160 Q 152 67 115 139" fill="none" opacity="0.5855" stroke="black" stroke-width="2"/>
+	<path d="M 112 103 Q 78 131 47 156" fill="none" opacity="0.7997" stroke="black" stroke-width="2"/>
+	<rect fill="pink" height="95" opacity="0.9983" width="72" x="40" y="108"/>
+	<text fill="black" opacity="0.9653" x="140" y="40">Quisquam labore voluptatem magnam. Adipisci</text>
+	<ellipse cx="114" cy="43" fill="green" opacity="0.9653" rx="1" ry="1"/>
+	<path d="M 29 74 Q 120 175 55 72" fill="none" opacity="0.9702" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.7914" x="142" y="35">Quaerat magnam sed tempora. Magnam</text>
+	<ellipse cx="22" cy="143" fill="orange" opacity="0.7914" rx="1" ry="1"/>
+</svg>

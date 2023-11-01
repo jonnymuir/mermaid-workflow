@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<rect fill="green" height="97" opacity="0.3793" width="67" x="25" y="120"/>
+	<text fill="black" opacity="0.4171" x="132" y="109">Modi dolor dolorem numquam ut</text>
+	<rect fill="yellow" height="46" opacity="0.5919" width="49" x="112" y="106"/>
+	<text fill="black" opacity="0.5539" x="102" y="156">Voluptatem numquam quisquam ut amet</text>
+	<rect fill="yellow" height="71" opacity="0.7403" width="67" x="23" y="68"/>
+</svg>

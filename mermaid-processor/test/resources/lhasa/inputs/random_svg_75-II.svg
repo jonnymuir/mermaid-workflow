@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<text fill="black" opacity="0.3998" x="63" y="78">Aliquam porro velit etincidunt velit</text>
+	<ellipse cx="118" cy="103" fill="orange" opacity="0.3998" rx="1" ry="1"/>
+	<path d="M 150 146 Q 167 145 121 100" fill="none" opacity="0.7232" stroke="black" stroke-width="2"/>
+	<ellipse cx="113" cy="44" fill="blue" opacity="0.7232" rx="1" ry="1"/>
+	<line opacity="0.6542" stroke="black" stroke-width="2" x1="159" x2="112" y1="179" y2="53"/>
+	<rect fill="pink" height="91" opacity="0.6028" width="50" x="95" y="70"/>
+	<path d="M 154 147 Q 52 53 169 95" fill="none" opacity="0.3728" stroke="black" stroke-width="2"/>
+	<ellipse cx="118" cy="157" fill="green" opacity="0.3728" rx="1" ry="1"/>
+	<circle cx="156" cy="122" fill="black" opacity="0.87" r="76"/>
+	<text fill="black" opacity="0.7589" x="146" y="109">Voluptatem voluptatem eius porro sit</text>
+	<path d="M 172 101 Q 115 20 161 48" fill="none" opacity="0.6485" stroke="black" stroke-width="2"/>
+	<path d="M 144 131 Q 32 85 100 135" fill="none" opacity="0.4952" stroke="black" stroke-width="2"/>
+	<circle cx="153" cy="26" fill="blue" opacity="0.4745" r="82"/>
+</svg>

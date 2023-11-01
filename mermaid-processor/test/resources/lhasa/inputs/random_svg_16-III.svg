@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<text fill="black" opacity="0.9946" x="63" y="103">Ut consectetur labore voluptatem ut</text>
+	<line opacity="0.8283" stroke="black" stroke-width="2" x1="25" x2="54" y1="79" y2="22"/>
+	<rect fill="black" height="73" opacity="0.9996" width="33" x="25" y="112"/>
+	<text fill="black" opacity="0.9772" x="26" y="128">Amet modi quiquia eius tempora</text>
+	<rect fill="red" height="41" opacity="0.3781" width="55" x="86" y="84"/>
+	<text fill="black" opacity="0.9869" x="49" y="154">Sit tempora tempora quisquam. Dolorem</text>
+</svg>

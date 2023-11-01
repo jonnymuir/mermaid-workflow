@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.725" stroke="black" stroke-width="2" x1="22" x2="49" y1="56" y2="104"/>
+	<circle cx="105" cy="60" fill="green" opacity="0.9686" r="15"/>
+	<line opacity="0.6415" stroke="black" stroke-width="2" x1="43" x2="20" y1="129" y2="135"/>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path d="M 153 132 Q 121 127 95 60" fill="none" opacity="0.588" stroke="black" stroke-width="2"/>
+	<ellipse cx="31" cy="96" fill="pink" opacity="0.588" rx="1" ry="1"/>
+	<circle cx="52" cy="64" fill="pink" opacity="0.9961" r="21"/>
+	<circle cx="29" cy="109" fill="black" opacity="0.4289" r="28"/>
+	<ellipse cx="159" cy="55" fill="black" opacity="0.4289" rx="1" ry="1"/>
+	<rect fill="orange" height="34" opacity="0.3594" width="91" x="48" y="50"/>
+	<ellipse cx="165" cy="149" fill="orange" opacity="0.3594" rx="1" ry="1"/>
+	<rect fill="orange" height="84" opacity="0.8702" width="83" x="103" y="23"/>
+	<ellipse cx="106" cy="117" fill="orange" opacity="0.8702" rx="1" ry="1"/>
+</svg>

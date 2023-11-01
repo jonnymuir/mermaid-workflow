@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.8018" stroke="black" stroke-width="2" x1="28" x2="86" y1="39" y2="36"/>
+	<text fill="black" opacity="0.7183" x="80" y="130">Eius tempora tempora ipsum neque</text>
+	<circle cx="37" cy="178" fill="black" opacity="0.6639" r="66"/>
+	<line opacity="0.7683" stroke="black" stroke-width="2" x1="67" x2="48" y1="78" y2="30"/>
+	<circle cx="22" cy="119" fill="pink" opacity="0.3971" r="84"/>
+	<rect fill="black" height="41" opacity="0.6136" width="70" x="130" y="99"/>
+	<text fill="black" opacity="0.7651" x="116" y="125">Velit dolor tempora adipisci. Dolor</text>
+	<rect fill="orange" height="49" opacity="0.322" width="83" x="119" y="42"/>
+</svg>

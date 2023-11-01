@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<text fill="black" opacity="0.6139" x="143" y="141">Voluptatem velit aliquam porro velit</text>
+	<rect fill="black" height="94" opacity="0.384" width="75" x="23" y="54"/>
+	<circle cx="166" cy="97" fill="black" opacity="0.4988" r="56"/>
+	<circle cx="73" cy="167" fill="pink" opacity="0.7537" r="26"/>
+	<rect fill="black" height="73" opacity="0.94" width="65" x="80" y="20"/>
+	<circle cx="124" cy="172" fill="black" opacity="0.4438" r="39"/>
+</svg>

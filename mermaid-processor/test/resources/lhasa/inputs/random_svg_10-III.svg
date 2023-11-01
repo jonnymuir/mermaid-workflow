@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.6063" stroke="black" stroke-width="2" x1="68" x2="91" y1="87" y2="122"/>
+	<path d="M 166 60 Q 52 121 142 129" fill="none" opacity="0.8074" stroke="black" stroke-width="2"/>
+	<circle cx="176" cy="148" fill="green" opacity="0.7556" r="82"/>
+	<circle cx="25" cy="140" fill="yellow" opacity="0.8772" r="79"/>
+	<path d="M 49 177 Q 66 134 71 116" fill="none" opacity="0.9141" stroke="black" stroke-width="2"/>
+	<text fill="black" opacity="0.8099" x="148" y="99">Ut sed quisquam modi quiquia</text>
+	<text fill="black" opacity="0.765" x="73" y="52">Quaerat ipsum magnam velit aliquam</text>
+	<rect fill="pink" height="74" opacity="0.8067" width="32" x="67" y="84"/>
+</svg>

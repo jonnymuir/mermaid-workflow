@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="tiny" height="300mm" version="1.2" width="300mm" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<line opacity="0.4828" stroke="black" stroke-width="2" x1="116" x2="102" y1="109" y2="22"/>
+	<text fill="black" opacity="0.3597" x="128" y="122">Amet velit sit eius dolorem</text>
+	<circle cx="85" cy="129" fill="green" opacity="0.4459" r="19"/>
+	<rect fill="black" height="47" opacity="0.3413" width="41" x="112" y="155"/>
+</svg>
