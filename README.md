@@ -56,7 +56,7 @@ This will execute all the tests in the project. Ensure all tests pass to verify 
 
 The Lhasa test, located in `/mermaid_processor/test/mermaid_processor/lhasa_test.clj`, is a test suite designed by Lhasa here https://github.com/jmaes12345/lhasa-kata
 
-It has been used to show how to provide custom functionality and run an automatic from a mermaid flowchar.
+It has been used to show how to provide custom functionality and run an automatic from a mermaid flowchart.
 
 ### The Mermaid Flowchart
 
