@@ -1,3 +1,5 @@
+[![Clojure CI](https://github.com/jonnymoo/mermaid-workflow/actions/workflows/clojure.yml/badge.svg)](https://github.com/jonnymoo/mermaid-workflow/actions/workflows/clojure.yml)
+
 # mermaid-workflow
 A project which aims to allow runnable user centric workflow described by mermaid diagrams
 
