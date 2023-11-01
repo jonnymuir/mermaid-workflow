@@ -24,8 +24,8 @@
        (map (fn [action]
               (cond
                 (re-find (re-pattern (str "(?i)(" utils/all-comparators ")")) action)
-                (let [[_ lhs _ _] (re-find (re-pattern (str "(?i)(.*?)(" utils/all-comparators ")(.*)[\\?]?$")) action)]
-                  {:regex (re-pattern (str "(?i)" lhs "\\s*(" utils/all-comparators ")\\s*(.*)[\\?]?"))
+                (let [[_ lhs _ _] (re-find (re-pattern (str "(?i)(.*?)(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*")) action)]
+                  {:regex (re-pattern (str "(?i)" lhs "\\s*(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*"))
                    :action [:your-library-here (keyword (kebab-case (str/replace lhs #"[^a-zA-Z0-9\s]" ""))) :%1 :%2]})
                 (re-find #"(?i)(yes|true|is true)[\?]?" action)
                 {:regex #"(?i)(Yes|True|Is True)[\?]?"

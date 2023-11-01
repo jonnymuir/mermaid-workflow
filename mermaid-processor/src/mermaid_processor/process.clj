@@ -8,7 +8,7 @@
   (let [current-node (get-current-node context behavior chart)]
     (current-node :node-text)))
 
-(defn process-routes [context behavior routes ]
+(defn process-routes [context behavior chart routes ]
   (some (fn [route]
           (if-let [route-text (:route-text route)]
             (if-let [condition-fn ((behavior :actions) route-text)]
@@ -19,11 +19,12 @@
             route))
         routes))
 
-(defn run-action [context behavior action]
+(defn run-action [context behavior chart action]
   (if-let [action-fn ((behavior :actions) action)]
-    (let [action-result (action-fn context)]
+    (let [action-result (action-fn context)
       ;; Store the last result in fields/last-result and return the new context
-      (utils/set-last-result (action-result :context) (action-result :result)))
+      new-context (utils/set-last-result (action-result :context) (action-result :result))] 
+      ((behavior :audit) new-context chart action (action-result :result)))
     (throw (ex-info (str "Action not found: " action)
                     {:action action :context context}))))
 
@@ -64,9 +65,11 @@
   [context behavior chart]
   (let [new-context (run-action context
                                 behavior
+                                chart
                                 (get-current-node-text context behavior chart))
         route (process-routes new-context
                               behavior
+                              chart
                               ((get-current-node new-context behavior chart) :routes))]
     
     (if route (process-chart ((behavior :set-current-node-id) new-context chart (route :route-destination))

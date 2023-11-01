@@ -56,15 +56,18 @@
   (let [circle-radius (Double/parseDouble (or (zx/attr circle :r) "0"))]
     (utils/apply-comparator circle-radius comparator radius)))
 
-(defn- only-blue-circles? [circle]
-  (= "blue" (zx/attr circle :fill)))
-
 (defn- all-elements [svg]
   (let [svg-node (-> svg
                      zip/xml-zip
                      (zx/xml-> :xmlns.http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg/svg)
                      first)]
     (filter :tag (zip/children svg-node))))
+
+(defn- only-blue-circles? [svg]
+  (let [circles (find-circles svg)
+        all-elements-count (count (all-elements svg))
+        blue-circles-count (count (filter #(= "blue" (zx/attr % :fill)) circles))]
+    (= all-elements-count blue-circles-count)))
 
 (def actions
   {:any-ellipse-with-height
@@ -177,8 +180,7 @@
    (fn [svg-field]
      (fn [context]
        (let [svg (utils/get-field-value context svg-field)
-             circles (find-circles svg)
-             result (some only-blue-circles? circles)]
+             result (only-blue-circles? svg)]
          {:context context
           :result result})))
 

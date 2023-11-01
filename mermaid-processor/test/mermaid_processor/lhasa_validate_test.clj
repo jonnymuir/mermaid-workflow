@@ -34,7 +34,7 @@
                (behavior/build {} lhasa-chart {})
                (catch clojure.lang.ExceptionInfo e e))
           expected-value
-          [{:regex (re-pattern (str "(?i)Any ellipse with height \\s*(" utils/all-comparators ")\\s*(.*)[\\?]?")),
+          [{:regex (re-pattern (str "(?i)Any ellipse with height \\s*(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*")),
             :action [:your-library-here :any-ellipse-with-height :%1 :%2]}
            {:regex #"(?i)Score 1[\?]?",
             :action [:your-library-here :your-function-name-here]}
@@ -42,13 +42,13 @@
             :action [:your-library-here :your-function-name-here]}
            {:regex #"(?i)Any ellipses[\?]?",
             :action [:your-library-here :your-function-name-here]}
-           {:regex (re-pattern (str "(?i)Any rectangle with area \\s*(" utils/all-comparators ")\\s*(.*)[\\?]?")),
+           {:regex (re-pattern (str "(?i)Any rectangle with area \\s*(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*")),
             :action [:your-library-here :any-rectangle-with-area :%1 :%2]}
            {:regex #"(?i)Score 3[\?]?",
             :action [:your-library-here :your-function-name-here]}
            {:regex #"(?i)Any straight lines[\?]?",
             :action [:your-library-here :your-function-name-here]}
-           {:regex (re-pattern (str "(?i)Radius \\s*(" utils/all-comparators ")\\s*(.*)[\\?]?")),
+           {:regex (re-pattern (str "(?i)Radius \\s*(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*")),
             :action [:your-library-here :radius :%1 :%2]}
            {:regex #"(?i)Only blue circles[\?]?",
             :action [:your-library-here :your-function-name-here]}
@@ -56,17 +56,17 @@
             :action [:your-library-here :your-function-name-here]}
            {:regex #"(?i)Any Red Circles[\?]?",
             :action [:your-library-here :your-function-name-here]}
-           {:regex (re-pattern (str "(?i)Total element count \\s*(" utils/all-comparators ")\\s*(.*)[\\?]?")),
+           {:regex (re-pattern (str "(?i)Total element count \\s*(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*")),
             :action [:your-library-here :total-element-count :%1 :%2]}
            {:regex #"(?i)Any rectangles or squares[\?]?",
             :action [:your-library-here :your-function-name-here]}
            {:regex #"(?i)Text containing the sequence 'Lhasa'[\?]?",
             :action [:your-library-here :your-function-name-here]}
-           {:regex (re-pattern (str "(?i)Any elements with opacity \\s*(" utils/all-comparators ")\\s*(.*)[\\?]?")),
+           {:regex (re-pattern (str "(?i)Any elements with opacity \\s*(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*")),
             :action [:your-library-here :any-elements-with-opacity :%1 :%2]}
            {:regex #"(?i)More than one element in the file[\?]?",
             :action [:your-library-here :your-function-name-here]}
-           {:regex (re-pattern (str "(?i)Every line \\s*(" utils/all-comparators ")\\s*(.*)[\\?]?")),
+           {:regex (re-pattern (str "(?i)Every line \\s*(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*")),
             :action [:your-library-here :every-line :%1 :%2]}
            {:regex #"(?i)Rectangle green[\?]?",
             :action [:your-library-here :your-function-name-here]}

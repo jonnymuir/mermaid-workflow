@@ -12,7 +12,20 @@
                   [(get-current-node-id context chart) node-id] ; creates a new vector if path-taken is nil
                   (conj path-taken node-id))))))
 
+(defn audit [context chart action result]
+  (update
+   context
+   :audit
+   (fn [audit]
+     (let [new-audit {:node (get-current-node-id context chart)
+                      :action action
+                      :action-result result}]
+       (if (nil? audit)
+         [new-audit]
+         (conj audit new-audit))))))
+
 (defn build [actions]
   {:actions actions
    :set-current-node-id set-current-node-id
-   :get-current-node-id get-current-node-id})
+   :get-current-node-id get-current-node-id
+   :audit audit })

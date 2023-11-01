@@ -331,3 +331,57 @@
   <circle />
 </svg>")))]
       (is (not result)))))
+
+;; Test for :any-ellipses?
+(deftest any-ellipses-test-positive
+  (testing "any ellipses positive test"
+    (let [action ((svg/actions :any-ellipses?) :svg)
+          {result :result} (action 
+                              (utils/set-field-value
+                               {}
+                               :svg
+                               (xml/parse-str 
+"<svg xmlns=\"http://www.w3.org/2000/svg\">
+  <ellipse cx=\"200\" cy=\"200\" rx=\"50\" ry=\"25\" />
+</svg>")))]
+      (is result))))
+
+(deftest any-ellipses-test-negative
+  (testing "any ellipses negative test"
+    (let [action ((svg/actions :any-ellipses?) :svg)
+          {result :result} (action
+                              (utils/set-field-value
+                               {}
+                               :svg
+                               (xml/parse-str
+"<svg xmlns=\"http://www.w3.org/2000/svg\">
+  <circle cx=\"200\" cy=\"200\" r=\"50\" />
+</svg>")))]
+      (is (not result)))))
+
+;; Test for :any-red-circles?
+(deftest any-red-circles-test-positive
+  (testing "any red circles positive test"
+    (let [action ((svg/actions :any-red-circles?) :svg)
+          {result :result} (action 
+                              (utils/set-field-value
+                               {}
+                               :svg
+                               (xml/parse-str 
+"<svg xmlns=\"http://www.w3.org/2000/svg\">
+  <circle cx=\"200\" cy=\"200\" r=\"50\" fill=\"red\" />
+</svg>")))]
+      (is result))))
+
+(deftest any-red-circles-test-negative
+  (testing "any red circles negative test"
+    (let [action ((svg/actions :any-red-circles?) :svg)
+          {result :result} (action
+                              (utils/set-field-value
+                               {}
+                               :svg
+                               (xml/parse-str
+"<svg xmlns=\"http://www.w3.org/2000/svg\">
+  <circle cx=\"200\" cy=\"200\" r=\"50\" fill=\"blue\" />
+</svg>")))]
+      (is (not result)))))
