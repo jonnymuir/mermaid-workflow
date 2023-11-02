@@ -47,3 +47,30 @@ jobs:
       working-directory: ./mermaid-processor
       run: 
         $HOME/bin/clj-kondo --lint src
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Deploy to Clojars
+      working-directory: ./mermaid-processor
+      run: |
+        VERSION=$(grep 'defproject' project.clj | awk '{print $3}' | tr -d "\"")
+        if curl -s -o /dev/null -w "%{http_code}" https://clojars.org/api/artifacts/your_group_id/your_artifact_id/versions/$VERSION | grep 200; then
+          echo "Version $VERSION already exists on Clojars. Exiting."
+        else
+          echo "Version $VERSION does not exist on Clojars. Continuing."
+          lein deploy clojars
+        fi
+      env:
+        LEIN_USERNAME: 'token'
+        LEIN_PASSWORD: ${{ secrets.CLOJARS_DEPLOY_TOKEN }}
