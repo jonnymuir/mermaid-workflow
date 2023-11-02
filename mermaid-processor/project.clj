@@ -16,5 +16,6 @@
           :source-uri "https://github.com/jonnymoo/mermaid-workflow/blob/main/{filepath}#L{line}"}
   :deploy-repositories [["clojars" {:url "https://clojars.org/repo"
                                     :username :env/clojars_username
-                                    :password :env/clojars_password}]])
+                                    :password :env/clojars_password
+                                    :files ["target/uberjar/mermaid-processor-0.1.0-SNAPSHOT.jar"]}]])
 
