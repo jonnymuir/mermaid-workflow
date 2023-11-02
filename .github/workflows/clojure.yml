@@ -37,10 +37,12 @@ jobs:
       run: |
         mkdir -p $HOME/bin
         curl -L https://github.com/clj-kondo/clj-kondo/releases/download/v2023.10.20/clj-kondo-2023.10.20-linux-amd64.zip -o clj-kondo.zip
-        sudo dpkg -i clj-kondo.zip
+        apt install unzip
+        unzip clj-kondo.zip -d $HOME/bin
+        chmod +x $HOME/bin/clj-kondo
         rm clj-kondo.zip
 
     - name: Lint with clj-kondo
       working-directory: ./mermaid-processor
       run: 
-        clj-kondo --lint src
+        $HOME/bin/clj-kondo --lint src

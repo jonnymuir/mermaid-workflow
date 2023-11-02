@@ -8,7 +8,7 @@
   (let [current-node (get-current-node context behavior chart)]
     (current-node :node-text)))
 
-(defn- process-routes [context behavior chart routes ]
+(defn- process-routes [context behavior routes ]
   (some (fn [route]
           (if-let [route-text (:route-text route)]
             (if-let [condition-fn ((behavior :actions) route-text)]
@@ -69,7 +69,6 @@
                                 (get-current-node-text context behavior chart))
         route (process-routes new-context
                               behavior
-                              chart
                               ((get-current-node new-context behavior chart) :routes))]
     
     (if route (process-chart ((behavior :set-current-node-id) new-context chart (route :route-destination))
