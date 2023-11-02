@@ -33,6 +33,13 @@ jobs:
         lein deps
         lein test
 
+    - name: Install clj-kondo
+      run: |
+        mkdir -p $HOME/bin
+        curl -L https://github.com/clj-kondo/clj-kondo/releases/download/v2023.10.20/clj-kondo-2023.10.20-linux-amd64.zip -o clj-kondo.zip
+        sudo dpkg -i clj-kondo.zip
+        rm clj-kondo.zip
+
     - name: Lint with clj-kondo
       working-directory: ./mermaid-processor
       run: 
