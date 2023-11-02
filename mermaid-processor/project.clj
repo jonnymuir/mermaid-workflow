@@ -1,4 +1,4 @@
-(defproject mermaid-processor "0.1.0-SNAPSHOT"
+(defproject com.jonnymuir/mermaid-processor "0.1.0-SNAPSHOT"
   :description "A project which creates a runable version of a mermaid diagram"
   :url "https://github.com/jonnymoo/mermaid-workflow/mermaid-processor"
   :scm "https://github.com/jonnymoo/mermaid-workflow/tree/main/mermaid-processor/src"
@@ -15,7 +15,6 @@
   :codox {:output-path "docs"
           :source-uri "https://github.com/jonnymoo/mermaid-workflow/blob/main/{filepath}#L{line}"}
   :deploy-repositories [["clojars" {:url "https://clojars.org/repo"
-                                    :username :env/clojars_username
-                                    :password :env/clojars_password
-                                    :files ["target/uberjar/mermaid-processor-0.1.0-SNAPSHOT.jar"]}]])
+                                    :username :env/LEIN_USERNAME
+                                    :password :env/LEIN_PASSWORD }]])
 

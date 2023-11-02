@@ -65,13 +65,13 @@ jobs:
       working-directory: ./mermaid-processor
       run: |
         VERSION=$(grep 'defproject' project.clj | awk '{print $3}' | tr -d "\"")
-        if curl -s -o /dev/null -w "%{http_code}" https://clojars.org/api/artifacts/your_group_id/your_artifact_id/versions/$VERSION | grep 200; then
+        if curl -s -o /dev/null -w "%{http_code}" https://clojars.org/com.jonnymuir/mermaid-processor/versions/$VERSION | grep 200; then
           echo "Version $VERSION already exists on Clojars. Exiting."
         else
           echo "Version $VERSION does not exist on Clojars. Continuing."
           lein uberjar
-          lein deploy clojars ${CLOJARS_USERNAME} ${{ secrets.CLOJARS_DEPLOY_TOKEN }}
+          lein deploy clojars
         fi
       env:
-        CLOJARS_USERNAME: 'token'
-        CLOJARS_PASSWORD: ${{ secrets.CLOJARS_DEPLOY_TOKEN }}
+        LEIN_USERNAME: 'jonnymoo@hotmail.com'
+        LEIN_PASSWORD: ${{ secrets.CLOJARS_DEPLOY_TOKEN }}
