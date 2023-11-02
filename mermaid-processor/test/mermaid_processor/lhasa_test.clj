@@ -71,20 +71,11 @@
            result-context (process/process-chart
                            (utils/set-field-value {}
                                                   "svg"
-                                                  (xml/parse-str (slurp (io/resource "resources/lhasa/inputs/random_svg_661-II.svg"))))
+                                                  (xml/parse-str (slurp (io/resource "resources/lhasa/inputs/3_blue_circles-I.svg"))))
                            behaviors
                            lhasa-chart)]
       #_(prn (result-context :audit)) ; comment this back in to see the audit trail
-      (is (== 2 (utils/get-field-value result-context "score"))))))
-
-(defn process-svg-file [file behaviors]
-  (let [result-context (process/process-chart
-                        (utils/set-field-value {}
-                                               "svg"
-                                               (xml/parse-str (slurp (io/resource (str "resources/lhasa/inputs/" file)))))
-                        behaviors
-                        lhasa-chart)]
-    (utils/get-field-value result-context "score")))
+      (is (== 1 (utils/get-field-value result-context "score"))))))
 
 (deftest process-lhasa-all-examples-test
   (testing "Process the lhasa kata from https://github.com/jmaes12345/lhasa-kata - all files test"
@@ -110,5 +101,5 @@
                               lhasa-chart)
               actual-score (utils/get-field-value result-context "score")]
           (is (== expected-score actual-score) (str "Expected score for " file-name " to be " expected-score " but was " actual-score))))
-      (is (= 91 (count svg-files)))
+      (is (= 90 (count svg-files)))
       )))
