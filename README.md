@@ -88,6 +88,17 @@ The `process-lhasa-example-test` function is an example of how to process a sing
 
 The `process-lhasa-all-examples-test` function is designed to process all SVG files located in the `resources/lhasa/inputs/` directory. For each SVG file, the test determines the expected score based on the file's naming convention (e.g., `-I.svg` indicates a score of 1). It then processes the SVG file using the behaviors and the Mermaid chart and compares the expected score with the actual score.
 
+### API Documentation 
+
+[API Documentation](https://jonnymuir.com/mermaid-workflow/mermaid-processor/docs/index.html)
+
+Note - to build the documentation
+
+```
+cd mermaid-processor
+lein codox
+```
+
 ### Conclusion
 
 For a deeper dive, explore the [Lhasa test file](https://github.com/jonnymoo/mermaid-workflow/blob/main/mermaid-processor/test/mermaid_processor/lhasa_test.clj) in the repository

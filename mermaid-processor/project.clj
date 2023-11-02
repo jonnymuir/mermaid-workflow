@@ -13,7 +13,7 @@
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
   :plugins [[lein-codox "0.10.8"]]
   :codox {:output-path "docs"
-          :source-uri "https://github.com/jonnymoo/mermaid-workflow/blob/main/{filepath}#L{line}"}
+          :source-uri "https://github.com/jonnymoo/mermaid-workflow/blob/main/mermaid-processor/{filepath}#L{line}"}
   :deploy-repositories [["clojars" {:url "https://clojars.org/repo"
                                     :username :env/LEIN_USERNAME
                                     :password :env/LEIN_PASSWORD }]])
