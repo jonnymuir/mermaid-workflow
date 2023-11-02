@@ -8,7 +8,6 @@
                  [instaparse "1.4.12"]
                  [org.clojure/data.zip "1.0.0"]
                  [org.clojure/data.xml "0.2.0-alpha6"]]
-  :main ^:skip-aot mermaid-processor.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
