@@ -1,27 +1,87 @@
 (ns mermaid-processor.behaviors.utils
+  "Utility functions for use with behaviours"
   (:require [clojure.string :as str]))
 
-(defn field-to-keyword [field-name]
+(defn field-to-keyword 
+  "Converts a given field name to a keyword.
+    
+    ARGUMENTS:
+    - field-name: The field name to be converted. Can be a string, keyword, or vector.
+    
+    RETURNS:
+    The field name as a keyword."
+  [field-name]
   (cond
     (keyword? field-name) field-name
     (vector? field-name) (field-to-keyword (first field-name))
     :else (keyword (str/lower-case field-name))))
 
-(defn get-field-value [context field-name]
+(defn get-field-value 
+  "Retrieves the value of a specified field from the context.
+    
+    ARGUMENTS:
+    - context: The context map containing various fields.
+    - field-name: The name of the field whose value is to be retrieved.
+    
+    RETURNS:
+    The value of the specified field."
+  [context field-name]
   ((context :fields) (field-to-keyword field-name)))
 
-(defn set-field-value [context field-name val]
+(defn set-field-value 
+  "Sets the value of a specified field in the context.
+    
+    ARGUMENTS:
+    - context: The context map.
+    - field-name: The name of the field to be set.
+    - val: The value to set for the specified field.
+    
+    RETURNS:
+    The updated context with the specified field set to the given value."
+  [context field-name val]
   (assoc-in context [:fields (field-to-keyword field-name)] val))
 
-(defn get-last-result [context]
+(defn get-last-result 
+  "Retrieves the last result value from the context.
+    
+    ARGUMENTS:
+    - context: The context map.
+    
+    RETURNS:
+    The last result value."
+  [context]
   ((context :fields) :last-result))
 
-(defn set-last-result [context val]
+(defn set-last-result 
+  "Sets the last result value in the context.
+    
+    ARGUMENTS:
+    - context: The context map.
+    - val: The value to set as the last result.
+    
+    RETURNS:
+    The updated context with the last result set to the given value."
+  [context val]
   (assoc-in context [:fields :last-result] val))
 
-(def all-comparators ">=|<=|>|<|==|!=|=|larger than|smaller than|greater than|less than|longer than|shorter than|larger than or equals|smaller than or equals|greater than or equals|less than or equals|longer than or equals|shorter than or equals|larger than or equal to|smaller than or equal to|greater than or equal to|less than or equal to|longer than or equal to|shorter than or equal to")
+(def all-comparators 
+  "A list of all the comparators supported pipe seperated"
+  ">=|<=|>|<|==|!=|=|larger than|smaller than|greater than|less than|longer than|shorter than|larger than or equals|smaller than or equals|greater than or equals|less than or equals|longer than or equals|shorter than or equals|larger than or equal to|smaller than or equal to|greater than or equal to|less than or equal to|longer than or equal to|shorter than or equal to")
 
-(defn apply-comparator [lhs comparator rhs]
+(defn apply-comparator 
+  "Compares two values using a specified comparator.
+    
+    ARGUMENTS:
+    - lhs: The left-hand side value.
+    - comparator: The comparator to use for comparison. Supports various string representations of comparison operators.
+    - rhs: The right-hand side value.
+    
+    RETURNS:
+    The result of the comparison as a boolean.
+    
+    THROWS:
+    - ExceptionInfo if an unknown comparator is provided."
+  [lhs comparator rhs]
   (let [rhs (if (number? lhs)
               (try
                 (Double. rhs)
@@ -60,3 +120,36 @@
       "not equal to" (not (== lhs rhs))
       (throw (ex-info "Unknown comparator" {:comparator comparator})))))
  
+(defn kebab-case 
+  "Converts a string to kebab-case.
+    
+    ARGUMENTS:
+    - s: The input string.
+    
+    RETURNS:
+    The input string in kebab-case format."
+  [s]
+  (->> (str/split s #"\s+")
+       (map str/lower-case)
+       (str/join "-")))
+
+(defn distinct-by 
+  "Returns a sequence of distinct elements based on a key function.
+    
+    ARGUMENTS:
+    - key-fn: A function that produces a key for each element.
+    - coll: The collection of elements.
+    
+    RETURNS:
+    A sequence of distinct elements based on the produced keys."
+  [key-fn coll]
+  (let [step (fn step [xs seen]
+               (when-let [s (seq xs)]
+                 (let [v (key-fn (first s))
+                       v-str (if (instance? java.util.regex.Pattern v)
+                               (.pattern v)
+                               v)]
+                   (if (contains? seen v-str)
+                     (recur (rest s) seen)
+                     (cons (first s) (step (rest s) (conj seen v-str)))))))]
+    (step coll #{})))

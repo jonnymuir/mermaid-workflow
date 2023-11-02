@@ -1,4 +1,6 @@
 (ns mermaid-processor.behaviors.libraries.svg
+  "SVG library for behaviors, providing some basic functionality for the Lhasa test for how to queston an SVG input"
+
   (:require [mermaid-processor.behaviors.utils :as utils]
             [clojure.zip :as zip]
             [clojure.data.zip.xml :as zx]
@@ -69,7 +71,9 @@
         blue-circles-count (count (filter #(= "blue" (zx/attr % :fill)) circles))]
     (= all-elements-count blue-circles-count)))
 
+
 (def actions
+  "A map of example SVG action functions. To see them in use see the Lhasa test in the github project"
   {:any-ellipse-with-height
    (fn [svg-field comparator height]
      (fn [context]

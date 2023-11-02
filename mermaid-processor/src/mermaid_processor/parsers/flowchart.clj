@@ -4,19 +4,19 @@
             [instaparse.core :as insta]
             [mermaid-processor.parse-utils :as parse-utils]))
 
-(def grammar
+(def ^:private grammar
   (slurp (io/resource "mermaid_processor/parsers/flowchart.ebnf")))
 
-(def parser
+(def ^:private parser
   (insta/parser grammar :output-format :hiccup))
 
-(defn get-by-keyword [vector keyword]
+(defn- get-by-keyword [vector keyword]
   (rest (first (filter #(= (first %) keyword) vector))))
 
-(defn get-by-keyword-single [vector keyword] 
+(defn- get-by-keyword-single [vector keyword] 
   (first (get-by-keyword vector keyword)))
 
-(defn process-node [node-map node]
+(defn- process-node [node-map node]
   ;; If the node does exist - create it, otherwise if text is passed update it  
   (let [node-id (get-by-keyword-single node :node-id)
         node-text (get-by-keyword-single node :node-text)]
@@ -29,7 +29,7 @@
           (assoc-in node-map [node-id :node-text] node-text)
       :else node-map)))
 
-(defn add-route [node-map source-node-id destination-node-id route-text ]
+(defn- add-route [node-map source-node-id destination-node-id route-text ]
   (update node-map
           source-node-id
           (fn [node]
@@ -38,7 +38,7 @@
                       (conj routes {:route-destination destination-node-id
                                     :route-text route-text}))))))
 
-(defn process-route [node-map route-or-node]
+(defn- process-route [node-map route-or-node]
   ;; Processes a route and returns [last-id updated-map]
   ;; if we are passed a node - then add to the map and return it as the last-id
   ;; otherwise recurse
@@ -52,14 +52,14 @@
             updated-map (process-node source-updated-map destination-node)]
         [(add-route updated-map source-node-id destination-node-id (get-by-keyword-single route-or-node :route-text)) destination-node-id]))))
 
-(defn process-ast [node-map item]
+(defn- process-ast [node-map item]
   (cond
     (= (first item) :node) (process-node node-map (rest item))
     (= (first item) :route) (first (process-route node-map (rest item)))
     :else node-map)) 
 
 
-(defn find-first-node-id
+(defn- find-first-node-id
   [structure]
   (when-let [s (seq structure)] 
     (cond
@@ -67,7 +67,7 @@
       (= (first s) :node-id) (second s)
       :else (recur (rest s)))))
 
-(defn transform [ast]
+(defn- transform [ast]
   (reduce process-ast {} ast))
 
 ;; Parse a mermaid flow chart

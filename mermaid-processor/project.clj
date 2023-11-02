@@ -10,4 +10,9 @@
   :main ^:skip-aot mermaid-processor.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
-                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+  :plugins [[lein-codox "0.10.8"]]
+  :codox {:output-path "docs"
+          :source-uri "https://github.com/jonnymoo/mermaid-workflow/blob/main/{filepath}#L{line}"}
+)
+

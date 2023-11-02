@@ -1,14 +1,14 @@
 (ns mermaid-processor.process 
   (:require [mermaid-processor.behaviors.utils :as utils]))
 
-(defn get-current-node [context behavior chart]
+(defn- get-current-node [context behavior chart]
   ((chart :nodes) ((behavior :get-current-node-id) context chart)))
 
-(defn get-current-node-text [context behavior chart]
+(defn- get-current-node-text [context behavior chart]
   (let [current-node (get-current-node context behavior chart)]
     (current-node :node-text)))
 
-(defn process-routes [context behavior chart routes ]
+(defn- process-routes [context behavior chart routes ]
   (some (fn [route]
           (if-let [route-text (:route-text route)]
             (if-let [condition-fn ((behavior :actions) route-text)]
@@ -19,7 +19,7 @@
             route))
         routes))
 
-(defn run-action [context behavior chart action]
+(defn- run-action [context behavior chart action]
   (if-let [action-fn ((behavior :actions) action)]
     (let [action-result (action-fn context)
       ;; Store the last result in fields/last-result and return the new context

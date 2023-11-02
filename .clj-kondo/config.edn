@@ -1,1 +1,3 @@
-{:linters {:refer-all {:level :warn :exclude-paths ["test"]}}}
+{:linters
+ {:refer-all {:level :warn :exclude-paths ["test"]}
+  :missing-docstring {:level :error}}}
