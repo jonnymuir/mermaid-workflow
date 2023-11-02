@@ -69,5 +69,8 @@ jobs:
           echo "Version $VERSION already exists on Clojars. Exiting."
         else
           echo "Version $VERSION does not exist on Clojars. Continuing."
-          lein deploy clojars token ${{ secrets.CLOJARS_DEPLOY_TOKEN }}
+          lein deploy clojars token
         fi
+      env:
+        CLOJARS_USERNAME: 'token'
+        CLOJARS_PASSWORD: ${{ secrets.CLOJARS_DEPLOY_TOKEN }}

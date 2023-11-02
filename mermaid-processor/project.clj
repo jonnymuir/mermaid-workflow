@@ -16,5 +16,6 @@
   :codox {:output-path "docs"
           :source-uri "https://github.com/jonnymoo/mermaid-workflow/blob/main/{filepath}#L{line}"}
   :deploy-repositories [["clojars" {:url "https://clojars.org/repo"
-                                    :creds :gpg}]])
+                                    :username :env/clojars_username
+                                    :password :env/clojars_password}]])
 
