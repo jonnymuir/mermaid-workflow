@@ -41,6 +41,7 @@ This is a build tool for Clojure. Install it by following the instructions on th
 ```
 git clone https://github.com/jonnymoo/mermaid-workflow.git
 cd mermaid-workflow
+cd mermaid-processor
 ```
 
 ### 2. Fetch Dependencies
