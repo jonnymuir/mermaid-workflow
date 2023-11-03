@@ -1,6 +1,5 @@
 (ns mermaid-processor.parsers.flowchart
   (:require [clojure.java.io :as io]
-            [mermaid-processor.chart-parser :as chart-parser]
             [instaparse.core :as insta]
             [mermaid-processor.parse-utils :as parse-utils]))
 
@@ -71,7 +70,28 @@
   (reduce process-ast {} ast))
 
 ;; Parse a mermaid flow chart
-(defmethod chart-parser/parser :flowchart
-  [_ input]
-  (let [ast (rest (parse-utils/result-or-exception (parser input)))]
+(defn parse 
+  "Parse a mermaid flowchart
+       
+  ARGUMENTS:
+  - content: The chart
+     
+  RETURN:
+  A structure with nodes and routes between nodes
+  ```
+  {:start-at \"A\"
+   :nodes {\"A\" {:node-text \"Desc\" 
+                  :routes ({:route-destination \"B\" 
+                            :route-text \"To\"})}
+           \"B\" {:node-text \"Desc2\"
+                  :routes ()}}
+  ``` 
+  EXAMPLE:
+  ```
+  (parse \"A[Desc]-->|To|B[Desc2]\")
+  ```    
+  THROWS:
+  ExceptionInfo if there was a parse error."
+  [content]
+  (let [ast (rest (parse-utils/result-or-exception (parser content)))]
   {:start-at (find-first-node-id ast) :nodes (transform ast)}))

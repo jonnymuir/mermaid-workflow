@@ -2,10 +2,16 @@
   (:require [clojure.test :refer :all] 
             [mermaid-processor.parse :as parse])) 
 
+
 (deftest parse-invalid-chart-test
-  (testing "test a nonsense chart type throws an error"
-    (is (thrown? IllegalArgumentException (parse/parse-mermaid "nonsensechart TB"))))
-)
+  (testing "test a nonsense chart type throws an error with correct message and data"
+    (let [ex (try
+                   (parse/parse-mermaid "nonsensechart TB")
+                   (catch clojure.lang.ExceptionInfo ex
+                     ex))]
+      (is (= "Unknown chart type" (.getMessage ex)))
+      (is (= {:type "nonsensechart", :content "nonsensechart TB"} (ex-data ex))))))
+
 (deftest parse-single-node-test
   (testing "simplest single node test"
     ; "A" should return a map which simply has one node id = A and text = A

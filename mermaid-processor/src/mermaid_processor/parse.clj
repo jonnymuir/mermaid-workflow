@@ -1,6 +1,5 @@
 (ns mermaid-processor.parse
-  (:require [mermaid-processor.parsers.flowchart]
-            [mermaid-processor.chart-parser :as chart-parser]
+  (:require [mermaid-processor.parsers.flowchart :as flowchart]
             [clojure.string :as str]))
 
 (defn parse-mermaid
@@ -30,4 +29,13 @@ ExceptionInfo if there was a parse error."
   [content]
   (let [lines (map str/trim (str/split (str/trim content) #"\r?\n"))
         [first-word & _] (str/split (first (remove empty? lines)) #"\s+")]
-    (chart-parser/parser first-word (str/join "\n" (rest lines)))))
+    ;; We only have one parser at the moment - flowchart, but if we need more
+    ;; here is where we route the parse
+    (cond 
+      (= (str/lower-case first-word) "flowchart")
+      (flowchart/parse (str/join "\n" (rest lines)))
+      :else
+      (throw (ex-info "Unknown chart type"
+                      {:type first-word
+                       :content content})))))
+ 
