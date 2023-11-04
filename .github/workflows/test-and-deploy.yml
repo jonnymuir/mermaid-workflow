@@ -75,3 +75,15 @@ jobs:
       env:
         LEIN_USERNAME: 'jonnymoo@hotmail.com'
         LEIN_PASSWORD: ${{ secrets.CLOJARS_DEPLOY_TOKEN }}
+
+    - name: Build with Leiningen
+      working-directory: ./mermaid-workflow-api
+      run: lein uberjar 
+  
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: mermaid-workflow-api # Your Azure App Service name
+        publish-profile: ${{ secrets.AZURE_WEBAPPAPI_PUBLISH_PROFILE }}
+        package: ./mermaid-workflow-api/target/uberjar/*-standalone.jar # The path to your built artifact
+  
