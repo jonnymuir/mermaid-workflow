@@ -1,4 +1,5 @@
 (ns mermaid-workflow-api.core
+  (:gen-class)
   (:require [mermaid-workflow-api.server :as server]))
 
 (defn -main 
