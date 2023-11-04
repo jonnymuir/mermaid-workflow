@@ -10,7 +10,7 @@
                  [metosin/reitit "0.7.0-alpha7"]
                  [metosin/ring-swagger-ui "5.9.0"]]
   :repl-options {:init-ns mermaid-workflow-api.server}
-  :main ^:skip-aot mermaid-workflow-api.core
+  :main mermaid-workflow-api.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
