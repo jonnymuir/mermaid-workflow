@@ -85,5 +85,5 @@ jobs:
       with:
         app-name: mermaid-workflow-api # Your Azure App Service name
         publish-profile: ${{ secrets.AZURE_WEBAPPAPI_PUBLISH_PROFILE }}
-        package: ./mermaid-workflow-api/target/*-standalone.jar # The path to your built artifact
+        package: ./mermaid-workflow-api/target/uberjar/mermaid-workflow-api-*-standalone.jar
   
