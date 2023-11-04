@@ -10,5 +10,5 @@
     ARGS:
     - [& [port]] An optional port number as a string. If no port is provided, the server defaults the system env PORT or to port 3000 if not present."
   [& [port]]
-  (let [server-port (if port (Integer. port) (or (System/getenv "PORT") "3000"))] ;; Default port to 3000 if not provided
-    (server/start server-port)))
+  (let [server-port (Integer/parseInt (or port (System/getenv "PORT") "3000"))] ;; Default port to 3000 if not provided
+     (server/start server-port)))
