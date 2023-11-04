@@ -80,6 +80,10 @@ jobs:
       working-directory: ./mermaid-workflow-api
       run: lein uberjar 
   
+    - name: List contents of the uberjar directory
+      run: ls -l ./mermaid-workflow-api/target/uberjar/
+    
+
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
