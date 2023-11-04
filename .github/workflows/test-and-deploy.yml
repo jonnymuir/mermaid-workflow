@@ -80,14 +80,14 @@ jobs:
       working-directory: ./mermaid-workflow-api
       run: lein uberjar 
   
-    - name: List contents of the uberjar directory
-      run: ls -l ./mermaid-workflow-api/target/uberjar/
-    
+    - name: Get the name of the uberjar
+      run: echo "UBERJAR_NAME=$(ls ./mermaid-workflow-api/target/uberjar/*-standalone.jar)" >> $GITHUB_ENV
+
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
         app-name: mermaid-workflow-api # Your Azure App Service name
         publish-profile: ${{ secrets.AZURE_WEBAPPAPI_PUBLISH_PROFILE }}
-        package: ./mermaid-workflow-api/target/uberjar/mermaid-workflow-api-0.1.0-SNAPSHOT-standalone.jar
+        package: ${{ env.UBERJAR_NAME }}
   
