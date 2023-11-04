@@ -11,8 +11,9 @@
                  [metosin/ring-swagger-ui "5.9.0"]]
   :repl-options {:init-ns mermaid-workflow-api.server}
   :main ^:skip-aot mermaid-workflow-api.core
-    :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}}
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
   :plugins [[lein-codox "0.10.8"]]
   :codox {:output-path "docs"
           :source-uri "https://github.com/jonnymoo/mermaid-workflow/blob/main/mermaid-workflow-api/{filepath}#L{line}"})
