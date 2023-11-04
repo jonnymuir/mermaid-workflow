@@ -1,5 +1,7 @@
 [![Clojure CI](https://github.com/jonnymoo/mermaid-workflow/actions/workflows/clojure.yml/badge.svg)](https://github.com/jonnymoo/mermaid-workflow/actions/workflows/clojure.yml)
 
+[![Deploy to Azure](https://github.com/jonnymoo/mermaid-workflow/actions/workflows/clojure.yml/badge.svg)](https://github.com/jonnymoo/mermaid-workflow/actions/workflows/azure-deploy.yml)
+
 # mermaid-workflow
 Runnable user centric workflow described by mermaid diagrams
 
