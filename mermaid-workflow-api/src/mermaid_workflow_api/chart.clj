@@ -8,7 +8,8 @@
             [mermaid-processor.behaviors.utils :as utils]
             [mermaid-processor.process :as process]
             [clojure.data.xml :as xml]
-            [cheshire.core :as json]))
+            [cheshire.core :as json]
+            [clojure.string :as str]))
 
 (defn- fetch-url [url]
   (try
@@ -95,7 +96,7 @@
         (try 
           (let [parsed-chart (cached-get-chart chart)
                 parsed-mappings (cached-get-mappings mappings)
-                context (if (context) (json/decode context)  {})
+                context (if (str/blank? context) {} (json/decode context))
                 behaviors (behavior/build (regex-behaviors/build
                                            {:core core/actions
                                             :svg svg/actions}
