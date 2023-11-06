@@ -127,6 +127,10 @@ Order function parameters by specificity (general to specific), e.g. my-function
 
 Aim towards a DDD like Ubiquitous Language. This means entities should use real life terms from the business / user domain. This language should be refleced in the code. And on language, a decision has been made to not use british english, but stick with american english, e.g. behavior, not behaviour. This is simply to make it consistent with other code bases.
 
+Dont throw an exception unless it really is an exception. As a rule dont handle exceptions in business logic code. Let the top layer handle it and report it appropriately. The exception to this rule is if you want to decorate the exception with more information and then rethrow it.
+
+Keep any messy code as small as possible and as close to the entry point to the application (the composition root). Messy code is code with is non-deterministric, input driven, needs to access external systems. Do all this first and pass it into your domain logic. This helps you organise you systems with the appropriate level and direction of interconnectivity and lower complexity.
+
 ```mermaid
 C4Container
     title Container diagram for Workflow Automation System

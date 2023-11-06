@@ -8,7 +8,11 @@
                  [metosin/jsonista "0.2.6"]
                  [ring/ring-jetty-adapter "1.7.1"]
                  [metosin/reitit "0.7.0-alpha7"]
-                 [metosin/ring-swagger-ui "5.9.0"]]
+                 [metosin/ring-swagger-ui "5.9.0"]
+                 [clj-http "3.12.3"]
+                 [cheshire "5.12.0"]
+                 [com.jonnymuir/mermaid-processor "0.1.1-SNAPSHOT"]
+                 [clj-toml "0.3.1"]]
   :repl-options {:init-ns mermaid-workflow-api.server}
   :main mermaid-workflow-api.core
   :target-path "target/%s"
