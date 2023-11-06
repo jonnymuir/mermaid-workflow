@@ -8,7 +8,7 @@
             [mermaid-processor.behaviors.utils :as utils]
             [mermaid-processor.process :as process]
             [clojure.data.xml :as xml]
-            [clj-toml.core :as toml]))
+            [cheshire.core :as json]))
 
 (defn- fetch-url [url]
   (try
@@ -45,20 +45,20 @@
 (defn- parse-action [action]
   (mapv #(or (string-to-keyword %) %) action))
 
-(defn- toml-to-action-map [toml-str]
-  (let [parsed-toml (toml/parse-string toml-str)
-        rules (map (fn [rule]
-                     {:regex (re-pattern (rule "regex"))
-                      :action (parse-action (rule "action"))})
-                   (get parsed-toml "rule"))]
-    (vec rules)))
+(defn- json-to-action-map [json-str]
+  (let [parsed-json (json/parse-string json-str true) ;; 'true' for keywordizing keys
+        action-map (map (fn [rule]
+                     {:regex (re-pattern (rule :regex))
+                      :action (parse-action (rule :action))})
+                   parsed-json)]
+    (vec action-map)))
 
 (defn- get-mappings
   [mappings]
   (if (re-matches #"^http[s]?://.*" mappings)
     (let [mappings-string (fetch-url mappings)]
-      (toml-to-action-map mappings-string))
-    (toml-to-action-map mappings))) ;; If not a URL, return the string as is
+      (json-to-action-map mappings-string))
+    (json-to-action-map mappings))) ;; If not a URL, return the string as is
 
 (def ^:private cached-get-mappings (memoize get-mappings))
 
@@ -95,7 +95,7 @@
         (try 
           (let [parsed-chart (cached-get-chart chart)
                 parsed-mappings (cached-get-mappings mappings)
-                context (or context {})
+                context (if (context) (json/decode context)  {})
                 behaviors (behavior/build (regex-behaviors/build
                                            {:core core/actions
                                             :svg svg/actions}
@@ -113,7 +113,7 @@
                                 behaviors
                                 parsed-chart)]
             {:status 200
-             :body {:context result-context}})
+             :body {:context (json/generate-string result-context)}})
           (catch clojure.lang.ExceptionInfo e
             {:status 500
              :body {:reason (ex-data e)}})))}})
