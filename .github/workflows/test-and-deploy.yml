@@ -79,7 +79,7 @@ jobs:
           while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
             if curl -s -o /dev/null -w "%{http_code}" https://clojars.org/com.jonnymuir/mermaid-processor/versions/$VERSION | grep 200; then
               echo "Version $VERSION found on Clojars. Triggering cljdoc build."
-              curl -X POST https://cljdoc.org/api/builds \
+              curl -X POST https://cljdoc.org/api/request-build2 \
                 -H "Content-Type: application/json" \
                 -d '{"project":"com.jonnymuir/mermaid-processor","version":"'$VERSION'"}'
               break
