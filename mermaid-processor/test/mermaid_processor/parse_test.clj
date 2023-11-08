@@ -84,7 +84,7 @@
 
 (deftest parse-multiple_nodes_and_routes
   (testing "multiple nodes and routes test"
-    (is (= {:start-at "A" :nodes {"A" {:node-text "My Desc" :routes '({:route-destination "B" :route-text nil})}
+    (is (= {:start-at "A" :nodes {"A" {:node-text "My Desc" :routes '({:route-destination "B" :route-text ""})}
                                   "B" {:node-text "My other node" :routes '()}}}
            (parse/parse-mermaid "flowchart TD
                                   A[My Desc]-->B[My other node]")))))
@@ -101,7 +101,7 @@
     (let [expected {:start-at "A" 
                     :nodes {"A" 
                             {:node-text "A" 
-                             :routes '({:route-destination "B" :route-text nil})}
+                             :routes '({:route-destination "B" :route-text ""})}
                             "B" 
                             {:node-text "B" 
                              :routes '()}}}

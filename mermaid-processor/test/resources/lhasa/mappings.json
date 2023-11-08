@@ -1,157 +1,179 @@
-[{
-  "action": [
-    ":svg",
-    ":any-ellipse-with-height",
-    ":svg",
-    ":%1",
-    ":%2"
-  ],
-  "regex": "(?i)Any ellipse with height \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
-},
-{
-  "action": [
-    ":core",
-    ":set-number",
-    ":score",
-    ":%1"
-  ],
-  "regex": "(?i)Score (\\d+)"
-},
-{
-  "action": [
-    ":svg",
-    ":any-ellipses?",
-    ":svg"
-  ],
-  "regex": "(?i)Any ellipses?[\\?]?"
-},
-{
-  "action": [
-    ":svg",
-    ":any-rectangle-with-area",
-    ":svg",
-    ":%1",
-    ":%2"
-  ],
-  "regex": "(?i)Any rectangle with area \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
-},
-{
-  "action": [
-    ":svg",
-    ":any-straight-lines?",
-    ":svg"
-  ],
-  "regex": "(?i)Any straight lines[\\?]?"
-},
-{
-  "action": [
-    ":svg",
-    ":radius",
-    ":svg",
-    ":%1",
-    ":%2"
-  ],
-  "regex": "(?i)Radius \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
-},
-{
-  "action": [
-    ":svg",
-    ":only-blue-circles?",
-    ":svg"
-  ],
-  "regex": "(?i)Only blue circles[\\?]?"
-},
-{
-  "action": [
-    ":svg",
-    ":any-text?",
-    ":svg"
-  ],
-  "regex": "(?i)Any text[\\?]?"
-},
-{
-  "action": [
-    ":svg",
-    ":any-red-circles?",
-    ":svg"
-  ],
-  "regex": "(?i)Any Red Circles[\\?]?"
-},
-{
-  "action": [
-    ":svg",
-    ":total-element-count",
-    ":svg",
-    ":%1",
-    ":%2"
-  ],
-  "regex": "(?i)Total element count \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
-},
-{
-  "action": [
-    ":svg",
-    ":any-rectangles?",
-    ":svg"
-  ],
-  "regex": "(?i)Any rectangles or squares[\\?]?"
-},
-{
-  "action": [
-    ":svg",
-    ":text-contains-lhasa?",
-    ":svg"
-  ],
-  "regex": "(?i)Text containing the sequence 'Lhasa'[\\?]?"
-},
-{
-  "action": [
-    ":svg",
-    ":any-elements-with-opacity",
-    ":svg",
-    ":%1",
-    ":%2"
-  ],
-  "regex": "(?i)Any elements with opacity \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
-},
-{
-  "action": [
-    ":svg",
-    ":total-element-count",
-    ":svg",
-    ">",
-    "1"
-  ],
-  "regex": "(?i)More than one element in the file[\\?]?"
-},
-{
-  "action": [
-    ":svg",
-    ":every-line",
-    ":svg",
-    ":%1",
-    ":%2"
-  ],
-  "regex": "(?i)Every line \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
-},
-{
-  "action": [
-    ":svg",
-    ":any-green-rectangles?",
-    ":svg"
-  ],
-  "regex": "(?i)Rectangle green[\\?]?"
-},
-{
-  "action": [
-    ":core",
-    ":last-result-is-true"
-  ],
-  "regex": "(?i)(Yes|True|Is True)[\\?]?"
-},
-{
-  "action": [
-    ":core",
-    ":last-result-is-not-true"
-  ],
-  "regex": "(?i)(No|False|Is False|Is Not True)[\\?]?"
-}]
+[
+  {
+    "action": [
+      ":core",
+      ":set-field",
+      "svg",
+      ":xml"
+    ],
+    "regex": "Require SVG"
+  },
+  {
+    "action": [
+      ":core",
+      ":compare",
+      ":all-fields",
+      "<>",
+      ":required"
+    ],
+    "regex": "Proceed?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-ellipse-with-height",
+      ":svg",
+      ":%1",
+      ":%2"
+    ],
+    "regex": "(?i)Any ellipse with height \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+  },
+  {
+    "action": [
+      ":core",
+      ":set-field",
+      ":score",
+      ":number",
+      ":%1"
+    ],
+    "regex": "(?i)Score (\\d+)"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-ellipses?",
+      ":svg"
+    ],
+    "regex": "(?i)Any ellipses?[\\?]?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-rectangle-with-area",
+      ":svg",
+      ":%1",
+      ":%2"
+    ],
+    "regex": "(?i)Any rectangle with area \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-straight-lines?",
+      ":svg"
+    ],
+    "regex": "(?i)Any straight lines[\\?]?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":radius",
+      ":svg",
+      ":%1",
+      ":%2"
+    ],
+    "regex": "(?i)Radius \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+  },
+  {
+    "action": [
+      ":svg",
+      ":only-blue-circles?",
+      ":svg"
+    ],
+    "regex": "(?i)Only blue circles[\\?]?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-text?",
+      ":svg"
+    ],
+    "regex": "(?i)Any text[\\?]?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-red-circles?",
+      ":svg"
+    ],
+    "regex": "(?i)Any Red Circles[\\?]?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":total-element-count",
+      ":svg",
+      ":%1",
+      ":%2"
+    ],
+    "regex": "(?i)Total element count \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-rectangles?",
+      ":svg"
+    ],
+    "regex": "(?i)Any rectangles or squares[\\?]?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":text-contains-lhasa?",
+      ":svg"
+    ],
+    "regex": "(?i)Text containing the sequence 'Lhasa'[\\?]?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-elements-with-opacity",
+      ":svg",
+      ":%1",
+      ":%2"
+    ],
+    "regex": "(?i)Any elements with opacity \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+  },
+  {
+    "action": [
+      ":svg",
+      ":total-element-count",
+      ":svg",
+      ">",
+      "1"
+    ],
+    "regex": "(?i)More than one element in the file[\\?]?"
+  },
+  {
+    "action": [
+      ":svg",
+      ":every-line",
+      ":svg",
+      ":%1",
+      ":%2"
+    ],
+    "regex": "(?i)Every line \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+  },
+  {
+    "action": [
+      ":svg",
+      ":any-green-rectangles?",
+      ":svg"
+    ],
+    "regex": "(?i)Rectangle green[\\?]?"
+  },
+  {
+    "action": [
+      ":core",
+      ":last-result-is-true"
+    ],
+    "regex": "(?i)(Yes|True|Is True)[\\?]?"
+  },
+  {
+    "action": [
+      ":core",
+      ":last-result-is-not-true"
+    ],
+    "regex": "(?i)(No|False|Is False|Is Not True)[\\?]?"
+  }
+]

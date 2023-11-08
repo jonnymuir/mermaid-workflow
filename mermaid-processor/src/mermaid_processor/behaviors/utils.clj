@@ -2,20 +2,6 @@
   "Utility functions for use with behaviours"
   (:require [clojure.string :as str]))
 
-(defn field-to-keyword 
-  "Converts a given field name to a keyword.
-    
-    ARGUMENTS:
-    - field-name: The field name to be converted. Can be a string, keyword, or vector.
-    
-    RETURNS:
-    The field name as a keyword."
-  [field-name]
-  (cond
-    (keyword? field-name) field-name
-    (vector? field-name) (field-to-keyword (first field-name))
-    :else (keyword (str/lower-case field-name))))
-
 (defn get-field-value 
   "Retrieves the value of a specified field from the context.
     
@@ -26,7 +12,7 @@
     RETURNS:
     The value of the specified field."
   [context field-name]
-  ((context :fields) (field-to-keyword field-name)))
+  ((context :fields) field-name))
 
 (defn set-field-value 
   "Sets the value of a specified field in the context.
@@ -39,7 +25,7 @@
     RETURNS:
     The updated context with the specified field set to the given value."
   [context field-name val]
-  (assoc-in context [:fields (field-to-keyword field-name)] val))
+  (assoc-in context [:fields field-name] val))
 
 (defn get-last-result 
   "Retrieves the last result value from the context.
@@ -64,6 +50,9 @@
   [context val]
   (assoc-in context [:fields :last-result] val))
 
+
+(defn- safe-equals [lhs rhs] (try (== lhs rhs) (catch ClassCastException _ false)))
+
 (def all-comparators 
   "A list of all the comparators supported pipe seperated"
   ">=|<=|>|<|==|!=|=|larger than|smaller than|greater than|less than|longer than|shorter than|larger than or equals|smaller than or equals|greater than or equals|less than or equals|longer than or equals|shorter than or equals|larger than or equal to|smaller than or equal to|greater than or equal to|less than or equal to|longer than or equal to|shorter than or equal to")
@@ -82,11 +71,11 @@
     THROWS:
     - ExceptionInfo if an unknown comparator is provided."
   [lhs comparator rhs]
-  (let [rhs (if (number? lhs)
-              (try
-                (Double. rhs)
-                (catch Exception _ rhs))
-              rhs)]
+  (when (nil? lhs) (throw (ex-info "left hand side of comparator is not set" {})))
+  (let [rhs (cond
+              (keyword? rhs) rhs
+              (number? lhs) (if (number? rhs) rhs (Double. rhs))
+              :else rhs)]
     (case comparator
       ">=" (>= lhs rhs)
       "larger than or equal to" (>= lhs rhs)
@@ -110,14 +99,14 @@
       "smaller than" (< lhs rhs)
       "less than" (< lhs rhs)
       "shorter than" (< lhs rhs)
-      "==" (== lhs rhs)
-      "=" (== lhs rhs)
-      "equals" (== lhs rhs)
-      "equal to" (== lhs rhs)
-      "!=" (not (== lhs rhs))
-      "<>" (not (== lhs rhs))
-      "not equals" (not (== lhs rhs))
-      "not equal to" (not (== lhs rhs))
+      "==" (safe-equals lhs rhs)
+      "=" (safe-equals lhs rhs)
+      "equals" (safe-equals lhs rhs)
+      "equal to" (safe-equals lhs rhs)
+      "!=" (not (safe-equals lhs rhs))
+      "<>" (not (safe-equals lhs rhs)) 
+      "not equals" (not (safe-equals lhs rhs))
+      "not equal to" (not (safe-equals lhs rhs))
       (throw (ex-info "Unknown comparator" {:comparator comparator})))))
  
 (defn kebab-case 

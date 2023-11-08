@@ -22,9 +22,9 @@
     (let [ex (try
                (behavior/build {} lhasa-chart {})
                (catch clojure.lang.ExceptionInfo e e))]
-      (is (= (set ["Any ellipse with height >=50?" "Score 1" "Score 2" "Any ellipses?" "Any rectangle with area >= 300?" "Score 3" "Any straight lines?" "Radius larger than 100?" "Radius larger than 50?" "Only blue circles?" "Any text?" "Any Red Circles" "Total element count > 5?" "Any rectangles or squares?" "Text containing the sequence 'Lhasa'?" "Any elements with opacity less than 1?" "More than one element in the file?" "Every line longer than 100?" "Rectangle green?" "Yes" "No"])
+      (is (= (set ["Require SVG" "Proceed?" "Any ellipse with height >=50?" "Score 1" "Score 2" "Any ellipses?" "Any rectangle with area >= 300?" "Score 3" "Any straight lines?" "Radius larger than 100?" "Radius larger than 50?" "Only blue circles?" "Any text?" "Any Red Circles" "Total element count > 5?" "Any rectangles or squares?" "Text containing the sequence 'Lhasa'?" "Any elements with opacity less than 1?" "More than one element in the file?" "Every line longer than 100?" "Rectangle green?" "Yes" "No"])
              (set ((ex-data ex) :missing))))
-      (is (= 21 (count ((ex-data ex) :missing)))))))
+      (is (= 23 (count ((ex-data ex) :missing)))))))
 
 
 ;; Example of how to convert the missing functions to an action map
@@ -59,6 +59,8 @@
            {:regex (re-pattern (str "(?i)Total element count \\s*(" utils/all-comparators ")\\s*([^?]+)[\\s\\?]*")),
             :action [:your-library-here :total-element-count :%1 :%2]}
            {:regex #"(?i)Any rectangles or squares[\?]?",
+            :action [:your-library-here :your-function-name-here]}
+           {:regex #"(?i)Require SVG[\?]?",
             :action [:your-library-here :your-function-name-here]}
            {:regex #"(?i)Text containing the sequence 'Lhasa'[\?]?",
             :action [:your-library-here :your-function-name-here]}

@@ -48,11 +48,17 @@
 
 (defn- json-to-action-map [json-str]
   (let [parsed-json (json/parse-string json-str true) ;; 'true' for keywordizing keys
-        action-map (map (fn [rule]
-                     {:regex (re-pattern (rule :regex))
-                      :action (parse-action (rule :action))})
-                   parsed-json)]
-    (vec action-map)))
+        action-map (mapv (fn [rule]
+                           (try
+                             {:regex (re-pattern (rule :regex))
+                              :action (parse-action (rule :action))}
+                             (catch Exception e
+                               (throw (ex-info "Error processing action map rule"
+                                               {:error (.getMessage e)
+                                                :rule rule})))))
+                         parsed-json)]
+    action-map))
+
 
 (defn- get-mappings
   [mappings]
@@ -96,7 +102,7 @@
         (try 
           (let [parsed-chart (cached-get-chart chart)
                 parsed-mappings (cached-get-mappings mappings)
-                context (if (str/blank? context) {} (json/decode context))
+                context (if (str/blank? context) {} (json/parse-string context true))
                 behaviors (behavior/build (regex-behaviors/build
                                            {:core core/actions
                                             :svg svg/actions}

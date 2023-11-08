@@ -20,40 +20,41 @@
 (def lhasa-chart 
   (parse/parse-mermaid mermaid))
 
-
 (def action-map
-  [{:regex #"(?i)Any ellipse with height \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
-    :action [:svg :any-ellipse-with-height :svg :%1 :%2]}
+  [{:regex #"^(Require SVG|Proceed\?)$"
+    :action [:core :do-nothing]}
+   {:regex #"(?i)Any ellipse with height \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
+    :action [:svg :any-ellipse-with-height "svg" :%1 :%2]}
    {:regex #"(?i)Score (\d+)",
-    :action [:core :set-number :score :%1]}
+    :action [:core :set-field "score" :number :%1]}
    {:regex #"(?i)Any ellipses?[\?]?",
-    :action [:svg :any-ellipses? :svg]}
+    :action [:svg :any-ellipses? "svg"]}
    {:regex #"(?i)Any rectangle with area \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
-    :action [:svg :any-rectangle-with-area :svg :%1 :%2]}
+    :action [:svg :any-rectangle-with-area "svg" :%1 :%2]}
    {:regex #"(?i)Any straight lines[\?]?",
-    :action [:svg :any-straight-lines? :svg]}
+    :action [:svg :any-straight-lines? "svg"]}
    {:regex #"(?i)Radius \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
-    :action [:svg :radius :svg :%1 :%2]}
+    :action [:svg :radius "svg" :%1 :%2]}
    {:regex #"(?i)Only blue circles[\?]?",
-    :action [:svg :only-blue-circles? :svg]}
+    :action [:svg :only-blue-circles? "svg"]}
    {:regex #"(?i)Any text[\?]?",
-    :action [:svg :any-text? :svg]}
+    :action [:svg :any-text? "svg"]}
    {:regex #"(?i)Any Red Circles[\?]?",
-    :action [:svg :any-red-circles? :svg]}
+    :action [:svg :any-red-circles? "svg"]}
    {:regex #"(?i)Total element count \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
-    :action [:svg :total-element-count :svg :%1 :%2]}
+    :action [:svg :total-element-count "svg" :%1 :%2]}
    {:regex #"(?i)Any rectangles or squares[\?]?",
-    :action [:svg :any-rectangles? :svg]}
+    :action [:svg :any-rectangles? "svg"]}
    {:regex #"(?i)Text containing the sequence 'Lhasa'[\?]?",
-    :action [:svg :text-contains-lhasa? :svg]}
+    :action [:svg :text-contains-lhasa? "svg"]}
    {:regex #"(?i)Any elements with opacity \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
-    :action [:svg :any-elements-with-opacity :svg :%1 :%2]}
+    :action [:svg :any-elements-with-opacity "svg" :%1 :%2]}
    {:regex #"(?i)More than one element in the file[\?]?",
-    :action [:svg :total-element-count :svg ">" "1"]}
+    :action [:svg :total-element-count "svg" ">" "1"]}
    {:regex #"(?i)Every line \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
-    :action [:svg :every-line :svg :%1 :%2]}
+    :action [:svg :every-line "svg" :%1 :%2]}
    {:regex #"(?i)Rectangle green[\?]?",
-    :action [:svg :any-green-rectangles? :svg]}
+    :action [:svg :any-green-rectangles? "svg"]}
    {:regex #"(?i)(Yes|True|Is True)[\?]?",
     :action [:core :last-result-is-true]}
    {:regex #"(?i)(No|False|Is False|Is Not True)[\?]?",
@@ -74,7 +75,7 @@
                                                   (xml/parse-str (slurp (io/resource "resources/lhasa/inputs/3_blue_circles-I.svg"))))
                            behaviors
                            lhasa-chart)]
-      #_(prn (result-context :audit)) ; comment this back in to see the audit trail
+      #_(prn (result-context :audit)) ; comment this back in to see the audit trail 
       (is (== 1 (utils/get-field-value result-context "score"))))))
 
 (deftest process-lhasa-all-examples-test

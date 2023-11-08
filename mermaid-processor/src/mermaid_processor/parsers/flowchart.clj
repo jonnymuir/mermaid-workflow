@@ -35,7 +35,7 @@
             (update node :routes
                     (fn [routes]
                       (conj routes {:route-destination destination-node-id
-                                    :route-text route-text}))))))
+                                    :route-text (or route-text "")}))))))
 
 (defn- process-route [node-map route-or-node]
   ;; Processes a route and returns [last-id updated-map]

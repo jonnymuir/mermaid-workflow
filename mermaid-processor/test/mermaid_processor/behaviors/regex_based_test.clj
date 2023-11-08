@@ -9,9 +9,9 @@
     (let [behaviors (behavior/build 
                    {:core core/actions}  
                    {:nodes {"A" {:node-text "Score -10.2" :routes '()}}}
-                   [{:regex #"(?i)score\s(-?\d+(\.\d+)?)" :action [:core :set-number :score :%1]}])
+                   [{:regex #"(?i)score\s(-?\d+(\.\d+)?)" :action [:core :set-field "score" :number :%1]}])
           result ((behaviors "Score -10.2") {})]
-      (is (= -10.2 (((result :context) :fields) :score))))))
+      (is (= -10.2 (((result :context) :fields) "score"))))))
 
 (deftest simple-condition-test
   (testing "Test a simple condition"

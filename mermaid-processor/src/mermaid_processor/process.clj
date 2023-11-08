@@ -1,5 +1,6 @@
 (ns mermaid-processor.process 
-  (:require [mermaid-processor.behaviors.utils :as utils]))
+  (:require [mermaid-processor.behaviors.utils :as utils]
+            [clojure.string :as str]))
 
 (defn- get-current-node [context behavior chart]
   ((chart :nodes) ((behavior :get-current-node-id) context chart)))
@@ -10,13 +11,14 @@
 
 (defn- process-routes [context behavior routes ]
   (some (fn [route]
-          (if-let [route-text (:route-text route)]
-            (if-let [condition-fn ((behavior :actions) route-text)]
-              (when ((condition-fn context) :result)
-                route)
-              (throw (ex-info (str "Condition not found: " route-text)
-                              {:route-text route-text :context context})))
-            route))
+          (let [route-text (route :route-text)]
+            (if (str/blank? route-text)
+              route
+              (if-let [condition-fn ((behavior :actions) route-text)]
+                (when ((condition-fn context) :result)
+                  route)
+                (throw (ex-info (str "Condition not found: " route-text)
+                                {:route-text route-text :context context}))))))
         routes))
 
 (defn- run-action [context behavior chart action]
@@ -70,7 +72,7 @@
         route (process-routes new-context
                               behavior
                               ((get-current-node new-context behavior chart) :routes))]
-    
+
     (if route (process-chart ((behavior :set-current-node-id) new-context chart (route :route-destination))
                              behavior
                              chart)

@@ -25,13 +25,18 @@
 (defn- get-implementation-fn [libraries action match]
   (let [actions (libraries (first action))
         action-fn (actions (second action))
-        params (mapv (fn [param]
-                       (if (and (keyword? param) ; Check if the parameter is a keyword
-                                (re-matches #"%[0-9]+" (name param))) ; Check if it starts with :%
-                         (let [index (Integer. (subs (name param) 1))] ; Extract the number after the %
-                           (match index)) ; Get the captured group based on the number
-                         param))
-                     (drop 2 action))]
+        params (mapv
+                (fn [param]
+                  (if (and (keyword? param) ; Check if the parameter is a keyword
+                           (re-matches #"%[0-9]+" (name param))) ; Check if it starts with :%
+                    (let [index (Integer. (subs (name param) 1))] ; Extract the number after the %
+                      (match index)) ; Get the captured group based on the number
+                    param))
+                (drop 2 action))]
+    (when (not action-fn)
+      (throw (ex-info "Unknown action"
+                      {:action action
+                       :match match})))
     (try
       (apply action-fn params)
       (catch Exception e
@@ -42,19 +47,23 @@
                         e))))))
 
 (defn- find-matching-action-fn [libraries regex-to-action-map node-text]
-  (some (fn [row]
-          (when-let [match (re-find (:regex row) node-text)]
-            ;; Match will now be the return from re-find. 
-            ;; Param 1 should be the action
-            ;; The rest of the params params for the action
-            (get-implementation-fn libraries (:action row) match)))
-        regex-to-action-map))
+  (some
+   (fn [row]
+     (try
+       (when-let [match (re-find (:regex row) node-text)]
+         (get-implementation-fn libraries (:action row) match))
+       (catch Exception e
+         (throw (ex-info "Error applying regular expression"
+                         {:row row
+                          :node-text node-text
+                          :original-exception e})))))
+   regex-to-action-map))
 
 (defn- extract-texts [nodes]
   (distinct
    (concat
-    (map :node-text (vals nodes))
-    (mapcat (comp (partial map :route-text) :routes) (vals nodes)))))
+    (remove str/blank? (map :node-text (vals nodes)))
+    (remove str/blank? (mapcat (comp (partial map :route-text) :routes) (vals nodes))))))
 
 
 (defn- process-nodes [libraries nodes regex-to-action-map]
