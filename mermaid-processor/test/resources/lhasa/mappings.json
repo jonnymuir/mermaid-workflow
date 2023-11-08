@@ -4,7 +4,8 @@
       ":core",
       ":set-field",
       "svg",
-      ":xml"
+      ":xml",
+      ":required"
     ],
     "regex": "Require SVG"
   },
