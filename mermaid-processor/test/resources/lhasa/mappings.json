@@ -2,7 +2,7 @@
   {
     "action": [
       ":core",
-      ":do-nothing",
+      ":do-nothing"
     ],
     "regex": "^Nothing$"
   },
