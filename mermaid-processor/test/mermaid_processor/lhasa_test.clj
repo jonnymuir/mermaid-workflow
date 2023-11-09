@@ -21,43 +21,43 @@
   (parse/parse-mermaid mermaid))
 
 (def action-map
-  [{:regex #"^(Require SVG|Proceed\?)$"
+  [{:regex #"^(Require SVG|Proceed\?)\s*$"
     :action [:core :do-nothing]}
-   {:regex #"(?i)Any ellipse with height \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
+   {:regex #"(?i)^\s*Any ellipse with height \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*\s*$",
     :action [:svg :any-ellipse-with-height "svg" :%1 :%2]}
-   {:regex #"(?i)Score (\d+)",
+   {:regex #"(?i)^\s*Score (\d+)\s*$",
     :action [:core :set-field "score" :number :%1]}
-   {:regex #"(?i)Any ellipses?[\?]?",
+   {:regex #"(?i)^\s*Any ellipses?[\?]?\s*$",
     :action [:svg :any-ellipses? "svg"]}
-   {:regex #"(?i)Any rectangle with area \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
+   {:regex #"(?i)^\s*Any rectangle with area \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*\s*$",
     :action [:svg :any-rectangle-with-area "svg" :%1 :%2]}
-   {:regex #"(?i)Any straight lines[\?]?",
+   {:regex #"(?i)^\s*Any straight lines[\?]?\s*$",
     :action [:svg :any-straight-lines? "svg"]}
-   {:regex #"(?i)Radius \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
+   {:regex #"(?i)^\s*Radius \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*\s*$",
     :action [:svg :radius "svg" :%1 :%2]}
-   {:regex #"(?i)Only blue circles[\?]?",
+   {:regex #"(?i)^\s*Only blue circles[\?]?\s*$",
     :action [:svg :only-blue-circles? "svg"]}
-   {:regex #"(?i)Any text[\?]?",
+   {:regex #"(?i)^\s*Any text[\?]?\s*$",
     :action [:svg :any-text? "svg"]}
-   {:regex #"(?i)Any Red Circles[\?]?",
+   {:regex #"(?i)^\s*Any Red Circles[\?]?\s*$",
     :action [:svg :any-red-circles? "svg"]}
-   {:regex #"(?i)Total element count \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
+   {:regex #"(?i)^\s*Total element count \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*\s*$",
     :action [:svg :total-element-count "svg" :%1 :%2]}
-   {:regex #"(?i)Any rectangles or squares[\?]?",
+   {:regex #"(?i)^\s*Any rectangles or squares[\?]?\s*$",
     :action [:svg :any-rectangles? "svg"]}
-   {:regex #"(?i)Text containing the sequence 'Lhasa'[\?]?",
+   {:regex #"(?i)^\s*Text containing the sequence 'Lhasa'[\?]?\s*$",
     :action [:svg :text-contains-lhasa? "svg"]}
-   {:regex #"(?i)Any elements with opacity \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
+   {:regex #"(?i)^\s*Any elements with opacity \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*\s*$",
     :action [:svg :any-elements-with-opacity "svg" :%1 :%2]}
-   {:regex #"(?i)More than one element in the file[\?]?",
+   {:regex #"(?i)^\s*More than one element in the file[\?]?\s*$",
     :action [:svg :total-element-count "svg" ">" "1"]}
-   {:regex #"(?i)Every line \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*",
+   {:regex #"(?i)^\s*Every line \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*\s*$",
     :action [:svg :every-line "svg" :%1 :%2]}
-   {:regex #"(?i)Rectangle green[\?]?",
+   {:regex #"(?i)^\s*Rectangle green[\?]?\s*$",
     :action [:svg :any-green-rectangles? "svg"]}
-   {:regex #"(?i)(Yes|True|Is True)[\?]?",
+   {:regex #"(?i)^\s*(Yes|True|Is True)[\?]?\s*$",
     :action [:core :last-result-is-true]}
-   {:regex #"(?i)(No|False|Is False|Is Not True)[\?]?",
+   {:regex #"(?i)^\s*(No|False|Is False|Is Not True)[\?]?\s*$",
     :action [:core :last-result-is-not-true]}])
 
 

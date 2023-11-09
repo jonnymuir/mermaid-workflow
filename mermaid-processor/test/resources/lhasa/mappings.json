@@ -34,7 +34,7 @@
       ":%1",
       ":%2"
     ],
-    "regex": "(?i)Any ellipse with height \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+    "regex": "(?i)^\\s*Any ellipse with height \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
   },
   {
     "action": [
@@ -44,7 +44,7 @@
       ":number",
       ":%1"
     ],
-    "regex": "(?i)Score (\\d+)"
+    "regex": "(?i)^\\s*Score (\\d+)"
   },
   {
     "action": [
@@ -52,7 +52,7 @@
       ":any-ellipses?",
       ":svg"
     ],
-    "regex": "(?i)Any ellipses?[\\?]?"
+    "regex": "(?i)^\\s*Any ellipses?[\\?]?"
   },
   {
     "action": [
@@ -62,7 +62,7 @@
       ":%1",
       ":%2"
     ],
-    "regex": "(?i)Any rectangle with area \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+    "regex": "(?i)^\\s*Any rectangle with area \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
   },
   {
     "action": [
@@ -70,7 +70,7 @@
       ":any-straight-lines?",
       ":svg"
     ],
-    "regex": "(?i)Any straight lines[\\?]?"
+    "regex": "(?i)^\\s*Any straight lines[\\?]?"
   },
   {
     "action": [
@@ -80,7 +80,7 @@
       ":%1",
       ":%2"
     ],
-    "regex": "(?i)Radius \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+    "regex": "(?i)^\\s*Radius \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
   },
   {
     "action": [
@@ -88,7 +88,7 @@
       ":only-blue-circles?",
       ":svg"
     ],
-    "regex": "(?i)Only blue circles[\\?]?"
+    "regex": "(?i)^\\s*Only blue circles[\\?]?"
   },
   {
     "action": [
@@ -96,7 +96,7 @@
       ":any-text?",
       ":svg"
     ],
-    "regex": "(?i)Any text[\\?]?"
+    "regex": "(?i)^\\s*Any text[\\?]?"
   },
   {
     "action": [
@@ -104,7 +104,7 @@
       ":any-red-circles?",
       ":svg"
     ],
-    "regex": "(?i)Any Red Circles[\\?]?"
+    "regex": "(?i)^\\s*Any Red Circles[\\?]?"
   },
   {
     "action": [
@@ -114,7 +114,7 @@
       ":%1",
       ":%2"
     ],
-    "regex": "(?i)Total element count \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+    "regex": "(?i)^\\s*Total element count \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
   },
   {
     "action": [
@@ -122,7 +122,7 @@
       ":any-rectangles?",
       ":svg"
     ],
-    "regex": "(?i)Any rectangles or squares[\\?]?"
+    "regex": "(?i)^\\s*Any rectangles or squares[\\?]?"
   },
   {
     "action": [
@@ -130,7 +130,7 @@
       ":text-contains-lhasa?",
       ":svg"
     ],
-    "regex": "(?i)Text containing the sequence 'Lhasa'[\\?]?"
+    "regex": "(?i)^\\s*Text containing the sequence 'Lhasa'[\\?]?"
   },
   {
     "action": [
@@ -140,7 +140,7 @@
       ":%1",
       ":%2"
     ],
-    "regex": "(?i)Any elements with opacity \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+    "regex": "(?i)^\\s*Any elements with opacity \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
   },
   {
     "action": [
@@ -150,7 +150,7 @@
       ">",
       "1"
     ],
-    "regex": "(?i)More than one element in the file[\\?]?"
+    "regex": "(?i)^\\s*More than one element in the file[\\?]?"
   },
   {
     "action": [
@@ -160,7 +160,7 @@
       ":%1",
       ":%2"
     ],
-    "regex": "(?i)Every line \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
+    "regex": "(?i)^\\s*Every line \\s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\\s*([^?]+)[\\s\\?]*"
   },
   {
     "action": [
@@ -168,20 +168,20 @@
       ":any-green-rectangles?",
       ":svg"
     ],
-    "regex": "(?i)Rectangle green[\\?]?"
+    "regex": "(?i)^\\s*Rectangle green[\\?]?"
   },
   {
     "action": [
       ":core",
       ":last-result-is-true"
     ],
-    "regex": "(?i)(Yes|True|Is True)[\\?]?"
+    "regex": "(?i)^\\s*(Yes|True|Is True)[\\?]?"
   },
   {
     "action": [
       ":core",
       ":last-result-is-not-true"
     ],
-    "regex": "(?i)(No|False|Is False|Is Not True)[\\?]?"
+    "regex": "(?i)^\\s*(No|False|Is False|Is Not True)[\\?]?"
   }
 ]
