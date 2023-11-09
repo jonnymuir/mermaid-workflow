@@ -24,7 +24,7 @@
       "<>",
       ":required"
     ],
-    "regex": "^Proceed?$"
+    "regex": "(?i)^\\s*Proceed[\\?]?\\s*$"
   },
   {
     "action": [
