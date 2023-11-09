@@ -1,5 +1,6 @@
 flowchart TD
-INPUT[Require SVG] --> |Proceed?| Q1
+INPUT[Require SVG] --> |Proceed?| DEBUG
+DEBUG[Nothing]
 Q1{Any Red Circles}
 Q1 --> |No| Q2
 Q1 --> |Yes| O3a

@@ -2,11 +2,19 @@
   {
     "action": [
       ":core",
+      ":do-nothing"
+    ],
+    "regex": "^Nothing$"
+  },
+  {
+    "action": [
+      ":core",
       ":set-field",
       "svg",
-      ":xml"
+      ":xml",
+      ":required"
     ],
-    "regex": "Require SVG"
+    "regex": "^Require SVG$"
   },
   {
     "action": [
@@ -16,7 +24,7 @@
       "<>",
       ":required"
     ],
-    "regex": "Proceed?"
+    "regex": "^Proceed?$"
   },
   {
     "action": [
