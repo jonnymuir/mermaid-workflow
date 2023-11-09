@@ -47,17 +47,19 @@
   (mapv #(or (string-to-keyword %) %) action))
 
 (defn- json-to-action-map [json-str]
-  (let [parsed-json (json/parse-string json-str true) ;; 'true' for keywordizing keys
-        action-map (mapv (fn [rule]
-                           (try
-                             {:regex (re-pattern (rule :regex))
-                              :action (parse-action (rule :action))}
-                             (catch Exception e
-                               (throw (ex-info "Error processing action map rule"
-                                               {:error (.getMessage e)
-                                                :rule rule})))))
-                         parsed-json)]
-    action-map))
+  (try
+    (mapv (fn [rule]
+            (try
+              {:regex (re-pattern (rule :regex))
+               :action (parse-action (rule :action))}
+              (catch Exception e
+                (throw (ex-info "Error processing action map rule"
+                                {:error (.getMessage e)
+                                 :rule rule})))))
+          (json/parse-string json-str true))
+    (catch Exception e
+      (throw (ex-info "Error parsing action map json"
+                      {:error (.getMessage e)})))))
 
 
 (defn- get-mappings
@@ -123,5 +125,6 @@
              :body {:context (json/generate-string result-context)}})
           (catch clojure.lang.ExceptionInfo e
             {:status 500
-             :body {:reason (ex-data e)}})))}})
+             :body {:error (.getMessage e)
+                    :reason (ex-data e)}})))}})
       

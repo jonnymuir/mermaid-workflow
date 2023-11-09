@@ -9,7 +9,7 @@
    
    :set-field [field-name field-type value]
    
-   Sets a number to a specified field in the context.
+   Sets a value to a specified field in the context.
    
    ARGUMENTS:
    - field-name: The name of the field in the context where the number will be set.
