@@ -11,7 +11,7 @@
                  [metosin/ring-swagger-ui "5.9.0"]
                  [clj-http "3.12.3"]
                  [cheshire "5.10.0"]
-                 [com.jonnymuir/mermaid-processor "0.1.6-SNAPSHOT"]]
+                 [com.jonnymuir/mermaid-processor "0.1.7-SNAPSHOT"]]
   
   :repl-options {:init-ns mermaid-workflow-api.server}
   :main mermaid-workflow-api.core

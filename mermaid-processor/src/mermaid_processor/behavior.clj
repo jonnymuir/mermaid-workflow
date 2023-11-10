@@ -42,14 +42,13 @@
   
      RETURN:
      An updated context with a new audit entry added to its audit trail."
-  [context chart action result]
+  [context chart audit-event]
   (update
    context
    :audit
    (fn [audit]
      (let [new-audit {:node (get-current-node-id context chart)
-                      :action action
-                      :action-result result}]
+                      :audit-event audit-event}]
        (if (nil? audit)
          [new-audit]
          (conj audit new-audit))))))

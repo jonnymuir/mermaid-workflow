@@ -9,24 +9,39 @@
   (let [current-node (get-current-node context behavior chart)]
     (current-node :node-text)))
 
-(defn- process-routes [context behavior routes ]
-  (some (fn [route]
-          (let [route-text (route :route-text)]
-            (if (str/blank? route-text)
-              route
-              (if-let [condition-fn ((behavior :actions) route-text)]
-                (when ((condition-fn context) :result)
-                  route)
-                (throw (ex-info (str "Condition not found: " route-text)
-                                {:route-text route-text :context context}))))))
-        routes))
+(defn- route-valid? [context behavior route]
+  (let [route-text (route :route-text)]
+    (or (str/blank? route-text)
+      (if-let [condition-fn ((behavior :actions) route-text)]
+        ((condition-fn context) :result)
+        (throw (ex-info (str "Condition not found: " route-text)
+                        {:route-text route-text :context context}))))))
+
+(defn- process-routes [context behavior chart routes]
+  (if (empty? routes)
+    {:context ((behavior :audit) context chart
+                                 {:route (first routes)
+                                  :use-route false})
+     :next-route nil}
+    (if (route-valid? context behavior (first routes))
+      {:context ((behavior :audit) context chart
+                                   {:route (first routes)
+                                    :use-route true})
+       :next-route (first routes)}
+      (process-routes
+       context
+       behavior
+       chart
+       (rest routes)))))
 
 (defn- run-action [context behavior chart action]
   (if-let [action-fn ((behavior :actions) action)]
     (let [action-result (action-fn context)
       ;; Store the last result in fields/last-result and return the new context
       new-context (utils/set-last-result (action-result :context) (action-result :result))] 
-      ((behavior :audit) new-context chart action (action-result :result)))
+      ((behavior :audit) new-context chart 
+       {:action action
+        :result (action-result :result)}))
     (throw (ex-info (str "Action not found: " action)
                     {:action action :context context}))))
 
@@ -65,13 +80,16 @@
    You can use behavior/build to do this for you. 
     "
   [context behavior chart]
-  (let [new-context (run-action context
-                                behavior
-                                chart
-                                (get-current-node-text context behavior chart))
-        route (process-routes new-context
-                              behavior
-                              ((get-current-node new-context behavior chart) :routes))]
+  (let [new-context
+        (run-action context
+                    behavior
+                    chart
+                    (get-current-node-text context behavior chart))
+        {route :next-route new-context :context}
+        (process-routes new-context
+                        behavior
+                        chart
+                        ((get-current-node new-context behavior chart) :routes))]
 
     (if route (process-chart ((behavior :set-current-node-id) new-context chart (route :route-destination))
                              behavior
