@@ -5,11 +5,10 @@
             [mermaid-processor.parse :as parse]
             [mermaid-processor.behaviors.libraries.core :as core]
             [mermaid-processor.behaviors.libraries.svg :as svg]
-            [mermaid-processor.behaviors.utils :as utils]
             [mermaid-processor.process :as process]
-            [clojure.data.xml :as xml]
             [cheshire.core :as json]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [clojure.walk :as walk]))
 
 (defn- fetch-url [url]
   (try
@@ -71,8 +70,20 @@
 
 (def ^:private cached-get-mappings (memoize get-mappings))
 
+(defn- transform-value [v]
+  (if (keyword? v)
+    {"keyword" (name v)}
+    v))
+
+(defn- transform-values [data]
+  (let [transform (fn [x]
+                    (if (map-entry? x) {(first x) (transform-value (second x))}
+                        x))]
+    (json/generate-string (walk/postwalk transform data))))
+
+
 (def process
- "Processes a Mermaid chart by applying a set of regex-based mapping rules to generate a context map.
+  "Processes a Mermaid chart by applying a set of regex-based mapping rules to generate a context map.
   
   This function takes a Mermaid chart and a set of mappings as input, either directly as strings or via URLs. It fetches the content if URLs are provided, parses the Mermaid chart, and converts the TOML mappings to a Clojure map. It then builds behavior functions based on the parsed mappings and applies them to the Mermaid chart to process it according to the defined rules. The result is a context map that reflects the outcome of the processing, which is returned in the response body upon a successful operation.
 
@@ -92,39 +103,30 @@
    {:summary "Process a mermaid chart example"
     :parameters
     {:body
-     {:context string?
+     {:context any?
       :chart string?,
-      :mappings string?,
-      :additional-data [:vector [:map {:field-name string?, :field-value string?}]]}}
+      :mappings string?}}
     :responses {200 {:body [:map [:context string?]]}
                 500 {:body any?}}
     :handler
     (fn
-      [{{{:keys [context chart mappings _]} :body} :parameters}]
-        (try 
-          (let [parsed-chart (cached-get-chart chart)
-                parsed-mappings (cached-get-mappings mappings)
-                context (if (str/blank? context) {} (json/parse-string context true))
-                behaviors (behavior/build (regex-behaviors/build
-                                           {:core core/actions
-                                            :svg svg/actions}
-                                           parsed-chart
-                                           parsed-mappings))
-                result-context (process/process-chart
-                                (utils/set-field-value
-                                 context
-                                 "svg"
-                                 (xml/parse-str "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"600\" height=\"600\">
-                                  <circle cx=\"150\" cy=\"150\" r=\"65\" fill=\"blue\" />
-                                  <circle cx=\"350\" cy=\"100\" r=\"70\" fill=\"blue\" />
-                                  <circle cx=\"250\" cy=\"450\" r=\"125\" fill=\"blue\" />
-                                </svg>"))
-                                behaviors
-                                parsed-chart)]
-            {:status 200
-             :body {:context (json/generate-string result-context)}})
-          (catch clojure.lang.ExceptionInfo e
-            {:status 500
-             :body {:error (.getMessage e)
-                    :reason (ex-data e)}})))}})
+      [{{{:keys [context chart mappings]} :body} :parameters}]
+      (try
+        (let [parsed-chart (cached-get-chart chart)
+              parsed-mappings (cached-get-mappings mappings)
+              behaviors (behavior/build (regex-behaviors/build
+                                         {:core core/actions
+                                          :svg svg/actions}
+                                         parsed-chart
+                                         parsed-mappings))
+              result-context (process/process-chart
+                              context
+                              behaviors
+                              parsed-chart)]
+          {:status 200
+           :body {:context (transform-values result-context)}})
+        (catch clojure.lang.ExceptionInfo e
+          {:status 500
+           :body {:error (.getMessage e)
+                  :reason (ex-data e)}})))}})
       

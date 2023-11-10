@@ -12,7 +12,7 @@
     RETURNS:
     The value of the specified field."
   [context field-name]
-  ((context :fields) field-name))
+  ((context :fields) (if (keyword? field-name) field-name (keyword field-name))))
 
 (defn set-field-value 
   "Sets the value of a specified field in the context.
@@ -25,7 +25,7 @@
     RETURNS:
     The updated context with the specified field set to the given value."
   [context field-name val]
-  (assoc-in context [:fields field-name] val))
+  (assoc-in context [:fields (if (keyword? field-name) field-name (keyword field-name))] val))
 
 (defn get-last-result 
   "Retrieves the last result value from the context.
