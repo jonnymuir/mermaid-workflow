@@ -10,8 +10,9 @@
    parse-result unaltered as the abstract syntax tree
    
    EXAMPLE:
+   ```
    (result-or-exception (parser input))
-   
+   ```
    THROWS:
    ExceptionInfo if the parse-result was a parse error instead of an AST."
   [parse-result]

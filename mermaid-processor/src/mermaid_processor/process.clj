@@ -55,20 +55,23 @@
 (defn process-chart 
   "Processes a mermaid chart by parsing its structure and executing the defined behaviors and conditions on its nodes.
   
-    ARGUMENTS:
-    - context: The runtime context containing state information required for node conditions, actions, etc.
-    - behavior: An object specifying the actions and conditions. This object dictates how each node affects the context and determines the flow of the chart.
-    - chart: The mermaid chart content to be processed.
+   ARGUMENTS:
+   - context: The runtime context containing state information required for node conditions, actions, etc.
+   - behavior: An object specifying the actions and conditions. This object dictates how each node affects the context and determines the flow of the chart.
+   - chart: The mermaid chart content to be processed.
   
-    The function first parses the chart to obtain its structural representation, including nodes and their connections. It then iteratively evaluates each node's associated actions and conditions as defined in the behavior object, potentially altering the context and influencing the path taken through the chart.
+   The function first parses the chart to obtain its structural representation, including nodes and their connections. It then iteratively evaluates each node's associated actions and conditions as defined in the behavior object, potentially altering the context and influencing the path taken through the chart.
   
-    RETURN:
-    A modified context object after all actions and conditions have been processed. The structure of this object will depend on the specifications in the behavior object and the initial state of the context.
-    {:current-node-id \"A\"
+   RETURN:
+   A modified context object after all actions and conditions have been processed. The structure of this object will depend on the specifications in the behavior object and the initial state of the context.
+   ``` 
+   {:current-node-id \"A\"
     :fields {...} ; whatever data has been modified or added during processing
     :path-taken [...]} ; the sequence of nodes processed
-
+   ```
+   
    EXAMPLE:
+   ```
    (process-chart 
     {:current-node nil
     :context-data {...}}
@@ -76,7 +79,8 @@
     :conditions {...}}
     (parse/parse-mermaid \"flowchart TD
         A[Start]-->|Action1|B[Do Something]-->|Action2|C[End]\"))
-    
+   ```
+
    THROWS:
    - ExceptionInfo if there is an error in parsing the chart.
    - Custom exceptions related to the execution of actions or evaluation of conditions, as defined by the behavior object.

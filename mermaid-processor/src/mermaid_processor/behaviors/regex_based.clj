@@ -94,8 +94,10 @@
   - ExceptionInfo if there are nodes or routes in the chart that do not match any actions in the regex-to-action map.
   
   EXAMPLE:
+  ```
   (build libraries chart regex-to-action-map)
-  
+  ```
+   
   NOTE:
   The returned behavior function is essentially a cached lookup for actions and conditions based on the command it receives.
   This is typically used to pass into the process/process-chart function."

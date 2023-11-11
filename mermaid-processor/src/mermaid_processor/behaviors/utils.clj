@@ -69,8 +69,7 @@
     - rhs: The right-hand side value.
     
     RETURNS:
-    The resul
-   t of the comparison as a boolean.
+    The result of the comparison as a boolean.
     
     THROWS:
     - ExceptionInfo if an unknown comparator is provided."
