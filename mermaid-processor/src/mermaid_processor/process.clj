@@ -14,7 +14,7 @@
     (if (str/blank? route-text)
       {:context context :result true}
       (if-let [condition-fn ((behavior :actions) route-text)]
-        {:context context :result ((condition-fn context) :result)}
+        (condition-fn context)
         (throw (ex-info (str "Condition not found: " route-text)
                         {:route-text route-text :context context}))))))
 
@@ -30,9 +30,7 @@
                          :use-route (boolean result)}
                         (when audit {:details audit})))]
       (if result
-        {:context ((behavior :audit) new-context chart
-                                     {:route (first routes)
-                                      :use-route true})
+        {:context new-context
          :next-route (first routes)}
         (process-routes
          new-context
