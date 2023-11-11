@@ -43,8 +43,13 @@ jobs:
         chmod +x $HOME/bin/clj-kondo
         rm clj-kondo.zip
 
-    - name: Lint with clj-kondo
+    - name: Lint mermaid-processor with clj-kondo
       working-directory: ./mermaid-processor
+      run: 
+        $HOME/bin/clj-kondo --lint src
+
+    - name: Lint mermaid-workflow-api with clj-kondo
+      working-directory: ./mermaid-worflow-api
       run: 
         $HOME/bin/clj-kondo --lint src
 
