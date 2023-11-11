@@ -60,7 +60,8 @@
        :all-fields
        (fn [context]
          {:context context
-          :result (every? (fn [[_ v]] (utils/apply-comparator v comparator rhs-value))
+          :result (every? (fn [[_ v]]
+                            (utils/apply-comparator v comparator rhs-value))
                           (context :fields))
           :audit {:compare [field-name comparator rhs-value]}})
        (fn [context]

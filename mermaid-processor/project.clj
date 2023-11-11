@@ -1,4 +1,4 @@
-(defproject com.jonnymuir/mermaid-processor "0.1.11-SNAPSHOT"
+(defproject com.jonnymuir/mermaid-processor "0.1.12-SNAPSHOT"
   :description "A project which creates a runable version of a mermaid diagram"
   :url "https://github.com/jonnymoo/mermaid-workflow/mermaid-processor"
   :scm "https://github.com/jonnymoo/mermaid-workflow/tree/main/mermaid-processor/src"

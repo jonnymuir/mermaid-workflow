@@ -101,7 +101,7 @@
 (def ^:private context-schema
   [:map
    [:current-node-id {:optional true} string?]
-   [:fields {:optional true} [:map-of keyword? any?]]
+   [:fields {:optional true} [:map-of any? any?]]
    [:path-taken {:optional true} [:vector string?]]
    [:audit {:optional true} [:vector audit-event-schema]]])
 

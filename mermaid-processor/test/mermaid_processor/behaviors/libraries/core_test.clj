@@ -76,7 +76,7 @@
             (utils/set-field-value {} "my-field1" 6) "my-field2" 4))]
       (is (not result)))))
 
-(deftest compare-all-with-keyword-negative
+(deftest compare-all-with-keyword
   (testing "comparing all with keyword negative test"
     (let [action ((core/actions :compare) :all-fields "<>" :required)
           {result :result}
@@ -84,6 +84,15 @@
            (utils/set-field-value
             (utils/set-field-value {} "my-field1" 6) "my-field2" 7))]
       (is result))))
+
+(deftest compare-all-with-keyword-negative
+  (testing "comparing all with keyword negative test"
+    (let [action ((core/actions :compare) :all-fields "<>" :required)
+          {result :result}
+          (action
+           (utils/set-field-value
+            (utils/set-field-value {} "my-field1" :required) "my-field2" 7))]
+      (is (not result)))))
 
 (deftest test-last-result-true-positive
   (testing "test last result true positive test"

@@ -51,7 +51,10 @@
   (assoc-in context [:fields :last-result] val))
 
 
-(defn- safe-equals [lhs rhs] (try (== lhs rhs) (catch ClassCastException _ false)))
+(defn- safe-equals [lhs rhs]
+  (if (and (number? lhs) (number? rhs))
+    (== lhs rhs)
+    (= lhs rhs)))
 
 (def all-comparators 
   "A list of all the comparators supported pipe seperated"
@@ -66,7 +69,8 @@
     - rhs: The right-hand side value.
     
     RETURNS:
-    The result of the comparison as a boolean.
+    The resul
+   t of the comparison as a boolean.
     
     THROWS:
     - ExceptionInfo if an unknown comparator is provided."
