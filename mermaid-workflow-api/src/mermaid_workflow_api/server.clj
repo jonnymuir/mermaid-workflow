@@ -16,7 +16,6 @@
             [muuntaja.core :as m]
             [malli.util :as mu]
             [mermaid-workflow-api.chart :as chart]
-            [cheshire.core :as json]
             [reitit.dev.pretty :as pretty]
             [reitit.ring.middleware.exception :as exception]))
 
