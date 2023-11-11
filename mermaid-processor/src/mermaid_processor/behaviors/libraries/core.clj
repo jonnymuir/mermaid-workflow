@@ -52,7 +52,8 @@
                :xml (xml/parse-str value)))]
        (fn [context]
            {:context (utils/set-field-value context field-name parsed-value)
-            :result parsed-value})))
+            :result parsed-value
+            :audit {:set-field [field-name parsed-value]}})))
    :compare
    (fn [field-name comparator rhs-value]
      (case field-name
