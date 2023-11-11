@@ -49,7 +49,7 @@ jobs:
         $HOME/bin/clj-kondo --lint src
 
     - name: Lint mermaid-workflow-api with clj-kondo
-      working-directory: ./mermaid-worflow-api
+      working-directory: ./mermaid-workflow-api
       run: 
         $HOME/bin/clj-kondo --lint src
 
