@@ -15,7 +15,10 @@
             [ring.adapter.jetty :as jetty]
             [muuntaja.core :as m]
             [malli.util :as mu]
-            [mermaid-workflow-api.chart :as chart]))
+            [mermaid-workflow-api.chart :as chart]
+            [cheshire.core :as json]
+            [reitit.dev.pretty :as pretty]
+            [reitit.ring.middleware.exception :as exception]))
 
 (def ^:private info {:info {:title "mermaid-workflow-api"
              :description "swagger docs with [malli](https://github.com/metosin/malli) and reitit-ring"
@@ -51,6 +54,7 @@
       {;;:reitit.middleware/transform dev/print-request-diffs ;; pretty diffs
        :validate spec/validate ;; enable spec validation for route data
        ;;:reitit.spec/wrap spell/closed ;; strict top-level validation
+       :exception pretty/exception
        :data {:coercion (reitit.coercion.malli/create
                           {;; set of keys to include in error messages
                            :error-keys #{#_:type :coercion :in :schema :value :errors :humanized #_:transformed}
@@ -72,13 +76,15 @@
                            muuntaja/format-negotiate-middleware
                            ;; encoding response body
                            muuntaja/format-response-middleware
+                           ;; exception handling
+                           exception/exception-middleware
                            ;; decoding request body
                            muuntaja/format-request-middleware
                            ;; coercing response bodys
                            coercion/coerce-response-middleware
                            ;; coercing request parameters
                            coercion/coerce-request-middleware
-                           ;; multipart
+                          ;; multipart
                            multipart/multipart-middleware]}})
     (ring/routes
       (swagger-ui/create-swagger-ui-handler

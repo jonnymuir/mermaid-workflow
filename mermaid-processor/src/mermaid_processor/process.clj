@@ -9,39 +9,48 @@
   (let [current-node (get-current-node context behavior chart)]
     (current-node :node-text)))
 
-(defn- route-valid? [context behavior route]
+(defn- process-route [context behavior route]
   (let [route-text (route :route-text)]
-    (or (str/blank? route-text)
+    (if (str/blank? route-text)
+      {:context context :result true}
       (if-let [condition-fn ((behavior :actions) route-text)]
-        ((condition-fn context) :result)
+        {:context context :result ((condition-fn context) :result)}
         (throw (ex-info (str "Condition not found: " route-text)
                         {:route-text route-text :context context}))))))
 
 (defn- process-routes [context behavior chart routes]
   (if (empty? routes)
-    {:context ((behavior :audit) context chart
-                                 {:route (first routes)
-                                  :use-route false})
-     :next-route nil}
-    (if (route-valid? context behavior (first routes))
-      {:context ((behavior :audit) context chart
-                                   {:route (first routes)
-                                    :use-route true})
-       :next-route (first routes)}
-      (process-routes
-       context
-       behavior
-       chart
-       (rest routes)))))
+    {:context context :next-route nil}
+    (let [{processed-context :context result :result audit :audit} (process-route context behavior (first routes))
+          new-context ((behavior :audit)
+                       processed-context
+                       chart
+                       (merge
+                        {:route (first routes)
+                         :use-route (boolean result)}
+                        (when audit {:details audit})))]
+      (if result
+        {:context ((behavior :audit) new-context chart
+                                     {:route (first routes)
+                                      :use-route true})
+         :next-route (first routes)}
+        (process-routes
+         new-context
+         behavior
+         chart
+         (rest routes))))))
 
 (defn- run-action [context behavior chart action]
   (if-let [action-fn ((behavior :actions) action)]
-    (let [action-result (action-fn context)
+    (let [{processed-context :context result :result audit :audit}
+          (action-fn context)
       ;; Store the last result in fields/last-result and return the new context
-      new-context (utils/set-last-result (action-result :context) (action-result :result))] 
+          new-context (utils/set-last-result processed-context result)] 
       ((behavior :audit) new-context chart 
-       {:action action
-        :result (action-result :result)}))
+       (merge
+        {:action action
+         :result result}
+        (when audit {:details audit}))))
     (throw (ex-info (str "Action not found: " action)
                     {:action action :context context}))))
 

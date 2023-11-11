@@ -54,23 +54,26 @@
            {:context (utils/set-field-value context field-name parsed-value)
             :result parsed-value})))
    :compare
-   (fn [field-name comparator value]
+   (fn [field-name comparator rhs-value]
      (case field-name
        :all-fields
        (fn [context]
          {:context context
-         :result (every? (fn [[_ v]] (utils/apply-comparator v comparator value))
-                  (context :fields))})
+          :result (every? (fn [[_ v]] (utils/apply-comparator v comparator rhs-value))
+                          (context :fields))
+          :audit {:compare [field-name comparator rhs-value]}})
        (fn [context]
-         {:context context
-          :result (utils/apply-comparator
-                   (or
-                    (utils/get-field-value context field-name)
-                    (throw (ex-info
-                            "Field not present for left hand side of :compare"
-                            {:field-name field-name})))
-                   comparator
-                   value)})))
+         (let [lhs-value (utils/get-field-value context field-name)]
+           (when (nil? lhs-value)
+             (throw (ex-info
+                     "Field not present for left hand side of :compare"
+                     {:field-name field-name})))
+           {:context context
+            :result (utils/apply-comparator
+                     lhs-value
+                     comparator
+                     rhs-value)
+            :audit {:compare [field-name lhs-value comparator rhs-value]}}))))
    :last-result-is-true
    (fn []
      (fn [context]

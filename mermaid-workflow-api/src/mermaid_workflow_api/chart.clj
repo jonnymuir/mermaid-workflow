@@ -8,7 +8,8 @@
             [mermaid-processor.process :as process]
             [cheshire.core :as json]
             [clojure.string :as str]
-            [clojure.walk :as walk]))
+            [clojure.walk :as walk]
+            [malli.core :as m]))
 
 (defn- fetch-url [url]
   (try
@@ -79,8 +80,32 @@
   (let [transform (fn [x]
                     (if (map-entry? x) {(first x) (transform-value (second x))}
                         x))]
-    (json/generate-string (walk/postwalk transform data))))
+    (walk/postwalk transform data)))
 
+
+
+(def ^:private audit-event-schema
+  [:map
+   [:node string?]
+   [:audit-event
+    [:or 
+     [:map
+      [:action string?]
+      [:result any?]
+      [:details {:optional true} any?]]
+     [:map
+      [:route [:or :nil [:map 
+                 [:route-destination string?]
+                 [:route-text string?]]]]
+      [:use-route boolean?]
+      [:details {:optional true} any?]]]]])
+
+(def ^:private context-schema
+  [:map
+   [:current-node-id {:optional true} string?]
+   [:fields {:optional true} [:map-of keyword? any?]]
+   [:path-taken {:optional true} [:vector string?]]
+   [:audit {:optional true} [:vector audit-event-schema]]])
 
 (def process
   "Processes a Mermaid chart by applying a set of regex-based mapping rules to generate a context map.
@@ -103,10 +128,10 @@
    {:summary "Process a mermaid chart example"
     :parameters
     {:body
-     {:context any?
+     {:context context-schema
       :chart string?,
       :mappings string?}}
-    :responses {200 {:body [:map [:context string?]]}
+    :responses {200 {:body [:map [:context context-schema]]}
                 500 {:body any?}}
     :handler
     (fn
@@ -122,9 +147,10 @@
               result-context (process/process-chart
                               context
                               behaviors
-                              parsed-chart)]
+                              parsed-chart)
+              transformed-context (transform-values result-context)]
           {:status 200
-           :body {:context (transform-values result-context)}})
+           :body {:context transformed-context}})
         (catch clojure.lang.ExceptionInfo e
           {:status 500
            :body {:error (.getMessage e)

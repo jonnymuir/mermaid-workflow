@@ -1,6 +1,6 @@
 (ns mermaid-processor.behavior)
 
-(defn get-current-node-id
+(defn- get-current-node-id
   "Retrieves the current node ID from the provided context.
      
      ARGUMENTS:
@@ -12,7 +12,7 @@
   [context chart]
   (or (context :current-node-id) (chart :start-at)))
 
-(defn set-current-node-id 
+(defn- set-current-node-id 
   "Updates the context with the given node ID and appends it to the path taken.
      
      ARGUMENTS:
@@ -31,7 +31,7 @@
                   [(get-current-node-id context chart) node-id] ; creates a new vector if path-taken is nil
                   (conj path-taken node-id))))))
 
-(defn audit 
+(defn- audit 
   "Appends an audit entry to the context detailing the action taken and its result for the current node.
      
      ARGUMENTS:
