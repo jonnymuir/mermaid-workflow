@@ -12,17 +12,17 @@
       ":set-field",
       "svg",
       ":xml",
-      ":required"
+      ":field/svg-input"
     ],
-    "regex": "^Require SVG$"
+    "regex": "^Set SVG$"
   },
   {
     "action": [
       ":core",
       ":compare",
-      ":all-fields",
+      "svg-input",
       "<>",
-      ":required"
+      ""
     ],
     "regex": "(?i)^\\s*Proceed[\\?]?\\s*$"
   },
