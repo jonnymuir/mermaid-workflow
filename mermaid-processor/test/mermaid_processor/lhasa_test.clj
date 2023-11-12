@@ -21,7 +21,7 @@
   (parse/parse-mermaid mermaid))
 
 (def action-map
-  [{:regex #"^(Require SVG|Proceed\?)\s*$"
+  [{:regex #"^(Require SVG|Set SVG|Proceed\?)\s*$"
     :action [:core :do-nothing]}
    {:regex #"(?i)^\s*Any ellipse with height \s*(>=|<=|>|<|==|!=|larger than|less than|longer than|shorter than)\s*([^?]+)[\s\?]*\s*$",
     :action [:svg :any-ellipse-with-height "svg" :%1 :%2]}
