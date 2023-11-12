@@ -69,19 +69,6 @@
 
 (def ^:private cached-get-mappings (memoize get-mappings))
 
-(defn- transform-value [v]
-  (if (keyword? v)
-    {"keyword" (name v)}
-    v))
-
-(defn- transform-values [data]
-  (let [transform (fn [x]
-                    (if (map-entry? x) {(first x) (transform-value (second x))}
-                        x))]
-    (walk/postwalk transform data)))
-
-
-
 (def ^:private audit-event-schema
   [:map
    [:node string?]
@@ -145,10 +132,9 @@
               result-context (process/process-chart
                               context
                               behaviors
-                              parsed-chart)
-              transformed-context (transform-values result-context)]
+                              parsed-chart)]
           {:status 200
-           :body {:context transformed-context}})
+           :body {:context result-context}})
         (catch clojure.lang.ExceptionInfo e
           {:status 500
            :body {:error (.getMessage e)
