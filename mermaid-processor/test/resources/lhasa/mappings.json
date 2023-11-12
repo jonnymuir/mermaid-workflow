@@ -4,7 +4,7 @@
       ":core",
       ":do-nothing"
     ],
-    "regex": "^Nothing$"
+    "regex": "^Require SVG$"
   },
   {
     "action": [
@@ -22,7 +22,7 @@
       ":compare",
       "svg-input",
       "<>",
-      ""
+      ":nil"
     ],
     "regex": "(?i)^\\s*Proceed[\\?]?\\s*$"
   },
