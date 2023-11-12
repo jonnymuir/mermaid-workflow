@@ -137,5 +137,13 @@
         (catch clojure.lang.ExceptionInfo e
           {:status 500
            :body {:error (.getMessage e)
-                  :reason (ex-data e)}})))}})
+                  :reason (ex-data e)}})
+        (catch Throwable e
+          (let [reference (str (random-uuid))]
+            (binding [*out* *err*]
+              (println "Error reference:" reference)
+              (.printStackTrace e)
+              {:status 500
+               :body {:error "An unhandled error occurred"
+                      :reason (str "Please contact the system administrator for more details with reference: " reference)}})))))}})
       
