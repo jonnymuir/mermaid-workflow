@@ -18,7 +18,43 @@ This could be for:
 I would like to be able to describe my workflow as simply as possible in a mermaid diagram.
 I want the diagram to be "test-able / run-able" with as little (ideally no) effort as possible.
 
-# Quick Start Guide
+# Live Demo - Swagger UI
+
+[Here is a Swagger UI implentation of the OpenAPI rest interface project in mermaid-worflow-api](https://mermaid-workflow-api.azurewebsites.net/)
+
+To use it you can provide a context, chart, and mappings input.
+
+Chart is a mermaid chart (or a URL to a mermaid chart) and mapping is the action-mapping file (or a URL to it) which shows how to map nodes and routes to actions.
+
+An example chart is here https://raw.githubusercontent.com/jonnymoo/mermaid-workflow/main/mermaid-processor/test/resources/lhasa/flowchart.mermaid
+
+An example mapping is here https://raw.githubusercontent.com/jonnymoo/mermaid-workflow/main/mermaid-processor/test/resources/lhasa/mappings.json 
+
+These demonstrate the Lhasa example (see below for more details)
+
+To try it out you need to set the field svg-input to be a string containing an svg test file. The workflow will then convert this to SVG and nagivate down the flow chart. Tip - you need to json stringify the input, you can use an online utility to do this e.g. https://jsonformatter.org/json-stringify-online
+
+Here is an example input.
+
+```
+{
+  "context":  {"fields": {"svg-input":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"600\" height=\"600\">\r\n  <circle cx=\"150\" cy=\"150\" r=\"65\" fill=\"blue\" />\r\n  <circle cx=\"350\" cy=\"250\" r=\"70\" fill=\"blue\" />\r\n  <circle cx=\"250\" cy=\"450\" r=\"25\" fill=\"blue\" />\r\n</svg>"}},
+  "chart": "https://raw.githubusercontent.com/jonnymoo/mermaid-workflow/main/mermaid-processor/test/resources/lhasa/flowchart.mermaid",
+  "mappings": "https://raw.githubusercontent.com/jonnymoo/mermaid-workflow/main/mermaid-processor/test/resources/lhasa/mappings.json"
+}
+```
+
+Expand /chart/process and choose "Try it out".
+
+Paste the input into the request body, choose "Execute" and examine the response body. You will see a number of fields, the one of interest is the score. Also of note is the path taken, and the audit which will show you how the input was processed through the chart.
+
+Enjoy.
+
+If you want to try other tests, have a look at the Lhasa examples below and pick other SVG inputs to try from the [test input resources](https://github.com/jonnymoo/mermaid-workflow/tree/main/mermaid-processor/test/resources/lhasa/inputs). The number at the end of the file name denotes what the expected score is (apart from random_svg_661-II.svg which gives a score of one back - I think this is just a mistake)
+
+
+
+# Quick Start Guide for mermaid-processing
 
 ## Prerequisites
 
