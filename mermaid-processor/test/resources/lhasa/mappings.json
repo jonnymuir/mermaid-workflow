@@ -4,7 +4,7 @@
       ":core",
       ":do-nothing"
     ],
-    "regex": "^Nothing$"
+    "regex": "^Require SVG$"
   },
   {
     "action": [
@@ -12,17 +12,17 @@
       ":set-field",
       "svg",
       ":xml",
-      ":required"
+      ":field/svg-input"
     ],
-    "regex": "^Require SVG$"
+    "regex": "^Set SVG$"
   },
   {
     "action": [
       ":core",
       ":compare",
-      ":all-fields",
+      "svg-input",
       "<>",
-      ":required"
+      ":nil"
     ],
     "regex": "(?i)^\\s*Proceed[\\?]?\\s*$"
   },
