@@ -123,3 +123,21 @@
     (let [action ((core/actions :do-nothing))
           {context :context} (action {})]
       (is (= {} context)))))
+
+(deftest compare-to-nil-test
+  (testing "test a field exists"
+    (let [action ((core/actions :compare) "my-field" "==" :nil)
+          {result :result} (action {})]
+      (is result))))
+
+(deftest compare-to-nil-negative-test
+  (testing "test a field exists"
+    (let [action ((core/actions :compare) "my-field" "==" :nil)
+          {result :result} (action (utils/set-field-value {} "my-field" 6))]
+      (is (not result)))))
+
+(deftest set-string-from-other-field-test
+  (testing "set a string from another field test"
+    (let [action ((core/actions :set-field) "my-field" :string :field/my-other-field)
+          {context :context} (action (utils/set-field-value {} "my-other-field" "moo"))]
+      (is (= "moo" (utils/get-field-value context "my-field"))))))

@@ -12,7 +12,8 @@
     RETURNS:
     The value of the specified field."
   [context field-name]
-  ((context :fields) (if (keyword? field-name) field-name (keyword field-name))))
+  (when-let [fields (context :fields)]
+  (fields (if (keyword? field-name) field-name (keyword field-name)))))
 
 (defn set-field-value 
   "Sets the value of a specified field in the context.
@@ -52,10 +53,18 @@
 
 
 (defn- safe-equals [lhs rhs]
-  (if (and (number? lhs) (number? rhs))
+  (cond 
+    (and (number? lhs) (number? rhs))
     (== lhs rhs)
+    (and (keyword? rhs) (= rhs :nil))
+    (nil? lhs)
+    :else 
     (= lhs rhs)))
 
+(defn- safe-compare [comp-fn lhs rhs]
+  (when (nil? lhs) (throw (ex-info "left hand side of comparator is not set" {})))
+  (comp-fn lhs rhs)
+  )
 (def all-comparators 
   "A list of all the comparators supported pipe seperated"
   ">=|<=|>|<|==|!=|=|larger than|smaller than|greater than|less than|longer than|shorter than|larger than or equals|smaller than or equals|greater than or equals|less than or equals|longer than or equals|shorter than or equals|larger than or equal to|smaller than or equal to|greater than or equal to|less than or equal to|longer than or equal to|shorter than or equal to")
@@ -74,34 +83,33 @@
     THROWS:
     - ExceptionInfo if an unknown comparator is provided."
   [lhs comparator rhs]
-  (when (nil? lhs) (throw (ex-info "left hand side of comparator is not set" {})))
   (let [rhs (cond
               (keyword? rhs) rhs
               (number? lhs) (if (number? rhs) rhs (Double. rhs))
               :else rhs)]
     (case comparator
-      ">=" (>= lhs rhs)
-      "larger than or equal to" (>= lhs rhs)
-      "greater than or equal to" (>= lhs rhs)
-      "longer than or equal to" (>= lhs rhs)
-      "larger than or equals" (>= lhs rhs)
-      "greater than or equals" (>= lhs rhs)
-      "longer than or equals" (>= lhs rhs)
-      "<=" (<= lhs rhs)
-      "smaller than or equal to" (<= lhs rhs)
-      "less than or equal to" (<= lhs rhs)
-      "shorter than or equal to" (<= lhs rhs)
-      "smaller than or equals" (<= lhs rhs)
-      "less than or equals" (<= lhs rhs)
-      "shorter than or equals" (<= lhs rhs)
-      ">"  (> lhs rhs)
-      "larger than" (> lhs rhs)
-      "greater than" (> lhs rhs)
-      "longer than" (> lhs rhs)
-      "<"  (< lhs rhs)
-      "smaller than" (< lhs rhs)
-      "less than" (< lhs rhs)
-      "shorter than" (< lhs rhs)
+      ">=" (safe-compare >= lhs rhs)
+      "larger than or equal to" (safe-compare >= lhs rhs)
+      "greater than or equal to" (safe-compare >= lhs rhs)
+      "longer than or equal to" (safe-compare >= lhs rhs)
+      "larger than or equals" (safe-compare >= lhs rhs)
+      "greater than or equals" (safe-compare >= lhs rhs)
+      "longer than or equals" (safe-compare >= lhs rhs)
+      "<=" (safe-compare <= lhs rhs)
+      "smaller than or equal to" (safe-compare <= lhs rhs)
+      "less than or equal to" (safe-compare <= lhs rhs)
+      "shorter than or equal to" (safe-compare <= lhs rhs)
+      "smaller than or equals" (safe-compare <= lhs rhs)
+      "less than or equals" (safe-compare <= lhs rhs)
+      "shorter than or equals" (safe-compare <= lhs rhs)
+      ">"  (safe-compare > lhs rhs)
+      "larger than" (safe-compare > lhs rhs)
+      "greater than" (safe-compare > lhs rhs)
+      "longer than" (safe-compare > lhs rhs)
+      "<"  (safe-compare < lhs rhs)
+      "smaller than" (safe-compare < lhs rhs)
+      "less than" (safe-compare < lhs rhs)
+      "shorter than" (safe-compare < lhs rhs)
       "==" (safe-equals lhs rhs)
       "=" (safe-equals lhs rhs)
       "equals" (safe-equals lhs rhs)

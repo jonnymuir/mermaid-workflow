@@ -3,6 +3,12 @@
   (:require [mermaid-processor.behaviors.utils :as utils]
             [clojure.data.xml :as xml]))
 
+(defn- ensure-value [context v]
+  (if (and (keyword? v) (= "field" (namespace v)))
+    (utils/get-field-value context (name v))
+    v))
+
+
 ;; All actions return a new context and a result as a map
 (def actions
   "A map of core action functions.
@@ -43,17 +49,18 @@
    "
    {:set-field
    (fn [field-name field-type value]
-     (let [parsed-value
-           (if (keyword? value)
-             value
-             (case field-type
-               :string value
-               :number (Double/parseDouble value)
-               :xml (xml/parse-str value)))]
-       (fn [context]
-           {:context (utils/set-field-value context field-name parsed-value)
-            :result parsed-value
-            :audit {:set-field [field-name parsed-value]}})))
+     (fn [context]
+       (let [value (ensure-value context value)
+             parsed-value
+             (if (keyword? value)
+               value
+               (case field-type
+                 :string value
+                 :number (Double/parseDouble value)
+                 :xml (xml/parse-str value)))]
+         {:context (utils/set-field-value context field-name parsed-value)
+          :result parsed-value
+          :audit {:set-field [field-name parsed-value]}})))
    :compare
    (fn [field-name comparator rhs-value]
      (case field-name
@@ -66,10 +73,6 @@
           :audit {:compare [field-name comparator rhs-value]}})
        (fn [context]
          (let [lhs-value (utils/get-field-value context field-name)]
-           (when (nil? lhs-value)
-             (throw (ex-info
-                     "Field not present for left hand side of :compare"
-                     {:field-name field-name})))
            {:context context
             :result (utils/apply-comparator
                      lhs-value
