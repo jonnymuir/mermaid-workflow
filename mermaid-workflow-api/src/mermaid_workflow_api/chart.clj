@@ -6,8 +6,7 @@
             [mermaid-processor.behaviors.libraries.core :as core]
             [mermaid-processor.behaviors.libraries.svg :as svg]
             [mermaid-processor.process :as process]
-            [cheshire.core :as json]
-            [clojure.walk :as walk]))
+            [cheshire.core :as json]))
 
 (defn- fetch-url [url]
   (try
