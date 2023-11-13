@@ -124,15 +124,15 @@ jobs:
         package: ${{ env.UBERJAR_NAME }}
 
 
-    - name: Build with 
+    - name: Build CMS 
       working-directory: ./mermaid-cms
       run: dotnet build --configuration Release
   
-    - name: Dotnet publish
+    - name: Publish CMS
       working-directory: ./mermaid-cms
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/mermaid-cms
   
-    - name: Deploy to Azure Web App
+    - name: Deploy CMS to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'mermaid-cms'  # Set this to your App Service name
