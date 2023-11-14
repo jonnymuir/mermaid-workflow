@@ -2,16 +2,7 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-	Layout = null;
+	Layout = "Master.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Home</title>
-</head>
-<body>
-    @Model.Value("body")
-</body>
-</html>
+<partial name="GOVUK/BlockList" model="Model.MainContentBlocks" />

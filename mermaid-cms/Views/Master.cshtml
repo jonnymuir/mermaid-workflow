@@ -1,0 +1,60 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+  Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en" class="govuk-template ">
+
+<head>
+  <meta charset="utf-8">
+  <title>Mermaid Workflow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0c0c">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <partial name="GOVUK/UmbracoHead" />
+  @RenderSection("head", required: false)
+</head>
+
+<body class="govuk-template__body ">
+  <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+  <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+  <header class="govuk-header " role="banner" data-module="govuk-header">
+    <div class="govuk-header__container govuk-width-container">
+      <div class="govuk-header__logo">
+        <a href="/" class="govuk-header__link govuk-header__link--homepage">
+          <span class="govuk-header__logotype">
+            <span class="govuk-header__logotype-text">
+              Mermaid Workflow
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="govuk-width-container ">
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+
+      <partial name="GOVUK/BodyOpen" />
+      <main>@RenderBody()</main>
+      <partial name="GOVUK/UmbracoBodyClosing" />
+
+
+
+    </main>
+  </div>
+
+  <footer class="govuk-footer " role="contentinfo">
+    <div class="govuk-width-container ">
+      <div class="govuk-footer__meta">
+        <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+        </div>
+      </div>
+  </footer>
+</body>
+
+</html>

@@ -1,3 +1,13 @@
+using GovUk.Frontend.Umbraco;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Web;
+
+
 namespace mermaid_cms
 {
     public class Startup
@@ -35,6 +45,8 @@ namespace mermaid_cms
                 .AddDeliveryApi()
                 .AddComposers()
                 .Build();
+
+            services.AddGovUkFrontendUmbraco();
         }
 
         /// <summary>
@@ -42,7 +54,7 @@ namespace mermaid_cms
         /// </summary>
         /// <param name="app">The application builder.</param>
         /// <param name="env">The web hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,IOptions<MvcOptions> mvcOptions, IUmbracoContextAccessor umbracoContextAccessor, IPublishedValueFallback publishedValueFallback)
         {
             if (env.IsDevelopment())
             {
@@ -61,6 +73,8 @@ namespace mermaid_cms
                     u.UseBackOfficeEndpoints();
                     u.UseWebsiteEndpoints();
                 });
+
+            app.UseGovUkFrontendUmbraco(mvcOptions, umbracoContextAccessor, publishedValueFallback);
         }
     }
 }
