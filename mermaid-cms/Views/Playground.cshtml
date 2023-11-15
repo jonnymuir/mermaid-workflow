@@ -1,0 +1,66 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Playground>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<div class="govuk-tabs" data-module="govuk-tabs">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#chart">
+        Chart
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#mappings">
+        Mappings
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#test">
+        Test
+      </a>
+    </li>
+  </ul>
+  <div class="govuk-tabs__panel" id="chart">
+    <h2 class="govuk-heading-l">Chart</h2>
+    <partial name="GOVUK/BlockList" model="Model.ChartContentBlock" />
+    <div class="mermaid">
+    </div>
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="mappings">
+    <h2 class="govuk-heading-l">Mappings</h2>
+    <partial name="GOVUK/BlockList" model="Model.MappingsContentBlock" />
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="test">
+    <h2 class="govuk-heading-l">Test</h2>
+    <partial name="GOVUK/BlockList" model="Model.TestContentBlock" />
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var mermaidTextArea = document.querySelector('#chart textarea');
+    var mermaidChartDiv = document.querySelector('.mermaid');
+
+    var mermaidConfig = {
+      startOnLoad: false
+    };
+
+    mermaid.initialize(mermaidConfig);
+
+    // Function to render Mermaid chart
+    async function renderMermaid() {
+      var graphDefinition = mermaidTextArea.value;
+      const { svg } = await mermaid.render('graphDiv', graphDefinition);
+      mermaidChartDiv.innerHTML = svg;
+    }
+
+    // Trigger rendering on input
+    mermaidTextArea.addEventListener('input', renderMermaid);
+  });
+</script>
