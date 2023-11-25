@@ -12,16 +12,16 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Setup Java
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
         java-version: '21'
 
     - name: Cache .m2 directory
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -58,16 +58,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Setup Java
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
         java-version: '21'
 
     - name: Set up .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x'
 
@@ -117,7 +117,7 @@ jobs:
 
 
     - name: Deploy API to Azure Web App
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: mermaid-workflow-api # Your Azure App Service name
         publish-profile: ${{ secrets.AZURE_WEBAPPAPI_PUBLISH_PROFILE }}
@@ -133,7 +133,7 @@ jobs:
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/mermaid-cms
   
     - name: Deploy CMS to Azure Web App
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: 'mermaid-cms'  # Set this to your App Service name
         publish-profile: ${{ secrets.AZURE_WEBAPPCMS_PUBLISH_PROFILE }}  # Set this to your publish profile secret
