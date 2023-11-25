@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>mermaid_cms</RootNamespace>
+    <RootNamespace>MermaidWorkflow.CMS</RootNamespace>
     <UserProfile Condition="'$(UserProfile)' == ''">$(HOME)</UserProfile>
+    <AssemblyName>MermaidWorkflow.CMS</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->
     <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
+    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
 
   <PropertyGroup>
