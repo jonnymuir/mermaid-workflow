@@ -204,3 +204,7 @@ C4Component
     Rel(behavior, chart, "Reads state from")
     Rel(chart, context, "Updates state in")
 ```
+
+# Azure setup
+
+For development if you want to run a sqlite database you will need to 
