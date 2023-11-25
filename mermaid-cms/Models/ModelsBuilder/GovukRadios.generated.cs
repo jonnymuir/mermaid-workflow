@@ -16,7 +16,7 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace MermaidWorkflow.CMS.Models
+namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Radios</summary>
 	[PublishedModel("govukRadios")]
@@ -71,7 +71,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("hint")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Hint => global::MermaidWorkflow.CMS.Models.GovukHint.GetHint(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Hint => global::Umbraco.Cms.Web.Common.PublishedModels.GovukHint.GetHint(this, _publishedValueFallback);
 
 		///<summary>
 		/// Legend: Use {{name}} to include the page name.
@@ -79,6 +79,6 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("legend")]
-		public virtual string Legend => global::MermaidWorkflow.CMS.Models.GovukLegend.GetLegend(this, _publishedValueFallback);
+		public virtual string Legend => global::Umbraco.Cms.Web.Common.PublishedModels.GovukLegend.GetLegend(this, _publishedValueFallback);
 	}
 }

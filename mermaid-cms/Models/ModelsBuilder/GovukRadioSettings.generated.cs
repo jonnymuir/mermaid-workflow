@@ -16,7 +16,7 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace MermaidWorkflow.CMS.Models
+namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Radio settings</summary>
 	[PublishedModel("govukRadioSettings")]
@@ -55,6 +55,6 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cssClasses")]
-		public virtual string CssClasses => global::MermaidWorkflow.CMS.Models.GovukCssClasses.GetCssClasses(this, _publishedValueFallback);
+		public virtual string CssClasses => global::Umbraco.Cms.Web.Common.PublishedModels.GovukCssClasses.GetCssClasses(this, _publishedValueFallback);
 	}
 }

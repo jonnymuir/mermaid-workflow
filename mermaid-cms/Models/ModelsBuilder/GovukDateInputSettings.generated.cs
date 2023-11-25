@@ -16,7 +16,7 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace MermaidWorkflow.CMS.Models
+namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Date input settings</summary>
 	[PublishedModel("govukDateInputSettings")]
@@ -55,7 +55,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cssClasses")]
-		public virtual string CssClasses => global::MermaidWorkflow.CMS.Models.GovukCssClasses.GetCssClasses(this, _publishedValueFallback);
+		public virtual string CssClasses => global::Umbraco.Cms.Web.Common.PublishedModels.GovukCssClasses.GetCssClasses(this, _publishedValueFallback);
 
 		///<summary>
 		/// CSS classes for row: Applied to the grid row which contains this component and other adjacent components that have the same setting.
@@ -63,7 +63,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cssClassesForRow")]
-		public virtual string CssClassesForRow => global::MermaidWorkflow.CMS.Models.GovukGrid.GetCssClassesForRow(this, _publishedValueFallback);
+		public virtual string CssClassesForRow => global::Umbraco.Cms.Web.Common.PublishedModels.GovukGrid.GetCssClassesForRow(this, _publishedValueFallback);
 
 		///<summary>
 		/// Column size
@@ -71,7 +71,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("columnSize")]
-		public virtual string ColumnSize => global::MermaidWorkflow.CMS.Models.GovukGridColumnClasses.GetColumnSize(this, _publishedValueFallback);
+		public virtual string ColumnSize => global::Umbraco.Cms.Web.Common.PublishedModels.GovukGridColumnClasses.GetColumnSize(this, _publishedValueFallback);
 
 		///<summary>
 		/// Column size (from desktop): Defaults to 'two-thirds' if both column size properties are left blank.
@@ -79,7 +79,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("columnSizeFromDesktop")]
-		public virtual string ColumnSizeFromDesktop => global::MermaidWorkflow.CMS.Models.GovukGridColumnClasses.GetColumnSizeFromDesktop(this, _publishedValueFallback);
+		public virtual string ColumnSizeFromDesktop => global::Umbraco.Cms.Web.Common.PublishedModels.GovukGridColumnClasses.GetColumnSizeFromDesktop(this, _publishedValueFallback);
 
 		///<summary>
 		/// CSS classes for column: Applied to the grid column which contains this component and other adjacent components that have the same setting.
@@ -87,14 +87,14 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cssClassesForColumn")]
-		public virtual string CssClassesForColumn => global::MermaidWorkflow.CMS.Models.GovukGridColumnClasses.GetCssClassesForColumn(this, _publishedValueFallback);
+		public virtual string CssClassesForColumn => global::Umbraco.Cms.Web.Common.PublishedModels.GovukGridColumnClasses.GetCssClassesForColumn(this, _publishedValueFallback);
 
 		///<summary>
 		/// The legend is the page heading
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[ImplementPropertyType("legendIsPageHeading")]
-		public virtual bool LegendIsPageHeading => global::MermaidWorkflow.CMS.Models.GovukLegendIsPageHeading.GetLegendIsPageHeading(this, _publishedValueFallback);
+		public virtual bool LegendIsPageHeading => global::Umbraco.Cms.Web.Common.PublishedModels.GovukLegendIsPageHeading.GetLegendIsPageHeading(this, _publishedValueFallback);
 
 		///<summary>
 		/// Model property: The name of the property on the view model being bound to in the code.
@@ -102,7 +102,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("modelProperty")]
-		public virtual object ModelProperty => global::MermaidWorkflow.CMS.Models.GovukModelProperty.GetModelProperty(this, _publishedValueFallback);
+		public virtual object ModelProperty => global::Umbraco.Cms.Web.Common.PublishedModels.GovukModelProperty.GetModelProperty(this, _publishedValueFallback);
 
 		///<summary>
 		/// Custom error 1: Sets the message displayed by a custom validator.
@@ -110,7 +110,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("customError1")]
-		public virtual string CustomError1 => global::MermaidWorkflow.CMS.Models.GovukValidationCustom.GetCustomError1(this, _publishedValueFallback);
+		public virtual string CustomError1 => global::Umbraco.Cms.Web.Common.PublishedModels.GovukValidationCustom.GetCustomError1(this, _publishedValueFallback);
 
 		///<summary>
 		/// Custom error 2: Sets the message displayed by a custom validator.
@@ -118,7 +118,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("customError2")]
-		public virtual string CustomError2 => global::MermaidWorkflow.CMS.Models.GovukValidationCustom.GetCustomError2(this, _publishedValueFallback);
+		public virtual string CustomError2 => global::Umbraco.Cms.Web.Common.PublishedModels.GovukValidationCustom.GetCustomError2(this, _publishedValueFallback);
 
 		///<summary>
 		/// Custom error 3: Sets the message displayed by a custom validator.
@@ -126,7 +126,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("customError3")]
-		public virtual string CustomError3 => global::MermaidWorkflow.CMS.Models.GovukValidationCustom.GetCustomError3(this, _publishedValueFallback);
+		public virtual string CustomError3 => global::Umbraco.Cms.Web.Common.PublishedModels.GovukValidationCustom.GetCustomError3(this, _publishedValueFallback);
 
 		///<summary>
 		/// Display name: Used in error messages where the value is the wrong type (eg 'abc' in a date field). Defaults to the model property name if left blank.
@@ -134,7 +134,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("displayName")]
-		public virtual string DisplayName => global::MermaidWorkflow.CMS.Models.GovukValidationDisplayName.GetDisplayName(this, _publishedValueFallback);
+		public virtual string DisplayName => global::Umbraco.Cms.Web.Common.PublishedModels.GovukValidationDisplayName.GetDisplayName(this, _publishedValueFallback);
 
 		///<summary>
 		/// Numeric or date range: Sets the message displayed if the field is set by the code to require a number or date in a given range.
@@ -142,7 +142,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("errorMessageRange")]
-		public virtual string ErrorMessageRange => global::MermaidWorkflow.CMS.Models.GovukValidationRange.GetErrorMessageRange(this, _publishedValueFallback);
+		public virtual string ErrorMessageRange => global::Umbraco.Cms.Web.Common.PublishedModels.GovukValidationRange.GetErrorMessageRange(this, _publishedValueFallback);
 
 		///<summary>
 		/// Required: Sets the message displayed if the field is set by the code to be required.
@@ -150,6 +150,6 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("errorMessageRequired")]
-		public virtual string ErrorMessageRequired => global::MermaidWorkflow.CMS.Models.GovukValidationRequired.GetErrorMessageRequired(this, _publishedValueFallback);
+		public virtual string ErrorMessageRequired => global::Umbraco.Cms.Web.Common.PublishedModels.GovukValidationRequired.GetErrorMessageRequired(this, _publishedValueFallback);
 	}
 }

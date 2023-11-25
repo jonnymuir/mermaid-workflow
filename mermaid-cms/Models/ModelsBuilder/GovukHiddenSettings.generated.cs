@@ -16,7 +16,7 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace MermaidWorkflow.CMS.Models
+namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Hidden field settings</summary>
 	[PublishedModel("govukHiddenSettings")]
@@ -55,6 +55,6 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("modelProperty")]
-		public virtual object ModelProperty => global::MermaidWorkflow.CMS.Models.GovukModelProperty.GetModelProperty(this, _publishedValueFallback);
+		public virtual object ModelProperty => global::Umbraco.Cms.Web.Common.PublishedModels.GovukModelProperty.GetModelProperty(this, _publishedValueFallback);
 	}
 }

@@ -16,7 +16,7 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace MermaidWorkflow.CMS.Models
+namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Button settings</summary>
 	[PublishedModel("govukButtonSettings")]
@@ -78,7 +78,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cssClasses")]
-		public virtual string CssClasses => global::MermaidWorkflow.CMS.Models.GovukCssClasses.GetCssClasses(this, _publishedValueFallback);
+		public virtual string CssClasses => global::Umbraco.Cms.Web.Common.PublishedModels.GovukCssClasses.GetCssClasses(this, _publishedValueFallback);
 
 		///<summary>
 		/// CSS classes for row: Applied to the grid row which contains this component and other adjacent components that have the same setting.
@@ -86,7 +86,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cssClassesForRow")]
-		public virtual string CssClassesForRow => global::MermaidWorkflow.CMS.Models.GovukGrid.GetCssClassesForRow(this, _publishedValueFallback);
+		public virtual string CssClassesForRow => global::Umbraco.Cms.Web.Common.PublishedModels.GovukGrid.GetCssClassesForRow(this, _publishedValueFallback);
 
 		///<summary>
 		/// Column size
@@ -94,7 +94,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("columnSize")]
-		public virtual string ColumnSize => global::MermaidWorkflow.CMS.Models.GovukGridColumnClasses.GetColumnSize(this, _publishedValueFallback);
+		public virtual string ColumnSize => global::Umbraco.Cms.Web.Common.PublishedModels.GovukGridColumnClasses.GetColumnSize(this, _publishedValueFallback);
 
 		///<summary>
 		/// Column size (from desktop): Defaults to 'two-thirds' if both column size properties are left blank.
@@ -102,7 +102,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("columnSizeFromDesktop")]
-		public virtual string ColumnSizeFromDesktop => global::MermaidWorkflow.CMS.Models.GovukGridColumnClasses.GetColumnSizeFromDesktop(this, _publishedValueFallback);
+		public virtual string ColumnSizeFromDesktop => global::Umbraco.Cms.Web.Common.PublishedModels.GovukGridColumnClasses.GetColumnSizeFromDesktop(this, _publishedValueFallback);
 
 		///<summary>
 		/// CSS classes for column: Applied to the grid column which contains this component and other adjacent components that have the same setting.
@@ -110,7 +110,7 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cssClassesForColumn")]
-		public virtual string CssClassesForColumn => global::MermaidWorkflow.CMS.Models.GovukGridColumnClasses.GetCssClassesForColumn(this, _publishedValueFallback);
+		public virtual string CssClassesForColumn => global::Umbraco.Cms.Web.Common.PublishedModels.GovukGridColumnClasses.GetCssClassesForColumn(this, _publishedValueFallback);
 
 		///<summary>
 		/// Model property: The name of the property on the view model being bound to in the code.
@@ -118,6 +118,6 @@ namespace MermaidWorkflow.CMS.Models
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "12.3.1+80fac86")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("modelProperty")]
-		public virtual object ModelProperty => global::MermaidWorkflow.CMS.Models.GovukModelProperty.GetModelProperty(this, _publishedValueFallback);
+		public virtual object ModelProperty => global::Umbraco.Cms.Web.Common.PublishedModels.GovukModelProperty.GetModelProperty(this, _publishedValueFallback);
 	}
 }
