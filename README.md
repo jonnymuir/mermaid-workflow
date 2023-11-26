@@ -205,6 +205,15 @@ C4Component
     Rel(chart, context, "Updates state in")
 ```
 
-# Azure setup
+# Azure setup - Mermaid CMS
 
-For development if you want to run a sqlite database you will need to 
+For development if you want to run a sqlite database you will need to create an empty database in WAL mode. Also you will need to create the media folder manually.
+
+Once you are able to run umbraco you will need to create a login and usync will handle the rest.
+
+```
+mkdir -p /home/site/wwwroot/media 
+mkdir -p /home/site/wwwroot/umbraco/Data
+sqlite3 /tmp/Umbraco.sqlite.db 'PRAGMA journal_mode=WAL;'
+mv /tmp/Umbraco.sqlite.db* /home/site/wwwroot/umbraco/Data
+```
