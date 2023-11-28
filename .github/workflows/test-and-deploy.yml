@@ -18,7 +18,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
-        java-version: '21'
+        java-version: '17'
 
     - name: Cache .m2 directory
       uses: actions/cache@v3
@@ -64,7 +64,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
-        java-version: '21'
+        java-version: '17'
 
     - name: Set up .NET
       uses: actions/setup-dotnet@v3
