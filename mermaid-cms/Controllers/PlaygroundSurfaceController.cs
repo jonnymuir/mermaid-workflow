@@ -17,6 +17,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace MermaidWorkflow.CMS.Controllers;
 
@@ -90,7 +91,8 @@ public class PlaygroundSurfaceController : SurfaceController
                 var context = JObject.Parse(responseContent)["context"]?.ToString();
 
                 viewModel.Context = context;
-                ViewData["NewContext"] = context;
+                ModelState.SetModelValue("Context", new ValueProviderResult(context));
+
             }
             else
             {

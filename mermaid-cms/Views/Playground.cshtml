@@ -11,11 +11,6 @@
   <title>@Model.Page!.PageHeadingOrName()</title>
 }
 
-@{
-    Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry? modelStateEntry = null;
-    ViewContext.ModelState.TryGetValue("Context", out modelStateEntry);
-}
-
 @if (!ViewData.ModelState.IsValid)
 {
   <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
@@ -62,8 +57,18 @@
   </h2>
   <ul class="govuk-tabs__list">
     <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#test">
+        Test
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
       <a class="govuk-tabs__tab" href="#chart">
         Chart
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#diagram">
+        Diagram
       </a>
     </li>
     <li class="govuk-tabs__list-item">
@@ -71,28 +76,27 @@
         Mappings
       </a>
     </li>
-    <li class="govuk-tabs__list-item">
-      <a class="govuk-tabs__tab" href="#test">
-        Test
-      </a>
-    </li>
+
   </ul>
-  <div class="govuk-tabs__panel" id="chart">
-    <h2 class="govuk-heading-l">Chart</h2>
-    <partial name="GOVUK/BlockList" model="Model.Page!.ChartContentBlock" />
-    <div class="mermaid">
-    </div>
-  </div>
-  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="mappings">
-    <h2 class="govuk-heading-l">Mappings</h2>
-    <partial name="GOVUK/BlockList" model="Model.Page!.MappingsContentBlock" />
-  </div>
   <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="test">
     <h2 class="govuk-heading-l">Test</h2>
     <partial name="GOVUK/BlockList" model="Model.Page!.TestContentBlock" />
     <button class="govuk-button" data-module="govuk-button" type="submit">
       Submit
     </button>
+  </div>
+  <div class="govuk-tabs__panel" id="chart">
+    <h2 class="govuk-heading-l">Chart</h2>
+    <partial name="GOVUK/BlockList" model="Model.Page!.ChartContentBlock" />
+  </div>
+  <div class="govuk-tabs__panel" id="diagram">
+    <h2 class="govuk-heading-l">Diagram</h2>
+    <div class="mermaid">
+    </div>
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="mappings">
+    <h2 class="govuk-heading-l">Mappings</h2>
+    <partial name="GOVUK/BlockList" model="Model.Page!.MappingsContentBlock" />
   </div>
 </div>
 }
@@ -119,7 +123,12 @@
 
       // Trigger rendering on input
       mermaidTextArea.addEventListener('input', renderMermaid);
+      @if(!String.IsNullOrEmpty(Model.Chart))
+      {
+      <text>
       await renderMermaid();
+      </text>
+      }
     });
   </script>
   <script>
