@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>
+@{
+    var currentUrl = Context.Request.Path;
+}
+<ul class="govuk-header__navigation-list">
+  @foreach (var node in Model)
+  {
+    var isActive = currentUrl.Equals(node.Url(mode: UrlMode.Relative), StringComparison.OrdinalIgnoreCase);
+
+    <li class="govuk-header__navigation-item @(isActive ? "govuk-header__navigation-item--active" : "")">
+      <a class="govuk-header__link" href="@node.Url()">
+        @node.Name
+      </a>
+    </li>
+  }
+</ul>

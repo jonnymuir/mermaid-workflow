@@ -4,15 +4,59 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<PlaygroundViewModel>
 
 @{
-	Layout = "Master.cshtml";
+  Layout = "Master.cshtml";
 }
 
-@section head{
-    <title>@Model.Page!.PageHeadingOrName()</title>
+@section head {
+  <title>@Model.Page!.PageHeadingOrName()</title>
 }
-@using (Html.BeginUmbracoForm<PlaygroundSurfaceController>(nameof(PlaygroundSurfaceController.Index), new {}, new { novalidate="novalidate" }))
+
+@{
+    Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry? modelStateEntry = null;
+    ViewContext.ModelState.TryGetValue("Context", out modelStateEntry);
+}
+
+@if (!ViewData.ModelState.IsValid)
 {
-<div class="govuk-tabs" data-module="govuk-tabs">
+  <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+  data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There was a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      @foreach (var key in ViewData.ModelState.Keys)
+        {
+          foreach (var error in ViewData.ModelState[key].Errors)
+          {
+            <li>@key: @error.ErrorMessage</li>
+          }
+        }
+      </ul>
+    </div>
+
+    @if (ViewData["DetailedError"] != null)
+    {
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            More info
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <pre>@ViewData["DetailedError"]</pre>
+        </div>
+      </details>
+    }
+
+  </div>
+}
+@using (Html.BeginUmbracoForm<PlaygroundSurfaceController>(nameof(PlaygroundSurfaceController.Index), new { }, new
+{
+  novalidate = "novalidate"
+}))
+{
+  <div class="govuk-tabs" data-module="govuk-tabs">
   <h2 class="govuk-tabs__title">
     Contents
   </h2>
@@ -45,36 +89,49 @@
   </div>
   <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="test">
     <h2 class="govuk-heading-l">Test</h2>
-      <partial name="GOVUK/BlockList" model="Model.Page!.TestContentBlock" />
-      <button class="govuk-button" data-module="govuk-button" type="submit">
-          Submit
-      </button>
+    <partial name="GOVUK/BlockList" model="Model.Page!.TestContentBlock" />
+    <button class="govuk-button" data-module="govuk-button" type="submit">
+      Submit
+    </button>
   </div>
 </div>
 }
 @section scripts {
-    <partial name="GOVUK/UmbracoValidation" />
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function(){
-        var mermaidTextArea = document.querySelector('#chart textarea');
-        var mermaidChartDiv = document.querySelector('.mermaid');
-    
-        var mermaidConfig = {
-          startOnLoad: false
-        };
-    
-        mermaid.initialize(mermaidConfig);
-    
-        // Function to render Mermaid chart
-        async function renderMermaid() {
-          var graphDefinition = mermaidTextArea.value;
-          const { svg } = await mermaid.render('graphDiv', graphDefinition);
-          mermaidChartDiv.innerHTML = svg;
+  <partial name="GOVUK/UmbracoValidation" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      var mermaidTextArea = document.querySelector('#chart textarea');
+      var mermaidChartDiv = document.querySelector('.mermaid');
+
+      var mermaidConfig = {
+        startOnLoad: false
+      };
+
+      mermaid.initialize(mermaidConfig);
+
+      // Function to render Mermaid chart
+      async function renderMermaid() {
+        var graphDefinition = mermaidTextArea.value;
+        const { svg } = await mermaid.render('graphDiv', graphDefinition);
+        mermaidChartDiv.innerHTML = svg;
+      }
+
+      // Trigger rendering on input
+      mermaidTextArea.addEventListener('input', renderMermaid);
+      await renderMermaid();
+    });
+  </script>
+  <script>
+        // Copy to Clipboard Function
+        function copyToClipboard(elementSelector) {
+            var text = document.querySelector(elementSelector).innerText;
+            navigator.clipboard.writeText(text).then(function() {
+                // Optional: Display a temporary message or change button text/state
+                console.log('Copied to clipboard');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
         }
-    
-        // Trigger rendering on input
-        mermaidTextArea.addEventListener('input', renderMermaid);
-      });
     </script>
 }

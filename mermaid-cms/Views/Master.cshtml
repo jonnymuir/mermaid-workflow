@@ -28,6 +28,9 @@
           </span>
         </a>
       </div>
+      <nav class="govuk-header__navigation" aria-label="Top Level Navigation">
+        @await Component.InvokeAsync("NavigationMenu")
+      </nav>
     </div>
   </header>
   <div class="govuk-width-container ">
