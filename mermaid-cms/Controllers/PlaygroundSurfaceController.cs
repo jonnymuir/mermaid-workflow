@@ -108,7 +108,7 @@ public class PlaygroundSurfaceController : SurfaceController
                     if (errorResponse?.error != null && errorResponse?.reason != null)
                     {
                         // Process and add custom error messages to ModelState
-                        ModelState.AddModelError(errorResponse?.applies?.ToString() ?? "Error", errorResponse?.error.ToString());
+                        ModelState.AddModelError(errorResponse?.reason?.applies?.ToString() ?? "Error", errorResponse?.error.ToString());
                         ViewData["DetailedError"] = errorResponse?.reason.ToString();
                     }
                     else if (errorResponse?.humanized != null)
