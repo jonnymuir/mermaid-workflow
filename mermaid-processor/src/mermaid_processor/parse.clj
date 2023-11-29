@@ -37,5 +37,6 @@ ExceptionInfo if there was a parse error."
       :else
       (throw (ex-info "Unknown chart type"
                       {:type first-word
-                       :content content})))))
+                       :content content
+                       :applies "Chart"})))))
  

@@ -10,7 +10,7 @@
                    (catch clojure.lang.ExceptionInfo ex
                      ex))]
       (is (= "Unknown chart type" (.getMessage ex)))
-      (is (= {:type "nonsensechart", :content "nonsensechart TB"} (ex-data ex))))))
+      (is (= {:type "nonsensechart", :content "nonsensechart TB" :applies "Chart"} (ex-data ex))))))
 
 (deftest parse-single-node-test
   (testing "simplest single node test"

@@ -46,8 +46,17 @@
 
   </div>
 }
+
+<div id="loadingIndicator" class="govuk-modal-dialogue" aria-hidden="true" style="display: none;" role="dialog">
+  <div class="govuk-modal-dialogue__box">
+    <h2 class="govuk-heading-m">Please wait...</h2>
+    <!-- Optionally, include a GDS spinner or loading icon here -->
+  </div>
+</div>
+
 @using (Html.BeginUmbracoForm<PlaygroundSurfaceController>(nameof(PlaygroundSurfaceController.Index), new { }, new
 {
+  id = "playgroundFormId",
   novalidate = "novalidate"
 }))
 {
@@ -123,24 +132,36 @@
 
       // Trigger rendering on input
       mermaidTextArea.addEventListener('input', renderMermaid);
-      @if(!String.IsNullOrEmpty(Model.Chart))
-      {
+    @if (!String.IsNullOrEmpty(Model.Chart))
+    {
       <text>
-      await renderMermaid();
+            await renderMermaid();
       </text>
-      }
+    }
+
+      // Wait message for submit
+      var form = document.getElementById('playgroundFormId');
+      var loadingIndicator = document.getElementById('loadingIndicator');
+      form.addEventListener('submit', function () {
+       
+        loadingIndicator.style.display = 'block';
+        loadingIndicator.setAttribute('aria-busy', 'true');
+        loadingIndicator.setAttribute('aria-live', 'polite');
+        loadingIndicator.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.style.display = 'none';
+      })
     });
   </script>
   <script>
-        // Copy to Clipboard Function
-        function copyToClipboard(elementSelector) {
-            var text = document.querySelector(elementSelector).innerText;
-            navigator.clipboard.writeText(text).then(function() {
-                // Optional: Display a temporary message or change button text/state
-                console.log('Copied to clipboard');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            });
-        }
-    </script>
+    // Copy to Clipboard Function
+    function copyToClipboard(elementSelector) {
+      var text = document.querySelector(elementSelector).innerText;
+      navigator.clipboard.writeText(text).then(function () {
+        // Optional: Display a temporary message or change button text/state
+        console.log('Copied to clipboard');
+      }, function (err) {
+        console.error('Could not copy text: ', err);
+      });
+    }
+  </script>
 }

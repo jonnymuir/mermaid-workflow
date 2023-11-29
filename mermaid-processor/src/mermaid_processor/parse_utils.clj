@@ -18,5 +18,6 @@
   [parse-result]
   (if (contains? parse-result :reason)
     (throw (ex-info "Parsing failed"
-                    parse-result))
+                    {:result parse-result
+                     :applies "Chart"}))
     parse-result))

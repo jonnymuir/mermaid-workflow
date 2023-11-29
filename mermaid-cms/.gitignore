@@ -475,5 +475,7 @@ appsettings-schema.*.json
 # Log files
 /umbraco/Logs/
 
+**/Smidge/
+
 # Media files
 # /wwwroot/media/

@@ -66,7 +66,7 @@ public class PlaygroundSurfaceController : SurfaceController
                 {
                     ModelState.AddModelError("Context", "The context data is not in a valid JSON format.");
                     ViewData["DetailedError"] = ex;
-                    return View("Playground", viewModel); 
+                    return View("Playground", viewModel);
                 }
             }
 
@@ -97,25 +97,36 @@ public class PlaygroundSurfaceController : SurfaceController
             else
             {
                 var errorContent = await response.Content.ReadAsStringAsync();
+
+                // Add detailed error for access in the view
+                ViewData["DetailedError"] = errorContent;
+
+                // This attempts to get a more readable version of the error (if for example the malli schema parser has given a humanized version)
                 try
                 {
                     var errorResponse = JsonConvert.DeserializeObject<dynamic>(errorContent);
-                    var humanizedErrors = errorResponse.humanized;
-
-                    // Add detailed error for access in the view
-                    ViewData["DetailedError"] = errorContent;
-
-                    foreach (var errorKey in humanizedErrors)
+                    if (errorResponse?.error != null && errorResponse?.reason != null)
                     {
-                        // Add human-readable errors to ModelState
-                        ModelState.AddModelError(errorKey.Name, errorKey.Value[0].ToString());
+                        // Process and add custom error messages to ModelState
+                        ModelState.AddModelError(errorResponse?.applies?.ToString() ?? "Error", errorResponse?.error.ToString());
+                        ViewData["DetailedError"] = errorResponse?.reason.ToString();
+                    }
+                    else if (errorResponse?.humanized != null)
+                    {
+                        // Existing logic for handling humanized errors
+                        foreach (var errorKey in errorResponse.humanized)
+                        {
+                            ModelState.AddModelError(errorKey.Name, errorKey.Value[0].ToString());
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "An unexpected error occurred.");
                     }
                 }
                 catch (JsonException)
                 {
-                    // If parsing fails, add the raw error content
                     ModelState.AddModelError(string.Empty, "An unexpected error occurred.");
-                    ViewData["DetailedError"] = errorContent;
                 }
             }
         }

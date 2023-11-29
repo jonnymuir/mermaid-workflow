@@ -38,7 +38,7 @@
 
       <partial name="GOVUK/BodyOpen" />
       <main>@RenderBody()</main>
-      <partial name="GOVUK/UmbracoBodyClosing" />
+      <partial name="GOVUK/BodyClosing" />
     </main>
   </div>
 
@@ -51,5 +51,5 @@
   </footer>
   @RenderSection("scripts", required: false)
 </body>
-
+@await SmidgeHelper.JsHereAsync(debug: true)
 </html>

@@ -52,11 +52,13 @@
               (catch Exception e
                 (throw (ex-info "Error processing action map rule"
                                 {:error (.getMessage e)
-                                 :rule rule})))))
+                                 :rule rule
+                                 :applies "Mappings"})))))
           (json/parse-string json-str true))
     (catch Exception e
       (throw (ex-info "Error parsing action map json"
-                      {:error (.getMessage e)})))))
+                      {:error (.getMessage e)
+                       :applies "Mappings"})))))
 
 
 (defn- get-mappings
