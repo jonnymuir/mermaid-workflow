@@ -13,6 +13,16 @@
           result ((behaviors "Score -10.2") {})]
       (is (= -10.2 (((result :context) :fields) :score))))))
 
+(deftest simple-action-list-test
+  (testing "test a compound action"
+    (let [behaviors (behavior/build
+                     {:core core/actions}
+                     {:nodes {"A" {:node-text "Score -10.2" :routes '()}}}
+                     [{:regex #"(?i)^\s*score\s(-?\d+(\.\d+)?)\s*$" :action [[:core :set-field "score" :number :%1] [:core :set-field "another-score" :number :%1]]}])
+          result ((behaviors "Score -10.2") {})]
+      (is (= -10.2 (((result :context) :fields) :score)))
+      (is (= -10.2 (((result :context) :fields) :another-score))))))
+
 (deftest simple-condition-test
   (testing "Test a simple condition"
     (let [behaviors

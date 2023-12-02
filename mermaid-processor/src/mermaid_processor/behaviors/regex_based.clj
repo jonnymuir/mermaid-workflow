@@ -22,7 +22,25 @@
        (utils/distinct-by :regex)
        (into [])))
 
-(defn- get-implementation-fn [libraries action match]
+
+(defn- execute-chained-actions [action-fns initial-context]
+  (let [initial-accumulator {:context initial-context
+                             :result nil
+                             :audit []}]
+    (reduce (fn [accumulator action-fn]
+              (let [context (accumulator :context)
+                    action-result (action-fn context)
+                    new-context (action-result :context)
+                    new-audit (conj (accumulator :audit) (get action-result :audit nil))
+                    new-result (action-result :result)]
+                {:context new-context
+                 :audit new-audit
+                 :result new-result}))
+            initial-accumulator
+            action-fns)))
+
+
+(defn- get-single-implementation-fn [libraries action match]
   (let [actions (libraries (first action))
         action-fn (actions (second action))
         params (mapv
@@ -45,6 +63,18 @@
                          :match match
                          :original-message (.getMessage e)}
                         e))))))
+
+(defn- single-action? [action-or-action-list]
+  (and (vector? action-or-action-list)
+       (not (vector? (first action-or-action-list)))))
+
+(defn- get-implementation-fn [libraries action-or-action-list match]
+  (let [actions (if (single-action? action-or-action-list)
+                  [action-or-action-list]
+                  action-or-action-list)
+        action-fns (map #(get-single-implementation-fn libraries % match) actions)]
+    (fn [context]
+      (execute-chained-actions action-fns context))))
 
 (defn- find-matching-action-fn [libraries regex-to-action-map node-text]
   (some
