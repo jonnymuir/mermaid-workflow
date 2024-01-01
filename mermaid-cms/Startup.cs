@@ -39,6 +39,12 @@ namespace mermaid_cms
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = _config["Authentication:Google:ClientId"]!;
+                options.ClientSecret = _config["Authentication:Google:ClientSecret"]!;
+            });
+
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
                 .AddWebsite()
@@ -54,7 +60,7 @@ namespace mermaid_cms
         /// </summary>
         /// <param name="app">The application builder.</param>
         /// <param name="env">The web hosting environment.</param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,IOptions<MvcOptions> mvcOptions, IUmbracoContextAccessor umbracoContextAccessor, IPublishedValueFallback publishedValueFallback)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IOptions<MvcOptions> mvcOptions, IUmbracoContextAccessor umbracoContextAccessor, IPublishedValueFallback publishedValueFallback)
         {
             if (env.IsDevelopment())
             {
