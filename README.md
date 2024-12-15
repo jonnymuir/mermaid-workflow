@@ -4,7 +4,7 @@
 Runnable user centric workflow described by mermaid diagrams
 
 # Context
-[Mermaid diagrams](https://mermaid.js.org/) is tool to create complex diagrams in simple markdown. Its main purpose is to help documentation catch-up with development.
+[Mermaid diagrams](https://mermaid.js.org/) is a tool to create complex diagrams in simple markdown. Its main purpose is to help documentation catch-up with development.
 
 # Problem statement
 I would like to describe how work flows in a simple diagram.
